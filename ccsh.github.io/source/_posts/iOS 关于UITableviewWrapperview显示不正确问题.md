@@ -6,6 +6,7 @@ tags:
   - 问题
 ---
 
+
 问题：就算是设置了`automaticallyAdjustsScrollViewInsets = NO` 或者 `contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;` 不起作用 查看显示`UITableviewWrapperview` 与 `UITableView` 位置不一致
 
 ```

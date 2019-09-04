@@ -3,11 +3,12 @@ title: iOS tableview footerview、headerview悬浮处理
 categories:
   - iOS
 tags:
-  - tableview
-  - footerview
-  - headerview
+  - 方法
 ---
 
+
+悬浮处理
+<!-- more -->
 ```
 //去掉UItableview的section的headerview悬浮
 CGFloat sectionHeaderH = 10;

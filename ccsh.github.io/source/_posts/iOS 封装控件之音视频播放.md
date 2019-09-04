@@ -1,9 +1,11 @@
 ---
 title: iOS 封装控件之音视频播放
-tags: 封装
 categories:
   - iOS
+tags:
+  - 封装
 ---
+
 
 - 音频播放
 - 视频播放

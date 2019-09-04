@@ -1,7 +1,6 @@
 ---
-title: 关于我
-categories:
-  - 介绍
+title: 个人简介
+comments: false
 ---
 
 iOS Coder
