@@ -86,22 +86,22 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[安装pod]]></title>
-    <url>%2F2019%2F09%2F04%2F%E5%AE%89%E8%A3%85pod%2F</url>
-    <content type="text"><![CDATA[gem -v gem source -r https://rubygems.org/ gem source -ahttps://gems.ruby-china.com/ gem source -l sudo gem install -n /usr/local/bin cocoapods –pre pod setup pod –version]]></content>
+    <title><![CDATA[如何获取ios系统信息]]></title>
+    <url>%2F2019%2F09%2F04%2F%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96ios%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%2F</url>
+    <content type="text"><![CDATA[如何获取ios系统信息 12345678910111213141516171819202122232425NSString *deviceID = [[UIDevice currentDevice] uniqueIdentifier];//设备id// NSString *deviceID = [[UIApplication sharedApplication] uuid];NSString *systemVersion = [[UIDevice currentDevice] systemVersion];//系统版本NSString *systemModel = [[UIDevice currentDevice] model];//是iphone 还是 ipadNSDictionary *dic = [[NSBundle mainBundle] infoDictionary];//获取info－plistNSString *appName = [dic objectForKey:@&quot;CFBundleIdentifier&quot;];//获取Bundle identifierNSString *appVersion = [dic valueForKey:@&quot;CFBundleVersion&quot;];//获取Bundle VersionNSDictionary *userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:deviceID, @&quot;deviceID&quot;,systemVersion, @&quot;systemVersion&quot;,systemModel, @&quot;systemModel&quot;,appName, @&quot;appName&quot;,appVersion, @&quot;appVersion&quot;,nil];]]></content>
       <categories>
-        <category>CocoaPods</category>
+        <category>iOS</category>
       </categories>
       <tags>
         <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[如何获取ios系统信息]]></title>
-    <url>%2F2019%2F09%2F04%2F%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96ios%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%2F</url>
-    <content type="text"><![CDATA[如何获取ios系统信息 12345678910111213141516171819202122232425NSString *deviceID = [[UIDevice currentDevice] uniqueIdentifier];//设备id// NSString *deviceID = [[UIApplication sharedApplication] uuid];NSString *systemVersion = [[UIDevice currentDevice] systemVersion];//系统版本NSString *systemModel = [[UIDevice currentDevice] model];//是iphone 还是 ipadNSDictionary *dic = [[NSBundle mainBundle] infoDictionary];//获取info－plistNSString *appName = [dic objectForKey:@&quot;CFBundleIdentifier&quot;];//获取Bundle identifierNSString *appVersion = [dic valueForKey:@&quot;CFBundleVersion&quot;];//获取Bundle VersionNSDictionary *userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:deviceID, @&quot;deviceID&quot;,systemVersion, @&quot;systemVersion&quot;,systemModel, @&quot;systemModel&quot;,appName, @&quot;appName&quot;,appVersion, @&quot;appVersion&quot;,nil];]]></content>
+    <title><![CDATA[安装pod]]></title>
+    <url>%2F2019%2F09%2F04%2F%E5%AE%89%E8%A3%85pod%2F</url>
+    <content type="text"><![CDATA[gem -v gem source -r https://rubygems.org/ gem source -ahttps://gems.ruby-china.com/ gem source -l sudo gem install -n /usr/local/bin cocoapods –pre pod setup pod –version]]></content>
       <categories>
-        <category>iOS</category>
+        <category>CocoaPods</category>
       </categories>
       <tags>
         <tag>随笔</tag>
@@ -366,8 +366,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[iOS 封装控件之日历]]></title>
-    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B0%81%E8%A3%85%E6%8E%A7%E4%BB%B6%E4%B9%8B%E6%97%A5%E5%8E%86%2F</url>
+    <title><![CDATA[iOS 封装控件之表情键盘]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B0%81%E8%A3%85%E6%8E%A7%E4%BB%B6%E4%B9%8B%E8%A1%A8%E6%83%85%E9%94%AE%E7%9B%98%2F</url>
     <content type="text"><![CDATA[代码地址]]></content>
       <categories>
         <category>iOS</category>
@@ -377,8 +377,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[iOS 封装控件之表情键盘]]></title>
-    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B0%81%E8%A3%85%E6%8E%A7%E4%BB%B6%E4%B9%8B%E8%A1%A8%E6%83%85%E9%94%AE%E7%9B%98%2F</url>
+    <title><![CDATA[iOS 封装控件之日历]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B0%81%E8%A3%85%E6%8E%A7%E4%BB%B6%E4%B9%8B%E6%97%A5%E5%8E%86%2F</url>
     <content type="text"><![CDATA[代码地址]]></content>
       <categories>
         <category>iOS</category>
@@ -542,17 +542,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[iOS APP日志写入文件（日志收集）]]></title>
-    <url>%2F2019%2F09%2F04%2FiOS%20APP%E6%97%A5%E5%BF%97%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6%EF%BC%88%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[APP日志写入文件（日志收集） 123- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOption //日志收集(日志会被拦截，开发的时候注掉) [self redirectNSlogToDocumentFolder]; 方法实现 #pragma mark - 日志收集 - (void)redirectNSlogToDocumentFolder { NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; NSDateFormatter *dateformat = [[NSDateFormatter alloc]init]; [dateformat setDateFormat:@&quot;yyyy-MM-dd-HH-mm-ss&quot;]; NSString *fileName = [NSString stringWithFormat:@&quot;LOG-%@.txt&quot;,[dateformat stringFromDate:[NSDate date]]]; NSString *logFilePath = [documentDirectory stringByAppendingPathComponent:fileName]; // 先删除已经存在的文件 NSFileManager *defaultManager = [NSFileManager defaultManager]; [defaultManager removeItemAtPath:logFilePath error:nil]; // 将log输入到文件 freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], &quot;a+&quot;, stdout); freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], &quot;a+&quot;, stderr); }在需要进行收集的时候将文件上传到服务器]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>方法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[iOS APP各种状态（进入后台，前台等整理）]]></title>
     <url>%2F2019%2F09%2F04%2FiOS%20APP%E5%90%84%E7%A7%8D%E7%8A%B6%E6%80%81%EF%BC%88%E8%BF%9B%E5%85%A5%E5%90%8E%E5%8F%B0%EF%BC%8C%E5%89%8D%E5%8F%B0%E7%AD%89%E6%95%B4%E7%90%86%EF%BC%89%2F</url>
     <content type="text"><![CDATA[APP各种状态（进入后台，前台等整理） 1234567891011121314151617181920212223242526272829#pragma mark - 程序将要进入后台- (void)applicationWillResignActive:(UIApplication *)application &#123; // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state. // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game. DLog(@&quot;程序将要进入后台&quot;); &#125;#pragma mark - 程序进入后台- (void)applicationDidEnterBackground:(UIApplication *)application &#123; // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits. DLog(@&quot;程序进入后台&quot;); &#125;#pragma mark - 程序将要进入前台- (void)applicationWillEnterForeground:(UIApplication *)application &#123; // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background. DLog(@&quot;程序将要进入前台&quot;); &#125;#pragma mark - 程序进入前台- (void)applicationDidBecomeActive:(UIApplication *)application &#123; // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface. DLog(@&quot;程序进入前台&quot;); &#125;]]></content>
@@ -561,6 +550,17 @@
       </categories>
       <tags>
         <tag>tableview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS APP日志写入文件（日志收集）]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20APP%E6%97%A5%E5%BF%97%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6%EF%BC%88%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[APP日志写入文件（日志收集） 123- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOption //日志收集(日志会被拦截，开发的时候注掉) [self redirectNSlogToDocumentFolder]; 方法实现 #pragma mark - 日志收集 - (void)redirectNSlogToDocumentFolder { NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; NSDateFormatter *dateformat = [[NSDateFormatter alloc]init]; [dateformat setDateFormat:@&quot;yyyy-MM-dd-HH-mm-ss&quot;]; NSString *fileName = [NSString stringWithFormat:@&quot;LOG-%@.txt&quot;,[dateformat stringFromDate:[NSDate date]]]; NSString *logFilePath = [documentDirectory stringByAppendingPathComponent:fileName]; // 先删除已经存在的文件 NSFileManager *defaultManager = [NSFileManager defaultManager]; [defaultManager removeItemAtPath:logFilePath error:nil]; // 将log输入到文件 freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], &quot;a+&quot;, stdout); freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], &quot;a+&quot;, stderr); }在需要进行收集的时候将文件上传到服务器]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
       </tags>
   </entry>
   <entry>
@@ -693,17 +693,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Mac 安装pod]]></title>
-    <url>%2F2019%2F09%2F04%2FMac%20%E5%AE%89%E8%A3%85pod%2F</url>
-    <content type="text"><![CDATA[Mac 安装pod 12345678910111213141516171819202122232425262728293031323334安装pod 需要安装Xcoderuby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;curl -sSL https://get.rvm.io | bash -s stablesource ~/.rvm/scripts/rvmrvm -vrvm install 2.6//xcode-select --installrvm use 2.6.0 --defaultruby -vgem -vgem source -r [https://rubygems.org/](https://rubygems.org/)gem source -[ahttps://gems.ruby-china.com/](ahttps://gems.ruby-china.com/)gem source -lsudo gem install -n /usr/local/bin cocoapods --prepod setup//快速安装与更新--verbose --no-repo-update]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>操作</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[TableViewCell 下划线或分割线长度与颜色问题]]></title>
     <url>%2F2019%2F09%2F04%2FTableViewCell%20%E4%B8%8B%E5%88%92%E7%BA%BF%E6%88%96%E5%88%86%E5%89%B2%E7%BA%BF%E9%95%BF%E5%BA%A6%E4%B8%8E%E9%A2%9C%E8%89%B2%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[TableViewCell 下划线或分割线长度与颜色问题 1234567891011121314151617181920212223242526272829- (void)viewDidLoad &#123;[super viewDidLoad];//UIEdgeInsetsZero 下划线为屏幕的宽//UIEdgeInsetsMake(&lt;#CGFloat top#&gt;, &lt;#CGFloat left#&gt;, &lt;#CGFloat bottom#&gt;, &lt;#CGFloat right#&gt;) 细微调整//下划线位置[self.tableView setSeparatorInset:UIEdgeInsetsZero];//下划线颜色[self.tableView setSeparatorColor:[UIColor xxxx ]];&#125;- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;UITableViewCell *cell;[cell setSeparatorInset:UIEdgeInsetsZero];[cell setLayoutMargins:UIEdgeInsetsZero];return cell;&#125;]]></content>
@@ -712,6 +701,17 @@
       </categories>
       <tags>
         <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mac 安装pod]]></title>
+    <url>%2F2019%2F09%2F04%2FMac%20%E5%AE%89%E8%A3%85pod%2F</url>
+    <content type="text"><![CDATA[Mac 安装pod 12345678910111213141516171819202122232425262728293031323334安装pod 需要安装Xcoderuby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;curl -sSL https://get.rvm.io | bash -s stablesource ~/.rvm/scripts/rvmrvm -vrvm install 2.6//xcode-select --installrvm use 2.6.0 --defaultruby -vgem -vgem source -r [https://rubygems.org/](https://rubygems.org/)gem source -[ahttps://gems.ruby-china.com/](ahttps://gems.ruby-china.com/)gem source -lsudo gem install -n /usr/local/bin cocoapods --prepod setup//快速安装与更新--verbose --no-repo-update]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>操作</tag>
       </tags>
   </entry>
   <entry>
