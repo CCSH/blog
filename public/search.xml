@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[安装ruby]]></title>
+    <url>%2F2019%2F09%2F04%2F%E5%AE%89%E8%A3%85ruby%2F</url>
+    <content type="text"><![CDATA[curl -sSL https://get.rvm.io | bash -s stable source ~/.rvm/scripts/rvm rvm -v rvm install 2.6 rvm use ruby-2.6.3 –default ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;]]></content>
+      <categories>
+        <category>ruby</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 常用控件之QuickLook预览文件功能]]></title>
+    <url>%2F2019%2F09%2F04%2F%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BQuickLook%E9%A2%84%E8%A7%88%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD%2F</url>
+    <content type="text"><![CDATA[1、想要使用此功能首先要在工程内加入框架 1QuickLook.framework 2、在你需要展示的界面加入头文件 1#import &lt;QuickLook/QuickLook.h&gt; 3、实例化 12345678 QLPreviewController *myQlPreViewController = [[QLPreviewController alloc]init]; myQlPreViewController.delegate =self; myQlPreViewController.dataSource =self; [myQlPreViewController setCurrentPreviewItemIndex:0]; //此处可以带导航栏跳转、也可以不带导航栏跳转、也可以拿到View进行Add [self.navigationController pushViewController:myQlPreViewController animated:YES];``` 4、代理方法 #pragma mark - QLPreviewController代理 (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller{ return 1;} (id)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index{ NSString* path = [[NSBundle mainBundle] pathForResource:arr[IndeX] ofType:nil]; return [NSURL fileURLWithPath:path];} (void)previewControllerDidDismiss:(QLPreviewController *)controller{ NSLog(@”预览界面已经消失”);} //文件内部链接点击不进行外部跳转 (BOOL)previewController:(QLPreviewController *)controller shouldOpenURL:(NSURL *)url forPreviewItem:(id )item{ return NO;}```]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[清理Xcode编译项目产生的缓存垃圾]]></title>
+    <url>%2F2019%2F09%2F04%2F%E6%B8%85%E7%90%86Xcode%E7%BC%96%E8%AF%91%E9%A1%B9%E7%9B%AE%E4%BA%A7%E7%94%9F%E7%9A%84%E7%BC%93%E5%AD%98%E5%9E%83%E5%9C%BE%2F</url>
+    <content type="text"><![CDATA[rm ~/Library/Developer/Xcode/DerivedData]]></content>
+      <categories>
+        <category>Xcode</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[［转］XMPP协议及其扩展详解]]></title>
+    <url>%2F2019%2F09%2F04%2F%EF%BC%BB%E8%BD%AC%EF%BC%BDXMPP%E5%8D%8F%E8%AE%AE%E5%8F%8A%E5%85%B6%E6%89%A9%E5%B1%95%E8%AF%A6%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[原文 基本的jabber客户端必须实现以下标准协议（XEP-0211） 1、RFC3920 Core http://tools.ietf.org/html/rfc3920 2、RFC3921 Instant Messaging and Presence http://tools.ietf.org/html/rfc3921 3、XEP-030 Service Discovery http://www.xmpp.org/extensions/xep-0030.html 4、XEP-0115 Entity Capabilities http://www.xmpp.org/extensions/xep-0115.html 基本的jabber服务器必须实现以下标准协议(XEP-0212) 1、RFC3920 Core http://tools.ietf.org/html/rfc3920 2、RFC3921 Instant Messaging and Presence http://tools.ietf.org/html/rfc3921 3、XEP-030 Service Discovery http://www.xmpp.org/extensions/xep-0030.html 一、注册 XEP-0077 In-Band Registration http://www.xmpp.org/extensions/xep-0077.html 二、登录 XEP-0020 Software Version http://www.xmpp.org/extensions/xep-0092.html 三、好友列表 XEP-0083 Nested Roster Groups http://www.xmpp.org/extensions/xep-0083.html 1、获取好友列表 2、存储好友列表 XEP-0049 Private XML Storage http://www.xmpp.org/extensions/xep-0049.html 3、备注好友信息 XEP-0145 Annotations http://www.xmpp.org/extensions/xep-0145.html 4、存储书签 XEP-0048 Bookmark Storage http://www.xmpp.org/extensions/xep-0048.html 5、好友头像 XEP-0008 IQ-Based Avatars http://www.xmpp.org/extensions/xep-0008.html XEP-0084 User Avatar http://www.xmpp.org/extensions/xep-0084.html XEP-0054 vcard-temp http://www.xmpp.org/extensions/xep-0054.html 四、用户状态 RFC-3921 Subscription States http://www.ietf.org/rfc/rfc3921.txt 五、文本消息 1、在线消息 2、离线消息 XEP-0013 Flexible Offline Message Retrieval http://www.xmpp.org/extensions/xep-0013.html XEP-0160 Best Practices for Handling Offline Messages http://www.xmpp.org/extensions/xep-0160.html XEP-0203 Delayed Delivery http://www.xmpp.org/extensions/xep-0203.html 3、聊天状态通知 XEP-0085 Chat State Notifications http://www.xmpp.org/extensions/xep-0085.html 六、群组聊天 1、XEP-0045 Multi-User Chat http://www.xmpp.org/extensions/xep-0045.html 七、文件传输 1、XEP-0095 Stream Initiation http://www.xmpp.org/extensions/xep-0095.html 2、XEP-0096 File Transfer http://www.xmpp.org/extensions/xep-0096.html 3、XEP-0065 SOCKS5 Bytestreams http://www.xmpp.org/extensions/xep-0065.html 4、XEP-0215 STUN Server Discovery for Jingle http://www.xmpp.org/extensions/xep-0215.html 5、RFC-3489 STUN http://tools.ietf.org/html/rfc3489 八、音视频会议 1、XEP-0166 Jingle http://www.xmpp.org/extensions/xep-0166.html#negotiation 2、XEP-0167 Jingle Audio via RTP http://www.xmpp.org/extensions/xep-0167.html 3、XEP-0176 Jingle ICE Transport http://www.xmpp.org/extensions/xep-0176.html 4、XEP-0180 Jingle Video via RTP http://www.xmpp.org/extensions/xep-0180.html#negotiation 5、XEP-0215 STUN Server Discovery for Jingle http://www.xmpp.org/extensions/xep-0215.html 6、RFC-3489 STUN http://tools.ietf.org/html/rfc3489 九、用户查询 XEP-0055 Jabber Search http://www.xmpp.org/extensions/xep-0055.html 十、用户保活 (peakflys增加) XEP-0199 Ping http://xmpp.org/extensions/xep-0199.html 整体： 一、协议数据交互 XEP-0004 Data Forms http://www.xmpp.org/extensions/xep-0004.html 二、jabber-RPC XEP-0009 Jabber-RPC http://www.xmpp.org/extensions/xep-0009.html 三、功能协商 XEP-0020 Feature Negotiation http://www.xmpp.org/extensions/xep-0020.html 四、服务发现 XEP-0030 Service Discovery http://www.xmpp.org/extensions/xep-0030.html 五、会话建立 XEP-0116 Encrypted Session Negotiation http://www.xmpp.org/extensions/xep-0116.html XEP-0155 Stanza Session Negotiation http://www.xmpp.org/extensions/xep-0155.html XEP-0201 Best Practices for Message Threads http://www.xmpp.org/extensions/xep-0201.html]]></content>
+      <categories>
+        <category>转载</category>
+      </categories>
+      <tags>
+        <tag>XMPP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 跑马灯，弹幕，滚动文字效果实现]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E8%B7%91%E9%A9%AC%E7%81%AF%EF%BC%8C%E5%BC%B9%E5%B9%95%EF%BC%8C%E6%BB%9A%E5%8A%A8%E6%96%87%E5%AD%97%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0%2F</url>
+    <content type="text"><![CDATA[跑马灯，弹幕，滚动文字效果实现 跟视图设置 1self.backVIew.clipsToBounds = YES; 建立定时器 1[NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(labelRoll) userInfo:nil repeats:YES]; 跑起来 12345678910111213141516171819202122- (void) labelRoll&#123; CGPoint labelCenter = self.label.center; // 当控件的x坐标已经超过了视图的宽度 if(labelCenter.x &lt; self.backVIew.frame.origin.x-self.label.frame.size.width)&#123; // 控制控件自视图右侧开始移动 self.customLab.center = CGPointMake(self.backVIew.frame.size.width+self.label.frame.size.width/2, labelCenter.y); &#125;else&#123; // 控制控件移动中(微调) self.label.customLab.center = CGPointMake(labelCenter.x-5, labelCenter.y); &#125;&#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 键盘监听处理遮挡控件问题]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E9%94%AE%E7%9B%98%E7%9B%91%E5%90%AC%E5%A4%84%E7%90%86%E9%81%AE%E6%8C%A1%E6%8E%A7%E4%BB%B6%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[键盘监听处理遮挡控件问题 123456789101112#pragma mark - 键盘处理#pragma mark 监听系统发出的键盘通知- (void)addKeyboardNote &#123; NSNotificationCenter *center = [NSNotificationCenter defaultCenter]; // 1.显示键盘 [center addObserver:self selector:@selector(keyboardChange:) name:UIKeyboardWillShowNotification object:nil]; // 2.隐藏键盘 [center addObserver:self selector:@selector(keyboardChange:) name:UIKeyboardWillHideNotification object:nil];&#125; 处理方法 12345678910111213141516171819202122232425- (void)keyboardChange:(NSNotification *)note &#123; NSDictionary *userInfo = note.userInfo; NSTimeInterval duration; CGRect keyboardF; [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&amp;duration]; [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&amp;keyboardF]; if (duration &lt;= 0.0) &#123; duration = 0.25; &#125; //取得当前聚焦文本框最下面的Y值 UITextField *field = [self.view viewWithTag:1]; CGFloat maxY = CGRectGetMaxY(field.frame) + 5; [UIView animateWithDuration:duration animations:^&#123; if (maxY &gt; CGRectGetMidY(keyboardF)) &#123; //挡住了 self.view.transform = CGAffineTransformMakeTranslation(0, - (maxY - CGRectGetMidY(keyboardF) )); &#125; else &#123; // 没有挡住 self.view.transform = CGAffineTransformIdentity; &#125; &#125;];&#125; 销毁处理 123- (void)dealloc &#123; [[NSNotificationCenter defaultCenter] removeObserver:self];&#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[使用CocoaPods找不到头文件解决方法]]></title>
+    <url>%2F2019%2F09%2F04%2F%E4%BD%BF%E7%94%A8CocoaPods%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[使用CocoaPods后,发现总是找不到头文件 在TARGETS -&gt; Search Paths -&gt; User Header Search Paths 中 写入 ${SRCROOT} 再将后面参数改为recursive]]></content>
+      <categories>
+        <category>CocoaPods</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[删除Xcode中多余的证书provisioning profile]]></title>
+    <url>%2F2019%2F09%2F04%2F%E5%88%A0%E9%99%A4Xcode%E4%B8%AD%E5%A4%9A%E4%BD%99%E7%9A%84%E8%AF%81%E4%B9%A6provisioning%20profile%2F</url>
+    <content type="text"><![CDATA[rm ~/Library/MobileDevice/Provisioning Profiles]]></content>
+      <categories>
+        <category>Xcode</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[安装pod]]></title>
+    <url>%2F2019%2F09%2F04%2F%E5%AE%89%E8%A3%85pod%2F</url>
+    <content type="text"><![CDATA[gem -v gem source -r https://rubygems.org/ gem source -ahttps://gems.ruby-china.com/ gem source -l sudo gem install -n /usr/local/bin cocoapods –pre pod setup pod –version]]></content>
+      <categories>
+        <category>CocoaPods</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[如何获取ios系统信息]]></title>
+    <url>%2F2019%2F09%2F04%2F%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96ios%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%2F</url>
+    <content type="text"><![CDATA[如何获取ios系统信息 12345678910111213141516171819202122232425NSString *deviceID = [[UIDevice currentDevice] uniqueIdentifier];//设备id// NSString *deviceID = [[UIApplication sharedApplication] uuid];NSString *systemVersion = [[UIDevice currentDevice] systemVersion];//系统版本NSString *systemModel = [[UIDevice currentDevice] model];//是iphone 还是 ipadNSDictionary *dic = [[NSBundle mainBundle] infoDictionary];//获取info－plistNSString *appName = [dic objectForKey:@&quot;CFBundleIdentifier&quot;];//获取Bundle identifierNSString *appVersion = [dic valueForKey:@&quot;CFBundleVersion&quot;];//获取Bundle VersionNSDictionary *userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:deviceID, @&quot;deviceID&quot;,systemVersion, @&quot;systemVersion&quot;,systemModel, @&quot;systemModel&quot;,appName, @&quot;appName&quot;,appVersion, @&quot;appVersion&quot;,nil];]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 数据转换（持续更新）]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[NSString –&gt; NSArray 1NSArray *arr = [str componentsSeparatedByString:@&quot;,&quot;]; NSArray –&gt; NSString 1NSString *str = [arr componentsJoinedByString:@&quot;,&quot;]; NSString –&gt; NSData 1NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding]; NSData –&gt; NSString 1NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]; NSDate –&gt; NSString 123NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];[dateFormatter setDateFormat:@&quot;yyyy-MM-dd HH:mm:ss&quot;];NSString *str = [dateFormatter stringFromDate:date]; NSString –&gt; NSDate 123NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];[dateFormatter setDateFormat:@&quot;yyyy-MM-dd HH:mm:ss&quot;];NSDate *date = [dateFormatter dateFromString:str]; NSString –&gt; NSDictionary 12NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]; NSDictionary –&gt; NSString 12NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];NSString*str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]; NSArray –&gt; NSData 1NSData *data = [NSKeyedArchiver archivedDataWithRootObject:arr]; NSData –&gt; NSArray 1NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithData:data]; NSDictionary –&gt; NSData 1234NSMutableData *data = [[NSMutableData alloc] init];NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data]; [archiver encodeObject:dic forKey:@&quot;Some Key Value&quot;]; [archiver finishEncoding]; NSData –&gt; NSDictionary 123NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data]; NSDictionary *dic = [unarchiver decodeObjectForKey:@&quot;Some Key Value&quot;]; [unarchiver finishDecoding]; UIImage –&gt; NSData 1234+ (NSData *)imageToData:(UIImage *)image CompressionNum:(int)num&#123; return UIImageJPEGRepresentation(image, num)?:UIImagePNGRepresentation(image);&#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 显示与隐藏TabBar]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E6%98%BE%E7%A4%BA%E4%B8%8E%E9%9A%90%E8%97%8FTabBar%2F</url>
+    <content type="text"><![CDATA[3种方法第一种 1234567891011121314151617181920212223242526272829303132#pragma mark -隐藏TabBar- (void)hideTabBar &#123; if (self.tabBarController.tabBar.hidden == YES) &#123; return; &#125; UIView *contentView; if ( [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] ) contentView = [self.tabBarController.view.subviews objectAtIndex:1]; else contentView = [self.tabBarController.view.subviews objectAtIndex:0]; contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y, contentView.bounds.size.width, contentView.bounds.size.height + self.tabBarController.tabBar.frame.size.height); self.tabBarController.tabBar.hidden = YES; &#125;#pragma mark -显示TabBar- (void)showTabBar &#123; if (self.tabBarController.tabBar.hidden == NO) &#123; return; &#125; UIView *contentView; if ([[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]]) contentView = [self.tabBarController.view.subviews objectAtIndex:1]; else contentView = [self.tabBarController.view.subviews objectAtIndex:0]; contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y, contentView.bounds.size.width, contentView.bounds.size.height - self.tabBarController.tabBar.frame.size.height); self.tabBarController.tabBar.hidden = NO; &#125; 第二种 1234//隐藏self.hidesBottomBarWhenPushed = YES;//显示self.hidesBottomBarWhenPushed = NO; 第三种 12vc.hidesBottomBarWhenPushed = YES;[self.navigationController pushViewController:vc animated:YES];]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 权限获取]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E6%9D%83%E9%99%90%E8%8E%B7%E5%8F%96%2F</url>
+    <content type="text"><![CDATA[iOS 8 以后需要进行plist文件配置plist文件配置 ####摄像头权限 12345678910111213141516171819 AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo]; if (authStatus == AVAuthorizationStatusRestricted|| authStatus == AVAuthorizationStatusDenied) &#123;//没有权限 &#125;else&#123; if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) &#123;//成功获取 &#125;else&#123;//没有摄像头 &#125; &#125;``` ####麦克风权限 [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) { if (granted) {//成功访问 } else {//访问受限 } }];1####照片权限 if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {//成功访问 }else{//访问受限 } 1####定位权限 //判断定位用户权限 CLAuthorizationStatus status = [CLLocationManager authorizationStatus]; //判断状态 switch (status) { case kCLAuthorizationStatusAuthorizedAlways://一直获取 break; case kCLAuthorizationStatusAuthorizedWhenInUse://使用期间 break; case kCLAuthorizationStatusDenied://用户禁止 break; case kCLAuthorizationStatusNotDetermined://未做决定 { //获取权限 //使用期间使用 NSLocationWhenInUseUsageDescription [_locationManager requestWhenInUseAuthorization]; //一直使用 NSLocationAlwaysUsageDescription// [_locationManager requestAlwaysAuthorization]; } break; case kCLAuthorizationStatusRestricted://受限制 break; default: break; }1####通讯录权限 ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL); //请求访问用户通讯录，无论成功与否block都会调用 ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) { if (granted) {//成功访问 }else{//访问受限 } });]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>权限获取</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 网络判断(2G、3G、4G、WiFi、无网络)]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E7%BD%91%E7%BB%9C%E5%88%A4%E6%96%AD(2G%E3%80%813G%E3%80%814G%E3%80%81WiFi%E3%80%81%E6%97%A0%E7%BD%91%E7%BB%9C)%2F</url>
+    <content type="text"><![CDATA[网络判断(2G、3G、4G、WiFi、无网络) 网络判断 123456789101112131415161718192021222324252627282930313233343536373839404142434445- (IBAction)btnClick:(UIButton *)sender &#123; int networkType = [self getNetworkStates]; switch (networkType) &#123; case 1: &#123; [sender setTitle:@&quot;2G&quot; forState:0]; &#125; break; case 2: &#123; [sender setTitle:@&quot;3G&quot; forState:0]; &#125; break; case 3: &#123; [sender setTitle:@&quot;4G&quot; forState:0]; &#125; break; case 5: &#123; [sender setTitle:@&quot;WiFi&quot; forState:0]; &#125; break; default: &#123; [sender setTitle:@&quot;无网络&quot; forState:0]; &#125; break; &#125;&#125;// 判断网络类型- (int)getNetworkStates&#123; NSArray *subviews = [[[[UIApplication sharedApplication] valueForKeyPath:@&quot;statusBar&quot;] valueForKeyPath:@&quot;foregroundView&quot;] subviews]; for (id child in subviews) &#123; if ([child isKindOfClass:NSClassFromString(@&quot;UIStatusBarDataNetworkItemView&quot;)]) &#123; return [[child valueForKeyPath:@&quot;dataNetworkType&quot;] intValue]; &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 自动生成单例类]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%8D%95%E4%BE%8B%E7%B1%BB%2F</url>
+    <content type="text"><![CDATA[自动生成单例类 创建一个头文件写入 12345678910111213141516171819202122232425// .h#define singleton_interface(class) + (instancetype)shared##class;// .m#define singleton_implementation(class) \static class *_instance; \\+ (id)allocWithZone:(struct _NSZone *)zone \&#123; \ static dispatch_once_t onceToken; \ dispatch_once(&amp;onceToken, ^&#123; \ _instance = [super allocWithZone:zone]; \ &#125;); \\ return _instance; \&#125; \\+ (instancetype)shared##class \&#123; \ if (_instance == nil) &#123; \ _instance = [[class alloc] init]; \ &#125; \\ return _instance; \&#125; 使用 1234.hsingleton_interface(ABC);.msingleton_implementation(ABC)]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 视图抖动]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E8%A7%86%E5%9B%BE%E6%8A%96%E5%8A%A8%2F</url>
+    <content type="text"><![CDATA[iOS 视图抖动 .h 12345678910111213/** 添加抖动动画 @param view 添加的视图 */+ (void)addAnimationShakeWithView:(UIView *)view;/** 移除抖动动画 @param view 移除的视图 */+ (void)removeAnimationShakeWithView:(UIView *)view; .m 1234567891011121314151617181920212223242526272829303132#define kShakingRadian(R) ((R) / 180.0 * M_PI)@implementation SHAnimation#pragma mark - 添加抖动动画+ (void)addAnimationShakeWithView:(UIView *)view&#123; CAKeyframeAnimation *animation = [CAKeyframeAnimation animation]; animation.keyPath = @&quot;transform.rotation&quot;; animation.values = @[@(kShakingRadian(-5)), @(kShakingRadian(5)), @(kShakingRadian(-5))]; animation.duration = 0.25; // 动画的重复执行次数 animation.repeatCount = MAXFLOAT; // 保持动画执行完毕后的状态 animation.removedOnCompletion = NO; animation.fillMode = kCAFillModeForwards; [view.layer addAnimation:animation forKey:@&quot;sh_animation_shake&quot;];&#125;#pragma mark - 移除抖动动画+ (void)removeAnimationShakeWithView:(UIView *)view&#123; //结束动画 [view.layer removeAnimationForKey:@&quot;sh_animation_shake&quot;];&#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 常用方法(持续更新)]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%2F</url>
+    <content type="text"><![CDATA[//管理APP所有权限 1[[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]]; //tableview取消选中（点击方法中添加此方法） 1[self performSelector:@selector(deselect) withObject:nil afterDelay:0.25f]; //取消选中 12345- (void)deselect&#123; [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES]; &#125; //使用系统的复制粘贴功能 1[UIPasteboard generalPasteboard].string = @&quot;你的字符串&quot;; //修改系统相册界面为中文 1在 Info.plist 文件中添加 Localizations 键值 内容为item 值为Chinese (simplified) //默认返回按钮去掉文字（此方法遇到特殊情况不好用，最好在界面跳转前重新定义backBarButtonItem） 1[[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault]; //禁止tableview滑动 1self.tableview.scrollEnabled = NO; //隐藏导航栏 1234[self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];[self.navigationController.navigationBar setShadowImage:[UIImage new]]; //父视图透明子视图不透明 1btn.backgroundColor = [[UIColor colorWithWhite:0.5 alpha:1] colorWithAlphaComponent:0.1]; //tableview改变头部视图背景颜色与字体颜色 12345678910#pragma mark 改变头部视图-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section&#123; view.tintColor = ViewBGC; UITableViewHeaderFooterView *head = (UITableViewHeaderFooterView *)view; head.textLabel.textColor = RGB(62, 99, 114, 1);&#125;#pragma mark 改变底部视图- (void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section&#123; view.tintColor = [UIColor clearColor];&#125; //开启照明 12345678910111213141516- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123; self.isOpen = !self.isOpen; AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo]; if ([device hasTorch]) &#123; [device lockForConfiguration:nil]; if (self.isOpen) &#123; [device setTorchMode:AVCaptureTorchModeOn]; &#125; else &#123; [device setTorchMode:AVCaptureTorchModeOff]; &#125; [device unlockForConfiguration]; &#125; &#125; //UITableView 的 headerView跟随 cell一起滚动 12345678910- (void)scrollViewDidScroll:(UIScrollView *)scrollView &#123; if (scrollView == self.tableView) &#123; if (scrollView.contentOffset.y&lt;=SectionHeaderHeight &amp;&amp; scrollView.contentOffset.y&gt;=0) &#123; scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0); &#125; else if (scrollView.contentOffset.y &gt;= SectionHeaderHeight) &#123; scrollView.contentInset = UIEdgeInsetsMake(-SectionHeaderHeight, 0, 0, 0); &#125; &#125;&#125; 获取APP的图标 icon 12345NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];NSString *icon = [[infoPlist valueForKeyPath:@&quot;CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles&quot;] lastObject];UIImage* image = [UIImage imageNamed:icon];]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 常见错误(持续更新)]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%2F</url>
+    <content type="text"><![CDATA[问题：Unbalanced calls to begin/end appearance transitions for解决：如果是自定义的UITabBarController需要加入以下方法 1234567891011121314151617181920#pragma mark - view周期-(void)viewWillAppear:(BOOL)animated&#123; [self.selectedViewController beginAppearanceTransition: YES animated: animated]; &#125;-(void) viewDidAppear:(BOOL)animated&#123; [self.selectedViewController endAppearanceTransition];&#125;-(void) viewWillDisappear:(BOOL)animated&#123; [self.selectedViewController beginAppearanceTransition: NO animated: animated];&#125;-(void) viewDidDisappear:(BOOL)animated&#123; [self.selectedViewController endAppearanceTransition];&#125; 问题：subsystem: com.apple.UIKit, category: Touch, enable_level: 0, persist_level: 0, default_ttl: 1, info_ttl: 0, debug_ttl: 0, generate_symptoms: 0, enable_oversize: 1, privacy_setting: 2, enable_private_data: 0解决：添加键值为：OS_ACTIVITY_MODEValue值为：disable 问题：Xcode8之后访问相册、相机、位置、麦克风、蓝牙等权限解决： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051NSBluetoothPeripheralUsageDescription访问蓝牙NSCalendarsUsageDescription访问日历NSCameraUsageDescription相机NSPhotoLibraryUsageDescription相册NSContactsUsageDescription通讯录NSLocationAlwaysUsageDescription始终访问位置NSLocationUsageDescription位置NSLocationWhenInUseUsageDescription在使用期间访问位置NSMicrophoneUsageDescription麦克风NSAppleMusicUsageDescription访问媒体资料库NSHealthShareUsageDescription访问健康分享NSHealthUpdateUsageDescription访问健康更新NSMotionUsageDescription访问运动与健身NSRemindersUsageDescription访问提醒事项问题：Snapshotting a view that has not been rendered results in an empty snapshot. Ensure your view has been rendered at least once before snapshotting or snapshot after screen updates.解决：将跳转的相机VC属性设置成picker.modalPresentationStyle = UIModalPresentationOverCurrentContext;问题：[MC] Reading from public effective user settings.解决：设置权限的plist需要给一个描述]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 扇形点击位置]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E6%89%87%E5%BD%A2%E7%82%B9%E5%87%BB%E4%BD%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[扇形点击位置 1234567891011121314151617float distance;//距离float rads;//弧度CGPoint point = [tap locationInView:self.view];NSLog(@&quot;。。。触点的位置%@&quot;,NSStringFromCGPoint(point));CGPoint centerPoint = CGPointMake(WIDTH/2, (HEIGHT/2-30)/2);NSLog(@&quot;。。。中心点的坐标%@&quot;,NSStringFromCGPoint(centerPoint));CGPoint startPoint = CGPointMake(WIDTH/2, HEIGHT/4-100);distance = [self distanceFromPointX:point distanceToPointY:centerPoint];rads = [self radiansToDegreesFromPointX:point ToPointY:startPoint ToCenter:centerPoint]; 12345678910111213141516171819202122232425#pragma mark - 计算触点和中心点的弧度-(float)radiansToDegreesFromPointX:(CGPoint)start ToPointY:(CGPoint)end ToCenter:(CGPoint)center&#123; float rads; CGFloat a = (end.x - center.x); CGFloat b = (end.y - center.y); CGFloat c = (start.x- center.x); CGFloat d = (start.y- center.y); rads = acos(((a*c) + (b*d)) / ((sqrt(a*a + b*b)) * (sqrt(c*c + d*d)))); if (start.x &lt; center.x) &#123; rads = 2*M_PI - rads; &#125; return rads;&#125; 123456789101112131415#pragma mark - 计算触点到中心点的距离-(float)distanceFromPointX:(CGPoint)start distanceToPointY:(CGPoint)end&#123; float distance; CGFloat xDist = (end.x - start.x); CGFloat yDist = (end.y - start.y); distance = sqrt((xDist * xDist) + (yDist * yDist)); return distance;&#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 打包framework]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E6%89%93%E5%8C%85framework%2F</url>
+    <content type="text"><![CDATA[####1、打开Xcode，新建工程 ####2、起个名字 ####3、创建成功 ####4、实现功能 .h 1+ (void)sayHello; .m 123+ (void)sayHello&#123; NSLog(@&quot;hello word!!&quot;);&#125; ####5、配置参数 ####6、最后一步进行打包 1.选中模拟器，编译程序 command + b 2.选中测试机，编译程序 command + b 3.在finder中找到framework文件，然后右键show in finder 4.会发现一个真机一个模拟器 5.合并成一个征集与模拟器都可以使用framework 12打开控制台输入 lipo -create &quot;真机版本路径&quot; &quot;模拟器版本路径&quot; -output &quot;合并后的文件路径&quot; 然后回车红色：真机文件路径绿色：模拟器文件路径黄色：新文件路径 6.得到一个合并完成的文件（如果有文件格式lipo直接去除） 7.替换之前的文件 8.生成framework 9.测试]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 控件私有属性遍历]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E6%8E%A7%E4%BB%B6%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7%E9%81%8D%E5%8E%86%2F</url>
+    <content type="text"><![CDATA[控件私有属性遍历主要利用OC的RunTime机制首先加入头文件 1#import &lt;objc/runtime.h&gt; 写入代码 123456789101112unsigned int outCount = 0;Ivar *ivars = class_copyIvarList([NSClassFromString(@&quot;UIView&quot;) class], &amp;outCount);for (NSInteger i = 0; i &lt; outCount; ++i) &#123; // 遍历取出该类成员变量 Ivar ivar = *(ivars + i); NSLog(@&quot;\n name = %s \n type = %s&quot;, ivar_getName(ivar),ivar_getTypeEncoding(ivar));&#125;// 根据内存管理原则释放指针free(ivars); 通过KVC进行修改 12 //拿到私有的属性forKey: 进行改变setValue:// [self.view setValue:&lt;#(nullable id)#&gt; forKey:&lt;#(nonnull NSString *)#&gt;];]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 收藏一些好用的Demo与工具类(持续更新)]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E6%94%B6%E8%97%8F%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84Demo%E4%B8%8E%E5%B7%A5%E5%85%B7%E7%B1%BB(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%2F</url>
+    <content type="text"><![CDATA[1、访问照片、相机、图片多选等 标准的多选 类似于QQ的多选 2、网络数据请求（网络判断） 地址 3、图片加载 地址 4、数据模型转换 地址 5、刷新加载 地址 6、即时通讯 地址 7、提示框 地址 8、数据存储 地址 9、滑动返回（不需要系统POP） 地址 10、音频转换 AMR&lt;—-&gt;WAV（安卓与iOS语音互聊） 地址 11、视频播放器 支持单元格播放，断点下载等 支持横竖屏旋转(90°&amp;&amp;180°)，音量、亮度调节，左侧为亮度调节，右侧为音量调节，以及快进快退、加载进度(非缓存） 12、网易新闻类 地址 13、弹幕 地址 14、今日头条，网易新闻 标签页编辑页面 地址 15、其他小玩意 表白程序员 16、UIWebView页面信息的离线缓存 地址 只需要在AppDelegate中加入下面即可。 1[NSURLProtocolregisterClass:[RNCachingURLProtocol class]]; 17、IM项目 爱萌 18、删除项目中多余的图片资源 地址 19、获取其他app的资源图片（Assets.car） 地址 20、OC代码规范 地址 21、聊天界面（仿微信、QQ） 地址 22、群组详情（微信的群详情） 地址 23、发布界面（添加图片、文字） 地址 24、表情键盘（图文混排） 地址 25、粒子动画效果 地址]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 常用控件之NSString的文件路径操作]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BNSString%E7%9A%84%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[字符串 1NSString *path = @&quot;123/qwert/csh.txt&quot;; 获取文件名（带格式） 12path.lastPathComponent输出：csh.txt 获取文件路径（不带文件） 12path.stringByDeletingLastPathComponent输出：123/qwert 获取文件路径(带文件不带类型) 12path.stringByDeletingPathExtension输出：123/qwert/csh 获取文件类型 12path.pathExtension输出：txt]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 常用控件之UICollectionView]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BUICollectionView%2F</url>
+    <content type="text"><![CDATA[1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768#pragma mark - 懒加载- (UICollectionView *)collectionView &#123; if (!_collectionView) &#123; //UICollectionView的自动布局 UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init]; //设置滑动方向 //UICollectionViewScrollDirectionHorizontal 水平滑动 //UICollectionViewScrollDirectionVertical 竖直滑动 layout.scrollDirection = UICollectionViewScrollDirectionHorizontal; //下放两个属性可以在这里设置也可以在下方代理中设置（默认10） //设置水平间距（内部） layout.minimumInteritemSpacing = 5; //设置竖直间距（内部） layout.minimumLineSpacing = 5; _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, SHWidth, SHHeight - 64) collectionViewLayout:layout]; _collectionView.backgroundColor = [UIColor clearColor]; _collectionView.delegate = self; _collectionView.dataSource = self; [self.view addSubview:_collectionView]; //注册cell类 [_collectionView registerNib:[UINib nibWithNibName:reuseIdentifier bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:reuseIdentifier]; &#125; return _collectionView;&#125;#pragma mark - UICollectionViewDelegate- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView &#123; return 1;&#125;- (NSInteger )collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section &#123; return self.dataSoure.count;&#125;#pragma mark 实例化UICollectionView- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath &#123; SHChatBGDetailCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath]; //设置数据 [cell setCellDataSoure:self.dataSoure IndexPath:indexPath select:self.select]; return cell;&#125;#pragma mark 设置item的大小- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath &#123; //竖直滑动时： //item排列：最左边的item根据collectionView的最左边的点去做长和高（向左向下），最右边的item根据collectionView的最右边的点去做长和高（向右向下） //水平滑动时： //item排列：最上边和左边的item根据collectionView的最上边和左边的点去做长和高（向左向下），最下边和最左边的item根据collectionView的最下边和最左边的点去做长和高（向右向上） return CGSizeMake((SHWidth - 20)/3, (SHWidth - 20)/3);&#125;#pragma mark collectionView边间距(整体collectionView的上左下右)- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section &#123; //上左下右 return UIEdgeInsetsMake(10, 5, 0, 5);&#125;#pragma mark 点击- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 常用控件之UIMenuController]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BUIMenuController%2F</url>
+    <content type="text"><![CDATA[初始化UIMenuItem 123UIMenuItem *one = [[UIMenuItem alloc] initWithTitle:@&quot;复制&quot;action:@selector(menuOne:)];UIMenuItem *two = [[UIMenuItem alloc] initWithTitle:@&quot;删除&quot;action:@selector(menuTwo:)];UIMenuItem *three = [[UIMenuItem alloc] initWithTitle:@&quot;转发&quot;action:@selector(menuThree:)]; 初始化UIMenuController 123456789UIMenuController *menu = [UIMenuController sharedMenuController];//菜单箭头方向menu.arrowDirection = UIMenuControllerArrowDefault;//添加Item内容[menu setMenuItems:[NSArray arrayWithObjects:one, two, three, nil]];//设置位置与添加视图(可以给cell的frame)[menu setTargetRect:CGRectMake(100, 100, 100, 20) inView:self.view];//显示菜单MenuVisible:并且带动画animated:[menu setMenuVisible:YES animated:YES]; 还有最关键的一点添加此方法 1234- (BOOL)canBecomeFirstResponder&#123; return YES; &#125; 实现方法 123456789- (void)menuOne:(id)sender&#123; NSLog(@&quot;复制&quot;);&#125;- (void)menuTwo:(id)sender&#123; NSLog(@&quot;删除&quot;);&#125;- (void)menuThree:(id)sender&#123; NSLog(@&quot;转发&quot;);&#125; 完整代码 12345678910111213141516171819202122232425262728293031323334353637383940//定义一个开关isOpen- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123; //返回与当前接收者有关的所有的触摸对象 NSSet *allTouches = [event allTouches]; //视图中的所有对象 UITouch *touch = [allTouches anyObject]; //返回触摸点在视图中的当前坐标 CGPoint point = [touch locationInView:[touch view]]; UIMenuItem *one = [[UIMenuItem alloc] initWithTitle:@&quot;复制&quot;action:@selector(menuOne:)]; UIMenuItem *two = [[UIMenuItem alloc] initWithTitle:@&quot;删除&quot;action:@selector(menuTwo:)]; UIMenuItem *three = [[UIMenuItem alloc] initWithTitle:@&quot;转发&quot;action:@selector(menuThree:)]; UIMenuController *menu = [UIMenuController sharedMenuController]; //菜单箭头方向(默认会自动判定) menu.arrowDirection = UIMenuControllerArrowDefault; //添加内容 [menu setMenuItems:[NSArray arrayWithObjects:one, two, three, nil]]; //设置位置 [menu setTargetRect:CGRectMake(point.x, point.y, 0, 0) inView:self.view]; //显示菜单并且带动画 [menu setMenuVisible:!isOpen animated:YES]; isOpen = !isOpen;&#125;- (BOOL)canBecomeFirstResponder&#123; return YES;&#125;- (void)menuOne:(id)sender&#123; NSLog(@&quot;复制&quot;);&#125;- (void)menuTwo:(id)sender&#123; NSLog(@&quot;删除&quot;);&#125;- (void)menuThree:(id)sender&#123; NSLog(@&quot;转发&quot;);&#125; 预览效果]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 常用控件之UIScrollView]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BUIScrollView%2F</url>
+    <content type="text"><![CDATA[常用控件之UIScrollView 1#pragma mark - UIScrollViewDelegate 12345678910111213141516171819202122232425262728293031323334353637383940/* 此方法在scrollView滑动时会被调用多次，只要scrollView.contentOffset发生改变就会被调用 */(void)scrollViewDidScroll:(UIScrollView *)scrollView/* 在一次拖动滑动中最后被调用，在(void)scrollViewDidScroll:(UIScrollView *)scrollView；之后 */(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView/* 此方法在拖动结束后将要开始减速时被调用 */(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate/*此方法在手动滑动时不会调用，只有在(void)setContentOffset:(CGPoint)contentOffset animated:(BOOL)animated;(void)scrollRectToVisible:(CGRect) animated:(BOOL)animated; 调用后才调用 */(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView/* 此方法在开始减速时被调用,再一次拖动滑动中最先被调用 */(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView/* 当scale发生改变时，调用此方法，此方法会被调用多次 */(void)scrollViewDidZoom:(UIScrollView *)scrollView/* 当滚动视图滚动到最顶端后，执行该方法 */(void)scrollViewDidScrollToTop:(UIScrollView *)scrollView/* 此方法在拖动开始时被调用，一次拖动抵用一次，未发生触控不会被调用 */(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView/* 此方法在scale开始时被调用，一次scale调用一次 */(void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view/* 特别注意这个方法，此方法可以获取Velocity可以用于判断滑动方向，tarContentOffset可以用于判断是否会已经滑动翻页 */(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset/* zoom之后会被调用，可以用atScale得到zoom值从而进行进一步处理 */(void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale//此方法设置可以scale的view(nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView &#123; if (scrollView == self.myScrollView2) &#123; NSLog(@&quot;hahah&quot;); return self.Views[0]; &#125; return nil; &#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 常用控件之UISearchBar]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BUISearchBar%2F</url>
+    <content type="text"><![CDATA[实例化UISearchBar 123456789UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, SHWidth, 40)];//设置提示文字searchBar.placeholder = @&quot;搜索&quot;;//设置边框背景图片searchBar.backgroundImage = [UIImage imageNamed:@&quot;searchBar_BG&quot;];//设置代理searchBar.delegate = self;//添加到视图self.tableView.tableHeaderView = searchBar; UISearchBar代理方法 1234567891011121314151617181920212223242526272829303132333435363738394041#pragma mark - UISearchBarDelegate#pragma mark 搜索文字改变- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText&#123;&#125;#pragma mark 搜索开始编辑- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar&#123; //设置取消按钮样式 //首先取出cancelBtn UIButton *cancelBtn = [searchBar valueForKey:@&quot;cancelButton&quot;]; //取消按钮文字 [cancelBtn setTitle:@&quot;取消&quot; forState:UIControlStateNormal]; //取消按钮文字颜色 [cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal]; &#125;#pragma mark 编辑- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar&#123; //展示取消按钮 searchBar.showsCancelButton = YES; return YES;&#125;#pragma mark 编辑- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar&#123; return YES;&#125;#pragma mark 取消按钮点击- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar&#123; searchBar.text = @&quot;&quot;; //收起键盘 [searchBar resignFirstResponder]; //隐藏取消按钮 [searchBar setShowsCancelButton:NO animated:YES]; &#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 常用控件之UIViewAutoresizing(自动适配)]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BUIViewAutoresizing(%E8%87%AA%E5%8A%A8%E9%80%82%E9%85%8D)%2F</url>
+    <content type="text"><![CDATA[UIViewAutoresizing是一个枚举类型，默认是UIViewAutoresizingNone，也就是不做任何处理。 属性名 说明 UIViewAutoresizingNone 不会随父视图的改变而改变 UIViewAutoresizingFlexibleLeftMargin 自动调整view与父视图左边距，以保证右边距不变 UIViewAutoresizingFlexibleWidth 自动调整view的宽度，保证左边距和右边距不变 UIViewAutoresizingFlexibleRightMargin 自动调整view与父视图右边距，以保证左边距不变 UIViewAutoresizingFlexibleTopMargin 自动调整view与父视图上边距，以保证下边距不变 UIViewAutoresizingFlexibleHeight 自动调整view的高度，以保证上边距和下边距不变 UIViewAutoresizingFlexibleBottomMargin 自动调整view与父视图的下边距，以保证上边距不变 特别说明:例如：如果想要调整视图的宽高来达到上下左右距离不变，可以使用如下方法，其他情况类似 1view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 屏幕旋转之后状态栏显示问题]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B1%8F%E5%B9%95%E6%97%8B%E8%BD%AC%E4%B9%8B%E5%90%8E%E7%8A%B6%E6%80%81%E6%A0%8F%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[屏幕强制旋转详见 在Info.plist 添加 键值：View controller-based status bar appearance 参数：NO 123456789//在AppDelegate//- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions添加如下代码[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 布局之淘宝、京东、微博、半糖、闲鱼等首页界面]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B8%83%E5%B1%80%E4%B9%8B%E6%B7%98%E5%AE%9D%E3%80%81%E4%BA%AC%E4%B8%9C%E3%80%81%E5%BE%AE%E5%8D%9A%E3%80%81%E5%8D%8A%E7%B3%96%E3%80%81%E9%97%B2%E9%B1%BC%E7%AD%89%E9%A6%96%E9%A1%B5%E7%95%8C%E9%9D%A2%2F</url>
+    <content type="text"><![CDATA[代码地址]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>封装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 常用宏定义]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89%2F</url>
+    <content type="text"><![CDATA[iOS 常用宏定义 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677#pragma mark - 方法定义#pragma mark 颜色#define kRGB(R,G,B,A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]#pragma mark 描边#define kSHViewBorderRadius(View, Radius, Width, Color)\\[View.layer setMasksToBounds:YES];\[View.layer setBorderWidth:(Width)];\[View.layer setCornerRadius:(Radius)];\[View.layer setBorderColor:[Color CGColor]]#pragma mark - 其他定义//设备物理宽高#define kSHHeight ([UIScreen mainScreen].bounds.size.height)#define kSHWidth ([UIScreen mainScreen].bounds.size.width)//界面宽高#define kSHViewWidth (self.view.frame.size.width)#define kSHViewHeight (self.view.frame.size.height)//状态栏高度#define kStatusBarH ([[UIApplication sharedApplication] statusBarFrame].size.height)//是否为V以上系统#define IOS(V) [[[UIDevice currentDevice] systemVersion] floatValue] &gt;= V// 系统delegate#define kSHAppDelegate (AppDelegate *)[UIApplication sharedApplication].delegate//计算耗时#define TICK CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();#define TOCKFor(A) SHLog(@&quot;耗时计算-%@: %f&quot;,(A),CFAbsoluteTimeGetCurrent() - start);#define TOCK SHLog(@&quot;耗时计算: %f&quot;,CFAbsoluteTimeGetCurrent() - start);#pragma mark - 文件路径//Document目录#define DocumentPatch [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]//Caches目录#define CachesPatch NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0]//Temp目录#define TempPatch NSTemporaryDirectory()#pragma mark - NSUserDefaults使用的键值#define kSHUserDefaults [NSUserDefaults standardUserDefaults]//清除模型中的所有数据#define kSHClearModelData(Model) \\Model *_model##Model = [[Model alloc] init];\u_int count##Model;\objc_property_t *properties##Model = class_copyPropertyList([Model class], &amp;count##Model);\for (int i = 0; i&lt; count##Model; i++)&#123;\ [_model##Model setValue:nil forKey:[NSString stringWithFormat:@&quot;%s&quot;,property_getName(properties##Model[i])]];\&#125;\free(properties##Model);\#pragma mark 适配(pt)//4S:320*480//5:320*568//6:375*667//6P:414*736//X:375*812#define kSHGetW(W) ((W)*([UIScreen mainScreen].bounds.size.width)/375)#define kSHGetH(H) ((H)*([UIScreen mainScreen].bounds.size.height)/667)// weak &amp; strong#define kSHWeak(VAR) \@try &#123;&#125; @finally &#123;&#125; \__weak __typeof__(VAR) weak_##VAR = (VAR);#define kSHStrong(VAR) \@try &#123;&#125; @finally &#123;&#125; \__strong __typeof__(VAR) VAR = weak_##VAR]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>宏</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 常用控件之CAAnimation]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BCAAnimation%2F</url>
+    <content type="text"><![CDATA[属性 说明 duration 动画的时长 repeatCount 重复的次数。不停重复设置为 HUGE_VALF（一般不与一般不与repeatDuration同时使用同时使用） repeatDuration 设置动画的时间。在该时间内动画一直执行，不计次数。（一般不与一般不与repeatCount同时使用同时使用） beginTime 指定动画开始的时间。从开始延迟几秒的话，设置为【CACurrentMediaTime() + 秒数】 的方式 timingFunction 设置动画的速度变化 autoreverses 动画结束时是否执行逆动画 fromValue 所改变属性的起始值 toValue 所改变属性的结束时的值 byValue 所改变属性相同起始值的改变量 ###keyPath的值 12345678910111213141516171819// transform.scale = 比例转换(x.y不写就是中心点)// transform.rotation = 旋转(x.y.z不写就是中心点)// opacity = 透明度// margin = 边距// position ＝ 位移// backgroundColor = 背景颜色// cornerRadius = 圆角// borderWidth ＝ 边框宽度// bounds ＝ 位置，体积// contents ＝ 内容// contentsRect ＝ 面积// frame ＝ 位置，体积// hidden ＝ 是否隐藏// mask ＝ 任务// masksToBounds// shadowColor ＝ 阴影颜色// shadowOffset ＝ 阴影偏移// shadowOpacity ＝ 阴影透明// shadowRadius ＝ 阴影半径 ####部分keyPath对应形式说明 | 使用形式—|—transform.scale 比例转化 | @(01)transform.scale.x 宽的比例 | @(01)transform.scale.y 高的比例 | @(01)transform.rotation 围绕中心点旋转 | @(02M_PI)transform.rotation.x 围绕x轴旋转 | @(0~2M_PI)transform.rotation.y 围绕y轴旋转 | @(02*M_PI)transform.rotation.z 围绕z轴旋转 | @(02*M_PI)cornerRadius 圆角的设置 | @(X)backgroundColor 背景颜色的变化 | (id)[UIColor xxxColor].CGColorbounds 大小中心不变 | [NSValue valueWithCGRect:CGRectMake(X, Y, W, H)];position 位置(中心点的改变) | [NSValue valueWithCGPoint:CGPointMake(X, Y)];contents 内容 | 比如UIImageView的图片imageView.toValue = (id)[UIImage imageNamed:@”xxx.png”].CGImage;opacity 透明度 | @(01)contentsRect.size.width 横向拉伸缩放 | @(01) 具体使用 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109//圆角 CABasicAnimation *animation1 = [[CABasicAnimation alloc]init]; //动画效果 animation1.keyPath = @&quot;cornerRadius&quot;; //动画执行周期 animation1.duration = 1; //进行改变 animation1.toValue = @(self.btn.frame.size.height/2); //保持动画结束之后的状态 animation1.fillMode = kCAFillModeForwards; animation1.removedOnCompletion = NO; //位置(向上平移100) CABasicAnimation *animation2 = [[CABasicAnimation alloc]init]; //动画效果 animation2.keyPath = @&quot;position&quot;; //动画执行周期 animation2.duration = 1; //开始时间 animation2.beginTime = animation1.beginTime + animation1.duration; //进行改变 animation2.toValue = [NSValue valueWithCGPoint:CGPointMake(self.btn.center.x, self.btn.center.y - 100)]; //保持动画结束之后的状态 animation2.fillMode = kCAFillModeForwards; animation2.removedOnCompletion = NO; //翻转(X轴) CABasicAnimation *animation3 = [[CABasicAnimation alloc]init]; //动画效果 animation3.keyPath = @&quot;transform.rotation.x&quot;; //动画执行周期 animation3.duration = 1; //开始时间 animation3.beginTime = animation2.beginTime; //进行改变 animation3.toValue = @(2*M_PI); //保持动画结束之后的状态 animation3.fillMode = kCAFillModeForwards; animation3.removedOnCompletion = NO; //bounds(等高) CABasicAnimation *animation4 = [[CABasicAnimation alloc]init]; //动画效果 animation4.keyPath = @&quot;bounds&quot;; //动画执行周期 animation4.duration = 1; //开始时间 animation4.beginTime = animation3.beginTime + animation3.duration; //进行改变 animation4.toValue = [NSValue valueWithCGRect:CGRectMake(self.btn.frame.origin.x + (self.btn.frame.size.width - self.btn.frame.size.height)/2, self.btn.frame.origin.y, self.btn.frame.size.height, self.btn.frame.size.height)]; //保持动画结束之后的状态 animation4.fillMode = kCAFillModeForwards; animation4.removedOnCompletion = NO; //旋转 CABasicAnimation *animation5 = [[CABasicAnimation alloc]init]; //动画效果 animation5.keyPath = @&quot;transform.rotation&quot;; //动画执行周期 animation5.duration = 1; //开始时间 animation5.beginTime = animation4.beginTime; //进行改变 animation5.toValue = @(2*M_PI); //保持动画结束之后的状态 animation5.fillMode = kCAFillModeForwards; animation5.removedOnCompletion = NO; //淡入淡出 CABasicAnimation *animation6 = [[CABasicAnimation alloc]init]; //动画效果 animation6.keyPath = @&quot;opacity&quot;; //动画执行周期 animation6.duration = 1; //开始时间 animation6.beginTime = animation5.beginTime + animation5.duration; //进行改变 animation6.fromValue = @0; animation6.toValue = @1; //保持动画结束之后的状态 animation6.fillMode = kCAFillModeForwards; animation6.removedOnCompletion = NO; //背景颜色 CABasicAnimation *animation7 = [[CABasicAnimation alloc]init]; //动画效果 animation7.keyPath = @&quot;backgroundColor&quot;; //动画执行周期 animation7.duration = 1; //开始时间 animation7.beginTime = animation6.beginTime + animation6.duration; //进行改变 animation7.toValue = (id)[UIColor greenColor].CGColor; //保持动画结束之后的状态 animation7.fillMode = kCAFillModeForwards; animation7.removedOnCompletion = NO; //创建动画组 CAAnimationGroup *animationGroup = [[CAAnimationGroup alloc]init]; //动画执行周期 animationGroup.duration = animation7.beginTime + animation7.duration; //添加动画到动画组 animationGroup.animations = @[animation1,animation2,animation3,animation4,animation5,animation6,animation7]; //保持动画结束之后的状态 animationGroup.fillMode = kCAFillModeForwards; animationGroup.removedOnCompletion = NO; //视图添加动画 [self.btn.layer addAnimation:animationGroup forKey:@&quot;animation&quot;]; ###效果 代码地址]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 常用控件之MessageUI(短信发送框架)]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BMessageUI(%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%A1%86%E6%9E%B6)%2F</url>
+    <content type="text"><![CDATA[iOS 常用控件之MessageUI(短信发送框架) 11、加入框架MessageUI.framework 12、导入头文件#import &lt;MessageUI/MessageUI.h&gt; 13、如果需要回调则添加代理&lt;MFMessageComposeViewControllerDelegate&gt; 12345678910111213141516171819204、使用 // 判断设备能不能发送短信 if([MFMessageComposeViewController canSendText])&#123; MFMessageComposeViewController*picker = [[MFMessageComposeViewController alloc] init]; // 设置委托 picker.messageComposeDelegate= self; // 默认信息内容(可以去服务器进行拉取内容) picker.body = @&quot;ABCD&quot;; // 默认收件人(可多个) picker.recipients = @[@&quot;12345678900&quot;]; [self presentViewController:picker animated:YES completion:nil]; &#125;else&#123; // 提示用户不能发送短信 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;提示&quot; message:@&quot;该设备不支持短信功能&quot; delegate:nil cancelButtonTitle:nil otherButtonTitles:@&quot;确定&quot;, nil]; [alert show]; &#125;``` 5、代理#pragma mark MFMessageComposeViewControllerDelegate (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result { // 不管任何状态返回之前界面 [controller dismissViewControllerAnimated:YES completion:nil]; NSString *message; switch (result){ case MessageComposeResultCancelled: { NSLog(@&quot;取消发送&quot;); message = @&quot;取消发送&quot;; } break; case MessageComposeResultFailed: { NSLog(@&quot;发送失败&quot;); message = @&quot;发送失败&quot;; } break; case MessageComposeResultSent: { NSLog(@&quot;发送成功&quot;); message = @&quot;发送成功&quot;; } break; default: break; } UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@”提示” message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@”确定”, nil]; [alert show];}```]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 封装控件之AlertView]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B0%81%E8%A3%85%E6%8E%A7%E4%BB%B6%E4%B9%8BAlertView%2F</url>
+    <content type="text"><![CDATA[代码地址]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>封装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 封装控件之日历]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B0%81%E8%A3%85%E6%8E%A7%E4%BB%B6%E4%B9%8B%E6%97%A5%E5%8E%86%2F</url>
+    <content type="text"><![CDATA[代码地址]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>封装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 封装控件之表情键盘]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B0%81%E8%A3%85%E6%8E%A7%E4%BB%B6%E4%B9%8B%E8%A1%A8%E6%83%85%E9%94%AE%E7%9B%98%2F</url>
+    <content type="text"><![CDATA[代码地址]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>封装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 封装控件之音视频播放]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B0%81%E8%A3%85%E6%8E%A7%E4%BB%B6%E4%B9%8B%E9%9F%B3%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%2F</url>
+    <content type="text"><![CDATA[音频播放 视频播放 本地播放、网络播放、边下边播 缓存进度 播放进度 自动播放 音频后台播放 全屏播放(demo 中有方法) 拖拽进度 锁屏显示 ios 9.1 以上支持 锁屏拖拽进度播放 耳机控制 锁屏控制 播放、暂停、下一首、上一首等 代码地址]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>封装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 屏幕强制旋转 (模态、Push、导航栏、状态栏)]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%B1%8F%E5%B9%95%E5%BC%BA%E5%88%B6%E6%97%8B%E8%BD%AC%20(%E6%A8%A1%E6%80%81%E3%80%81Push%E3%80%81%E5%AF%BC%E8%88%AA%E6%A0%8F%E3%80%81%E7%8A%B6%E6%80%81%E6%A0%8F)%2F</url>
+    <content type="text"><![CDATA[状态栏旋转详见 ###界面旋转准备 在AppDelegate.h中添加属性 12//是否旋转@property (nonatomic, assign) BOOL isRotation; 在AppDelegate.m中添加方法 12345678- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window &#123; if (self.isRotation) &#123; //可以针对不同的界面创建不同的值，进行返回 return UIInterfaceOrientationMaskLandscape; &#125; return UIInterfaceOrientationMaskPortrait;&#125; 进入正题，找到需要旋转的界面 123456789101112131415161718192021222324252627282930313233- (IBAction)btnClick:(id)sender &#123; NSLog(@&quot;旋转&quot;); //支持旋转 AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate; app.isRotation = YES; [self interfaceOrientation:UIInterfaceOrientationLandscapeLeft];&#125;- (void)interfaceOrientation:(UIInterfaceOrientation)orientation&#123; //强制转换 if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) &#123; SEL selector = NSSelectorFromString(@&quot;setOrientation:&quot;); NSInvocation * invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]]; [invocation setSelector:selector]; [invocation setTarget:[UIDevice currentDevice]]; int val = orientation; [invocation setArgument:&amp;val atIndex:2]; [invocation invoke]; &#125;&#125;- (void)viewWillDisappear:(BOOL)animated&#123; [super viewWillDisappear:animated]; //关闭旋转(恢复原状) AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate; app.isRotation = NO; [self interfaceOrientation:UIInterfaceOrientationPortrait];&#125; 需要注意的是这个值可以在你真的需要旋转的时候进行赋值，比如在视频播放的时候全屏点击的时候进行处理 另附上代码地址仅供参考]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>tableview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 关于UITableviewWrapperview显示不正确问题]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%85%B3%E4%BA%8EUITableviewWrapperview%E6%98%BE%E7%A4%BA%E4%B8%8D%E6%AD%A3%E7%A1%AE%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[问题：就算是设置了automaticallyAdjustsScrollViewInsets = NO 或者 contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever; 不起作用 查看显示UITableviewWrapperview 与 UITableView 位置不一致 123456//添加一个UIScrollView到最下层，让UIViewController去自动适配你添加的这个if (!self.sh_scroll) &#123; self.sh_scroll = [[UIScrollView alloc]init]; [self.view addSubview:self.sh_scroll];&#125;[self.view sendSubviewToBack:self.sh_scroll];]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 关于子视图超出父视图后无法响应点击事件的处理办法]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%85%B3%E4%BA%8E%E5%AD%90%E8%A7%86%E5%9B%BE%E8%B6%85%E5%87%BA%E7%88%B6%E8%A7%86%E5%9B%BE%E5%90%8E%E6%97%A0%E6%B3%95%E5%93%8D%E5%BA%94%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%A4%84%E7%90%86%E5%8A%9E%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[关于子视图超出父视图后无法响应点击事件的处理办法 123456789101112- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event &#123; for (UIView *view in self.subviews) &#123; CGPoint viewP = [self convertPoint:point toView:view]; if ([view pointInside:viewP withEvent:event]) &#123; return view; &#125; &#125; return [super hitTest:point withEvent:event];&#125; 其中Btn就是在self上超出的控件]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 内存泄漏问题]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[User-facing text should use localized string macro Value stored to ‘XXX’ is never read这个变量发现只是被赋值并没有被使用 12实例化 XXX = nil;XXX = 。。。。]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 各种返回上一界面]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%90%84%E7%A7%8D%E8%BF%94%E5%9B%9E%E4%B8%8A%E4%B8%80%E7%95%8C%E9%9D%A2%2F</url>
+    <content type="text"><![CDATA[各种返回上一界面 返回上一界面 1[self.navigationController popViewControllerAnimated:&lt;#(BOOL)#&gt;]; 返回跟视图 1[self.navigationController popToRootViewControllerAnimated:&lt;#(BOOL)#&gt;]; 返回指定界面（两种） 12345678#pragma mark 第一种[self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex: 1] animated:YES];#pragma mark 第二种for (UIViewController *controller in self.navigationController.viewControllers) &#123; if ([controller isKindOfClass:[你要跳转到的Controller class]]) &#123; [self.navigationController popToViewController:controller animated:YES]; &#125;&#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 启动图全屏（状态栏隐藏）]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%90%AF%E5%8A%A8%E5%9B%BE%E5%85%A8%E5%B1%8F%EF%BC%88%E7%8A%B6%E6%80%81%E6%A0%8F%E9%9A%90%E8%97%8F%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[在Info.plist中增加一个配置即可：Status bar is initially hidden 为YES 这里的YES表示在app初始化(启动)的时候就隐藏状态栏。 当然，在Default.png显示完毕后状态栏还是隐藏的。如果想重新显示状态栏，补上下面代码即可： 1[UIApplication sharedApplication].statusBarHidden = NO;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 复制文字信息到剪切板]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E5%A4%8D%E5%88%B6%E6%96%87%E5%AD%97%E4%BF%A1%E6%81%AF%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF%2F</url>
+    <content type="text"><![CDATA[复制文字信息到剪切板 1[[UIPasteboard generalPasteboard] setString:@&quot;123&quot;];]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS UITextField文字监听]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20UITextField%E6%96%87%E5%AD%97%E7%9B%91%E5%90%AC%2F</url>
+    <content type="text"><![CDATA[UITextField文字监听 12//添加监听[self.textFiled addTarget:self action:@selector(textFieldTextDidChange:) forControlEvents:UIControlEventEditingChanged]; 1234//监听改变方法- (void)textFieldTextDidChange:(UITextField *)textChange&#123; NSLog(@&quot;文字改变：%@&quot;,textChange.text);&#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS Xcode 自动打包，一键上传AppStore脚本]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20Xcode%20%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%EF%BC%8C%E4%B8%80%E9%94%AE%E4%B8%8A%E4%BC%A0AppStore%E8%84%9A%E6%9C%AC%2F</url>
+    <content type="text"><![CDATA[其中AdHocExportOptions、AppStoreExportOptions、DevelopmentExportOptions、EnterpriseExportOptionsplist文件是xcode打包过后的 将名字修改完替换即可，生成4种类型的plist 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205206207208209210211212213214215216217218219220221222223224225226227228229230231232233234235236237238239240241242243244245246247248249250251252253#!/bin/sh# 使用方法# 1.将autoarchive.sh和附件中的plist，放在一起，新建文件夹为Shell，将这几文件复制进去，然后复制Shell文件夹到工程的根目录# 2.终端cd到Shell下，执行脚本 格式为 sh 脚本名字.sh# 配置信息#工程名字target_name=&quot;xxx&quot;echo &quot;\033[32m****************\n开始自动打包\n****************\033[0m\n&quot;# ==========自动打包配置信息部分========== ##工程中Target对应的配置plist文件名称, Xcode默认的配置文件为Info.plistinfo_plist_name=&quot;Info&quot;#返回上一级目录,进入项目工程目录cd ..#获取项目名称project_name=`find . -name *.xcodeproj | awk -F &quot;[/.]&quot; &apos;&#123;print $(NF-1)&#125;&apos;`#获取工程plist配置文件info_plist_path=&quot;$project_name/$info_plist_name.plist&quot;#获取版本号bundle_version=`/usr/libexec/PlistBuddy -c &quot;Print CFBundleShortVersionString&quot; $info_plist_path`#设置build版本号（可以不进行设置）date=`date +&quot;%Y%m%d%H%M&quot;`/usr/libexec/PlistBuddy -c &quot;Set :CFBundleVersion $date&quot; &quot;$info_plist_path&quot;#获取build版本号bundle_build_version=`/usr/libexec/PlistBuddy -c &quot;Print CFBundleVersion&quot; $info_plist_path`#强制删除旧的文件夹rm -rf ./$target_name-IPA#指定输出ipa路径export_path=./$target_name-IPA#指定输出归档文件地址export_archive_path=&quot;$export_path/$target_name.xcarchive&quot;#指定输出ipa地址export_ipa_path=&quot;$export_path&quot;#指定输出ipa名称 : target_name + bundle_version + bundle_build_versionipa_name=&quot;$target_name-V$bundle_version($bundle_build_version)&quot;echo &quot;\033[32m****************\n自动打包选择配置部分\n****************\033[0m\n&quot;# ==========自动打包可选择信息部分========== ## 输入是否为工作空间archiveRun () &#123; #是否是工作空间 echo &quot;\033[36;1m是否是工作空间(输入序号, 按回车即可) \033[0m&quot; echo &quot;\033[33;1m1. 是 \033[0m&quot; echo &quot;\033[33;1m2. 否 \033[0m&quot; #读取用户输入 read is_workspace_parame sleep 0.5 if [ &quot;$is_workspace_parame&quot; == &quot;1&quot; ] then echo &quot;\033[32m****************\n您选择了是工作空间 将采用：xcworkspace\n****************\033[0m\n&quot; elif [ &quot;$is_workspace_parame&quot; == &quot;2&quot; ] then echo &quot;\033[32m****************\n您选择了不是工作空间 将采用：xcodeproj\n****************\033[0m\n&quot; else echo &quot;\n\033[31;1m**************** 您输入的参数,无效请重新输入!!! ****************\033[0m\n&quot; archiveRun fi&#125;archiveRun# 输入打包模式configurationRun () &#123; echo &quot;\033[36;1m请选择打包模式(输入序号, 按回车即可) \033[0m&quot; echo &quot;\033[33;1m1. Release \033[0m&quot; echo &quot;\033[33;1m2. Debug \033[0m&quot; #读取用户输入 read build_configuration_param sleep 0.5 if [ &quot;$build_configuration_param&quot; == &quot;1&quot; ]; then build_configuration=&quot;Release&quot; elif [ &quot;$build_configuration_param&quot; == &quot;2&quot; ]; then build_configuration=&quot;Debug&quot; else echo &quot;\n\033[31;1m**************** 您输入的参数,无效请重新输入!!! ****************\033[0m\n&quot; configurationRun fi&#125;configurationRunecho &quot;\033[32m****************\n您选择了 $build_configuration 模式\n****************\033[0m\n&quot;# 输入打包类型methodRun () &#123; # 输入打包类型 echo &quot;\033[36;1m请选择打包方式(输入序号, 按回车即可) \033[0m&quot; echo &quot;\033[33;1m1. AdHoc \033[0m&quot; echo &quot;\033[33;1m2. AppStore \033[0m&quot; echo &quot;\033[33;1m3. Enterprise \033[0m&quot; echo &quot;\033[33;1m4. Development \033[0m\n&quot; #读取用户输入 read method_param sleep 0.5 if [ &quot;$method_param&quot; == &quot;1&quot; ]; then exportOptionsPlistPath=&quot;AdHocExportOptions&quot; echo &quot;\033[32m****************\n您选择了 AdHoc 打包类型\n****************\033[0m\n&quot; elif [ &quot;$method_param&quot; == &quot;2&quot; ]; then exportOptionsPlistPath=&quot;AppStoreExportOptions&quot; echo &quot;\033[32m****************\n您选择了 AppStore 打包类型\n****************\033[0m\n&quot; elif [ &quot;$method_param&quot; == &quot;3&quot; ]; then exportOptionsPlistPath=&quot;EnterpriseExportOptions&quot; echo &quot;\033[32m****************\n您选择了 Enterprise 打包类型\n****************\033[0m\n&quot; elif [ &quot;$method_param&quot; == &quot;4&quot; ]; then exportOptionsPlistPath=&quot;DevelopmentExportOptions&quot; echo &quot;\033[32m****************\n您选择了 Development 打包类型\n****************\033[0m\n&quot; else echo &quot;\n\033[31;1m**************** 您输入的参数,无效请重新输入!!! ****************\033[0m\n&quot; methodRun fi&#125;methodRun# 输入上传类型publishRun () &#123; # 输入打包类型 echo &quot;\033[36;1m请选择上传类型(输入序号, 按回车即可) \033[0m&quot; echo &quot;\033[33;1m1. 不上传 \033[0m&quot; echo &quot;\033[33;1m2. AppStore \033[0m&quot; #读取用户输入 read publish_param sleep 0.5 if [ &quot;$publish_param&quot; == &quot;1&quot; ]; then echo &quot;\033[32m****************\n您选择了不上传\n****************\033[0m\n&quot; elif [ &quot;$publish_param&quot; == &quot;2&quot; ]; then echo &quot;\033[32m****************\n您选择了上传 AppStore\n****************\033[0m\n&quot; else echo &quot;\n\033[31;1m**************** 您输入的参数,无效请重新输入!!! ****************\033[0m\n&quot; publishRun fi&#125;publishRun#选择了2、Release、AppStoreif [ &quot;$method_param&quot; == &quot;2&quot; -a &quot;$build_configuration&quot; == &quot;Release&quot; -a &quot;$publish_param&quot; == &quot;2&quot; ]then #上传App Store echo &quot;请输入开发者账号：&quot; read username_param sleep 0.5 echo &quot;请输入开发者账号密码：&quot; read password_param sleep 0.5fiecho &quot;\033[32m****************\n打包信息配置完毕，输入回车开始进行打包\n****************\033[0m\n&quot;read startsleep 0.5echo &quot;\033[32m****************\n开始清理工程\n****************\033[0m\n&quot;# 删除旧的文件rm -rf &quot;$export_path&quot;# 指定输出文件目录不存在则创建if test -d &quot;$export_path&quot; ; then echo $export_pathelse mkdir -pv $export_pathfi# 清理工程xcodebuild clean -configuration &quot;$build_configuration&quot; -alltargetsecho &quot;\033[32m****************\n开始编译项目 $&#123;build_configuration&#125; $&#123;exportOptionsPlistPath&#125;\n****************\033[0m\n&quot;# 开始编译if [ &quot;$is_workspace_parame&quot; == &quot;1&quot; ]then #工作空间 xcodebuild archive \ -workspace $&#123;project_name&#125;.xcworkspace \ -scheme $&#123;target_name&#125; \ -configuration $&#123;build_configuration&#125; \ -destination generic/platform=ios \ -archivePath $&#123;export_archive_path&#125;else #不是工作空间 xcodebuild archive \ -project $&#123;project_name&#125;.xcodeproj \ -scheme $&#123;target_name&#125; \ -configuration $&#123;build_configuration&#125; \ -archivePath $&#123;export_archive_path&#125;fi# 检查是否构建成功# xcarchive 实际是一个文件夹不是一个文件所以使用 -d 判断if test -d &quot;$export_archive_path&quot; ; then echo &quot;\033[32m****************\n项目编译成功\n****************\033[0m\n&quot;else echo &quot;\033[32m****************\n项目编译失败\n****************\033[0m\n&quot; exit 1fiecho &quot;\033[32m****************\n开始导出ipa文件\n****************\033[0m\n&quot;#1、打包命令#2、归档文件地址#3、ipa输出地址#4、ipa打包设置文件地址xcodebuild -exportArchive \-archivePath $&#123;export_archive_path&#125; \-configuration $&#123;build_configuration&#125; \-exportPath $&#123;export_ipa_path&#125; \-exportOptionsPlist &quot;./Shell/$&#123;exportOptionsPlistPath&#125;.plist&quot;# 修改ipa文件名称mv $export_ipa_path/$target_name.ipa $export_ipa_path/$ipa_name.ipa# 检查文件是否存在if test -f &quot;$export_ipa_path/$ipa_name.ipa&quot; ; then echo &quot;\033[32m****************\n导出 $ipa_name.ipa 包成功\n****************\033[0m\n&quot;else echo &quot;\033[32m****************\n导出 $ipa_name.ipa 包失败\n****************\033[0m\n&quot; exit 1fi# 打开打包文件目录open $export_path# 输出echo &quot;\033[32m****************\n使用Shell脚本打包完毕\n****************\033[0m\n&quot;#上传 AppStoreif [ -n &quot;$username_param&quot; -a -n &quot;$password_param&quot; -a &quot;$method_param&quot; == &quot;2&quot; -a &quot;$build_configuration&quot; == &quot;Release&quot; -a &quot;$publish_param&quot; == &quot;2&quot; ]then echo &quot;\033[32m****************\n开始上传AppStore\n****************\033[0m\n&quot; #验证APP altoolPath=&quot;/Applications/Xcode.app/Contents/Applications/Application Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Versions/A/Support/altool&quot; &quot;$&#123;altoolPath&#125;&quot; --validate-app \ -f &quot;$&#123;export_ipa_path&#125;/$&#123;ipa_name&#125;.ipa&quot; \ -u &quot;$username_param&quot; \ -p &quot;$password_param&quot; \ --output-format xml #上传APP &quot;$&#123;altoolPath&#125;&quot; --upload-app \ -f &quot;$&#123;export_ipa_path&#125;/$&#123;ipa_name&#125;.ipa&quot; \ -u &quot;$username_param&quot; \ -p &quot;$password_param&quot; \ --output-format xml echo &quot;\033[32m****************\n上传AppStore完毕\n****************\033[0m\n&quot;fi 代码地址]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>tableview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS tableview footerview、headerview悬浮处理]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20tableview%20footerview%E3%80%81headerview%E6%82%AC%E6%B5%AE%E5%A4%84%E7%90%86%2F</url>
+    <content type="text"><![CDATA[悬浮处理 123456789//去掉UItableview的section的headerview悬浮CGFloat sectionHeaderH = 10;if (scrollView.contentOffset.y&lt;=sectionHeaderH &amp;&amp; scrollView.contentOffset.y&gt;=0) &#123; scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);&#125; else if (scrollView.contentOffset.y&gt;=sectionHeaderH) &#123; scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderH, 0, 0, 0);&#125;else&#123; scrollView.contentInset = UIEdgeInsetsZero;&#125; 123456789//去掉UItableview的section的footerview悬浮CGFloat sectionFooterH = 10;if (scrollView.contentOffset.y&lt;=sectionFooterH &amp;&amp; scrollView.contentOffset.y&gt;=0) &#123; scrollView.contentInset = UIEdgeInsetsMake(0, 0, -sectionFooterH, 0);&#125; else if (scrollView.contentOffset.y&gt;= sectionFooterH) &#123; scrollView.contentInset = UIEdgeInsetsMake(0, 0, -sectionFooterH, 0);&#125;else&#123; scrollView.contentInset = UIEdgeInsetsZero;&#125; 同时使用或者其他地方涉及到 contentInset 修改时记得处理 其实不管是头部悬浮还是底部悬浮都是修改 contentInset 它其实还是悬浮只是在界面中看不到了]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 仿写项目之微信聊天界面、QQ聊天界面]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E4%BB%BF%E5%86%99%E9%A1%B9%E7%9B%AE%E4%B9%8B%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E7%95%8C%E9%9D%A2%E3%80%81QQ%E8%81%8A%E5%A4%A9%E7%95%8C%E9%9D%A2%2F</url>
+    <content type="text"><![CDATA[代码地址]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>封装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 仿写项目之朋友圈]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E4%BB%BF%E5%86%99%E9%A1%B9%E7%9B%AE%E4%B9%8B%E6%9C%8B%E5%8F%8B%E5%9C%88%2F</url>
+    <content type="text"><![CDATA[代码地址]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>封装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 保存图片或者视图到本地相册]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20%E4%BF%9D%E5%AD%98%E5%9B%BE%E7%89%87%E6%88%96%E8%80%85%E8%A7%86%E5%9B%BE%E5%88%B0%E6%9C%AC%E5%9C%B0%E7%9B%B8%E5%86%8C%2F</url>
+    <content type="text"><![CDATA[保存图片或者视图到本地相册 123456789101112#pragma mark - 保存视图 UIGraphicsBeginImageContextWithOptions(view.size, NO, 0.0); [view.layer renderInContext:UIGraphicsGetCurrentContext()]; UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext(); UIGraphicsEndImageContext(); ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc]init]; [assetsLibrary writeImageToSavedPhotosAlbum:[viewImage CGImage] orientation:(ALAssetOrientation)viewImage.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error) &#123; [SHToast showWithText:@&quot;保存成功&quot;]; &#125;];]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS APP日志写入文件（日志收集）]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20APP%E6%97%A5%E5%BF%97%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6%EF%BC%88%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[APP日志写入文件（日志收集） 123- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOption //日志收集(日志会被拦截，开发的时候注掉) [self redirectNSlogToDocumentFolder]; 方法实现 #pragma mark - 日志收集 - (void)redirectNSlogToDocumentFolder { NSString *documentDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]; NSDateFormatter *dateformat = [[NSDateFormatter alloc]init]; [dateformat setDateFormat:@&quot;yyyy-MM-dd-HH-mm-ss&quot;]; NSString *fileName = [NSString stringWithFormat:@&quot;LOG-%@.txt&quot;,[dateformat stringFromDate:[NSDate date]]]; NSString *logFilePath = [documentDirectory stringByAppendingPathComponent:fileName]; // 先删除已经存在的文件 NSFileManager *defaultManager = [NSFileManager defaultManager]; [defaultManager removeItemAtPath:logFilePath error:nil]; // 将log输入到文件 freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], &quot;a+&quot;, stdout); freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding], &quot;a+&quot;, stderr); }在需要进行收集的时候将文件上传到服务器]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS APP各种状态（进入后台，前台等整理）]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20APP%E5%90%84%E7%A7%8D%E7%8A%B6%E6%80%81%EF%BC%88%E8%BF%9B%E5%85%A5%E5%90%8E%E5%8F%B0%EF%BC%8C%E5%89%8D%E5%8F%B0%E7%AD%89%E6%95%B4%E7%90%86%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[APP各种状态（进入后台，前台等整理） 1234567891011121314151617181920212223242526272829#pragma mark - 程序将要进入后台- (void)applicationWillResignActive:(UIApplication *)application &#123; // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state. // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game. DLog(@&quot;程序将要进入后台&quot;); &#125;#pragma mark - 程序进入后台- (void)applicationDidEnterBackground:(UIApplication *)application &#123; // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits. DLog(@&quot;程序进入后台&quot;); &#125;#pragma mark - 程序将要进入前台- (void)applicationWillEnterForeground:(UIApplication *)application &#123; // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background. DLog(@&quot;程序将要进入前台&quot;); &#125;#pragma mark - 程序进入前台- (void)applicationDidBecomeActive:(UIApplication *)application &#123; // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface. DLog(@&quot;程序进入前台&quot;); &#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>tableview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS Block定义]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20Block%E5%AE%9A%E4%B9%89%2F</url>
+    <content type="text"><![CDATA[Block定义 12//直接定义@property (nonatomic, copy) void(^block)(NSInteger); 12//方法中定义block:(void(^) (NSInteger index))block; 1234//其他定义typedef void(^Block)(NSInteger index);@property (nonatomic, copy) Block block;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS Pod 问题]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20Pod%20%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[突然出现 -bash: pod: command not found 的解决方法 12345$ mkdir -p $HOME/Software/ruby$ export GEM_HOME=$HOME/Software/ruby$ gem install cocoapods$ export PATH=$PATH:$HOME/Software/ruby/bin$ pod --version]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS SDWebImage缓存类型]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20SDWebImage%E7%BC%93%E5%AD%98%E7%B1%BB%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[SDWebImage缓存类型 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991001011. sd_setImageWithURL：//图片缓存的基本代码，就是这么简单[self.image1 sd_setImageWithURL:imagePath1];2. sd_setImageWithURL: completed://用block 可以在图片加载完成之后做些事情[self.image2 sd_setImageWithURL:imagePath2 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) &#123;NSLog(@&quot;这里可以在图片加载完成之后做些事情&quot;);&#125;];3. sd_setImageWithURL: placeholderImage://给一张默认图片，先使用默认图片，当图片加载完成后再替换[self.image1 sd_setImageWithURL:imagePath1 placeholderImage:[UIImage imageNamed:@&quot;default&quot;]];4. sd_setImageWithURL: placeholderImage: completed://使用默认图片，而且用block 在完成后做一些事情[self.image1 sd_setImageWithURL:imagePath1 placeholderImage:[UIImage imageNamed:@&quot;default&quot;] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) &#123;NSLog(@&quot;图片加载完成后做的事情&quot;);&#125;];5. sd_setImageWithURL: placeholderImage: options://options 选择方式[self.image1 sd_setImageWithURL:imagePath1 placeholderImage:[UIImage imageNamed:@&quot;default&quot;] options:SDWebImageRetryFailed];一、options所有选项：//失败后重试SDWebImageRetryFailed = 1 &lt;&lt; 0,//UI交互期间开始下载，导致延迟下载比如UIScrollView减速。SDWebImageLowPriority = 1 &lt;&lt; 1,//只进行内存缓存SDWebImageCacheMemoryOnly = 1 &lt;&lt; 2,//这个标志可以渐进式下载,显示的图像是逐步在下载SDWebImageProgressiveDownload = 1 &lt;&lt; 3,//刷新缓存SDWebImageRefreshCached = 1 &lt;&lt; 4,//后台下载SDWebImageContinueInBackground = 1 &lt;&lt; 5,//NSMutableURLRequest.HTTPShouldHandleCookies = YES;SDWebImageHandleCookies = 1 &lt;&lt; 6,//允许使用无效的SSL证书//SDWebImageAllowInvalidSSLCertificates = 1 &lt;&lt; 7,//优先下载SDWebImageHighPriority = 1 &lt;&lt; 8,//延迟占位符SDWebImageDelayPlaceholder = 1 &lt;&lt; 9,//改变动画形象SDWebImageTransformAnimatedImage = 1 &lt;&lt; 10,二、SDImageCacheType所有选项：SDImageCacheType 当下载请求结束时,通过这个枚举来告知图片的来源if (cacheType == SDImageCacheTypeNone) &#123;NSLog(@&quot;网络&quot;);&#125;else if (cacheType == SDImageCacheTypeDisk) &#123;NSLog(@&quot;设备硬盘&quot;);&#125;else if (cacheType == SDImageCacheTypeMemory) &#123;NSLog(@&quot;内存&quot;);&#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS Tabbar的一些设置(背景颜色、点击设置)]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%20Tabbar%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E7%BD%AE(%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%E3%80%81%E7%82%B9%E5%87%BB%E8%AE%BE%E7%BD%AE)%2F</url>
+    <content type="text"><![CDATA[设置底部标题点击时的颜色 12345[[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil] forState:UIControlStateNormal]; UIColor *titleHighlightedColor = [UIColor whiteColor]; [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:titleHighlightedColor, NSForegroundColorAttributeName,nil] forState:UIControlStateSelected]; 设置tabbar选中颜色 iOS7设置如下： 1[self.tabBarController.tabBarsetSelectedImageTintColor:[UIColor greenColor]]; ios8中如下设置： 1self.tabBar.tintColor=[UIColor greenColor]; 消除tabbar边框在appdelegate的程序启动处： 1234[[UITabBar appearance] setShadowImage:[[UIImage alloc]init]];[[UITabBar appearance] setBackgroundImage:[[UIImage alloc]init]]; 设置tabbar item原始图标与原始选中图标，而不是系统自动填充的颜色 123456789101112131415161718// 拿到 TabBar 在拿到想应的itemUITabBar *tabBar = _tabBarController.tabBar;UITabBarItem *item0 = [tabBar.items objectAtIndex:0];UITabBarItem *item1 = [tabBar.items objectAtIndex:1];UITabBarItem *item2 = [tabBar.items objectAtIndex:2];UITabBarItem *item3 = [tabBar.items objectAtIndex:3];// 对item设置相应地图片item0.selectedImage = [[UIImage imageNamed:@&quot;recognize-1&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];;item0.image = [[UIImage imageNamed:@&quot;recognize&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]; item1.selectedImage = [[UIImage imageNamed:@&quot;life-1&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];;item1.image = [[UIImage imageNamed:@&quot;life&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]; item2.selectedImage = [[UIImage imageNamed:@&quot;edit-1&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];;item2.image = [[UIImage imageNamed:@&quot;edit&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]; item3.selectedImage = [[UIImage imageNamed:@&quot;setting-1&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];;item3.image = [[UIImage imageNamed:@&quot;setting&quot;] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]; 设置tabbar背景图片 1234UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 49)];backView.backgroundColor = [UIColor redColor];[self.tabBar insertSubview:backView atIndex:0];self.tabBar.opaque = YES;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[XCode 代码格式化 .clang-format配置]]></title>
+    <url>%2F2019%2F09%2F04%2FXCode%20%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96%20.clang-format%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[.clang-format配置 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115# 工具 https://github.com/mapbox/XcodeClangFormat# 函数名详细地址 英文 http://clang.llvm.org/docs/ClangFormatStyleOptions.html# 函数名详细地址 中文 https://www.cnblogs.com/PaulpauL/p/5929753.html# 基于样式BasedOnStyle: LLVM# 对齐注释AlignTrailingComments: true# 指针和引用的对齐方式PointerAlignment: Right# 用于缩进的列数IndentWidth: 4# switch的case缩进IndentCaseLabels: true# OC里面，在@property后加空格ObjCSpaceAfterProperty: true# OC里面，在Protocol前后加空格ObjCSpaceBeforeProtocolList: true# 单行注释前的空格数SpacesBeforeTrailingComments: 1# 连续的空行保留几行MaxEmptyLinesToKeep: 1# 保留block里面的空行KeepEmptyLinesAtTheStartOfBlocks: false# 每行字符的限制，0表示没有限制ColumnLimit: 0# []中添加空格SpacesInSquareBrackets: false# ()中添加空格SpacesInParentheses : false# 容器类前添加空格SpacesInContainerLiterals: true# 赋值运算符前加空格SpaceBeforeAssignmentOperators: true# 在空括号中加空格SpaceInEmptyParentheses: false# 在&lt;&gt;中间插入空格SpacesInAngles: false# 换行的时候对齐操作符AlignOperands: true# 括号中的(),&#123;&#125;,[]代码对齐方式#AlignAfterOpenBracket: Align#ContinuationIndentWidth: 0# 赋值=对齐AlignConsecutiveAssignments: false# 声明参数对齐AlignConsecutiveDeclarations: false# 运算符位置BreakBeforeBinaryOperators: None# 允许短的函数放在同一行#AllowShortFunctionsOnASingleLine: None# 允许case在同一行AllowShortCaseLabelsOnASingleLine: false# 允许if在同一行AllowShortIfStatementsOnASingleLine: false# 允许while在同一行AllowShortLoopsOnASingleLine: false# 允许将简单的语句块放到同一行AllowShortBlocksOnASingleLine: false#缩进函数名IndentWrappedFunctionNames: false# 形参 如果为false要么都在同一行，要么各有一行BinPackParameters: false# 实参 如果为false要么都在同一行，要么各有一行BinPackArguments: false# 大括号换行BreakBeforeBraces: CustomBraceWrapping: # class定义后面 AfterClass: true # 控制语句后面 AfterControlStatement: false # enum定义后面 AfterEnum: false # 函数定义后面 AfterFunction: false # 命名空间定义后面 AfterNamespace: false # struct定义后面 AfterStruct: false # union定义后面 AfterUnion: false # catch之前 BeforeCatch: false]]></content>
+      <categories>
+        <category>XCode</category>
+      </categories>
+      <tags>
+        <tag>配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Xcode does not contain bitcode. You must rebuild it with bitcode enabled (Xcode setting ENABLE_BITCODE), obtain an updated library from the vendor, or disable bitcode for this target. for architecture armv7]]></title>
+    <url>%2F2019%2F09%2F04%2FXcode%20does%20not%20contain%20bitcode.%20You%20must%20rebuild%20it%20with%20bitcode%20enabled%20(Xcode%20setting%20ENABLE_BITCODE)%2C%20obtain%20an%20updated%20library%20from%20the%20vendor%2C%20or%20disable%20bitcode%20for%20this%20target.%20for%20architecture%20armv7%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>Xcode</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Xcode 常见错误(持续更新)]]></title>
+    <url>%2F2019%2F09%2F04%2FXcode%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)%2F</url>
+    <content type="text"><![CDATA[问题:Xcode的 Command +/ 快捷键注释代码，不可使用 1解决：在终端输入sudo /usr/libexec/xpccachectl 然后重启电脑 问题:Xcode9 xib报错 Safe Area Layout Guide before iOS 9.01231、打开右侧的 Show the File inspetcor2、去掉 Use Safe Area Layout Guides]]></content>
+      <categories>
+        <category>Xcode</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Xcode 添加了libxml2.dylb的framework ，结果还是引用不了， 老是提示找不到头文件]]></title>
+    <url>%2F2019%2F09%2F04%2FXcode%20%E6%B7%BB%E5%8A%A0%E4%BA%86libxml2.dylb%E7%9A%84framework%20%EF%BC%8C%E7%BB%93%E6%9E%9C%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%B8%8D%E4%BA%86%EF%BC%8C%20%20%E8%80%81%E6%98%AF%E6%8F%90%E7%A4%BA%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[添加了libxml2.dylb的framework ，结果还是引用不了， 老是提示找不到头文件。 这个问题其实比较容易解决，但是XCode的版本问题确实让开发者头疼。 在Xcode4,2之后，可以在添加了libxml2.dylb之后，点击左上角的project，然后进行Build Settings（这里不管是Project还是targets都行），找到Search Paths选项卡，其下有Header Search Paths条目，双击debug选项，添加/usr/include/libxml2就行了。]]></content>
+      <categories>
+        <category>Xcode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[brew操作]]></title>
+    <url>%2F2019%2F09%2F04%2Fbrew%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[brew操作 123456789101112//卸载brew install //列出已安装的软件brew list //更新brewbrew update //用浏览器打开brew的官方网站brew home //显示软件信息 brew info //显示包依赖 brew deps]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>操作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[iOS 8 以后滑动cell删除等菜单]]></title>
+    <url>%2F2019%2F09%2F04%2FiOS%208%20%E4%BB%A5%E5%90%8E%E6%BB%91%E5%8A%A8cell%E5%88%A0%E9%99%A4%E7%AD%89%E8%8F%9C%E5%8D%95%2F</url>
+    <content type="text"><![CDATA[iOS 8 以后滑动cell删除等菜单 1234567891011121314- (NSArray&lt;UITableViewRowAction *&gt; *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath&#123; UITableViewRowAction *row1 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:NSLocalizedString(@&quot;编辑&quot;, nil) handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) &#123; NSLog(@&quot;%ld的编辑&quot;,(long)indexPath.row); &#125;]; row1.backgroundColor = [UIColor orangeColor]; UITableViewRowAction *row2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:NSLocalizedString(@&quot;删除了&quot;, nil) handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) &#123; NSLog(@&quot;%ld的删除&quot;,(long)indexPath.row); &#125;]; row2.backgroundColor = [UIColor blueColor]; return @[row1,row2];&#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CornerStone上传静态库（.a文件）]]></title>
+    <url>%2F2019%2F09%2F04%2FCornerStone%E4%B8%8A%E4%BC%A0%E9%9D%99%E6%80%81%E5%BA%93%EF%BC%88.a%E6%96%87%E4%BB%B6%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[CornerStone上传静态库（.a文件） 首先打开软件左上角 CornerStone-Preferences-SubVersion 第一个地方把对号去掉，第二个地方把 *.a 那个删除，然后save。]]></content>
+      <categories>
+        <category>CornerStone</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mac 安装Flutter环境]]></title>
+    <url>%2F2019%2F09%2F04%2FMac%20%E5%AE%89%E8%A3%85Flutter%E7%8E%AF%E5%A2%83%2F</url>
+    <content type="text"><![CDATA[Mac 安装Flutter环境 1234567891011121314151617181920212223242526272829303132333435安装flutter//打开环境变量配置open ~/.bash_profile//加入下面环境变量export PUB_HOSTED_URL=https://pub.flutter-io.cnexport FLUTTER_STORAGE_BASE_URL=[https://storage.flutter-io.cn](https://storage.flutter-io.cn)//生效source ~/.bash_profile//下载fluttergit clone -b beta [https://github.com/flutter/flutter.git](https://github.com/flutter/flutter.git)//打开环境变量配置open ~/.bash_profile//加一行 xxx 安装目录export PATH=/xxx/flutter/bin:$PATH//生效source ~/.bash_profile//配置flutter doctor]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>操作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mac 安装pod]]></title>
+    <url>%2F2019%2F09%2F04%2FMac%20%E5%AE%89%E8%A3%85pod%2F</url>
+    <content type="text"><![CDATA[Mac 安装pod 12345678910111213141516171819202122232425262728293031323334安装pod 需要安装Xcoderuby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;curl -sSL https://get.rvm.io | bash -s stablesource ~/.rvm/scripts/rvmrvm -vrvm install 2.6//xcode-select --installrvm use 2.6.0 --defaultruby -vgem -vgem source -r [https://rubygems.org/](https://rubygems.org/)gem source -[ahttps://gems.ruby-china.com/](ahttps://gems.ruby-china.com/)gem source -lsudo gem install -n /usr/local/bin cocoapods --prepod setup//快速安装与更新--verbose --no-repo-update]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>操作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[TableViewCell 下划线或分割线长度与颜色问题]]></title>
+    <url>%2F2019%2F09%2F04%2FTableViewCell%20%E4%B8%8B%E5%88%92%E7%BA%BF%E6%88%96%E5%88%86%E5%89%B2%E7%BA%BF%E9%95%BF%E5%BA%A6%E4%B8%8E%E9%A2%9C%E8%89%B2%E9%97%AE%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[TableViewCell 下划线或分割线长度与颜色问题 1234567891011121314151617181920212223242526272829- (void)viewDidLoad &#123;[super viewDidLoad];//UIEdgeInsetsZero 下划线为屏幕的宽//UIEdgeInsetsMake(&lt;#CGFloat top#&gt;, &lt;#CGFloat left#&gt;, &lt;#CGFloat bottom#&gt;, &lt;#CGFloat right#&gt;) 细微调整//下划线位置[self.tableView setSeparatorInset:UIEdgeInsetsZero];//下划线颜色[self.tableView setSeparatorColor:[UIColor xxxx ]];&#125;- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;UITableViewCell *cell;[cell setSeparatorInset:UIEdgeInsetsZero];[cell setLayoutMargins:UIEdgeInsetsZero];return cell;&#125;]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[VSCode 配置]]></title>
+    <url>%2F2019%2F09%2F04%2FVSCode%20%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[VSCode 配置 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&#123; &quot;explorer.confirmDelete&quot;: false, &quot;explorer.confirmDragAndDrop&quot;: false, &quot;javascript.updateImportsOnFileMove.enabled&quot;: &quot;always&quot;, &quot;workbench.statusBar.feedback.visible&quot;: false, &quot;workbench.settings.editor&quot;: &quot;json&quot;, &quot;emmet.includeLanguages&quot;: &#123; &quot;javascript&quot;: &quot;javascriptreact&quot; &#125;, &quot;[javascript]&quot;: &#123; &quot;editor.defaultFormatter&quot;: &quot;esbenp.prettier-vscode&quot; &#125;, // tab间隔 &quot;editor.tabSize&quot;: 2, &quot;editor.wordWrapColumn&quot;: 100, // #每次保存的时候自动格式化 &quot;editor.formatOnSave&quot;: true, // 每次保存的时候将代码按eslint格式进行修复 &quot;eslint.autoFixOnSave&quot;: true, // 开启 eslint 支持 &quot;prettier.eslintIntegration&quot;: true, // 使用单引号 &quot;prettier.singleQuote&quot;: true, // 结尾不加分号 &quot;prettier.semi&quot;: false, // 尾随逗号 // &quot;prettier.trailingComma&quot;: &quot;all&quot;, // 代码补全 &quot;editor.quickSuggestions&quot;: &#123; &quot;other&quot;: true, &quot;comments&quot;: true, &quot;strings&quot;: true &#125;, // vue格式化 &quot;eslint.validate&quot;: [ &quot;javascript&quot;, &quot;javascriptreact&quot;, &#123; &quot;language&quot;: &quot;vue&quot;, &quot;autoFix&quot;: true &#125; ], &quot;workbench.colorTheme&quot;: &quot;Visual Studio Dark&quot;, &quot;workbench.iconTheme&quot;: &quot;vscode-icons-mac&quot; //代码自动换行 &quot;editor.wordWrap&quot;: &quot;on&quot;&#125; 插件 123456789Auto Rename TagBracket Pair ColorizerChinese (Simplified) Language Pack for Visual Studio CodeESLintPath IntellisensePrettier - Code formatterProject Managervscode-icons-macVetur]]></content>
+      <categories>
+        <category>VSCode</category>
+      </categories>
+      <tags>
+        <tag>配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Xcode -[XMPPSRVResolver processRecord:length:]]]></title>
+    <url>%2F2019%2F09%2F04%2FXcode%20-%5BXMPPSRVResolver%20processRecord%3Alength%3A%5D%2F</url>
+    <content type="text"><![CDATA[“_dns_free_resource_record”, referenced from: -[XMPPSRVResolver processRecord:length:] in libEaseMobClientSDKLite.a(XMPPSRVResolver.o) 这样的错误，是由于缺少库： 添加libresolv.dylib库，就可以了]]></content>
+      <categories>
+        <category>Xcode</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+</search>
