@@ -15,19 +15,6 @@
       </tags>
   </entry>
   <entry>
-    <title>删除Xcode中多余的证书provisioning profile</title>
-    <url>/2019/10/28/%E5%88%A0%E9%99%A4Xcode%E4%B8%AD%E5%A4%9A%E4%BD%99%E7%9A%84%E8%AF%81%E4%B9%A6provisioning%20profile/</url>
-    <content><![CDATA[<a id="more"></a>
-<p>rm ~/Library/MobileDevice/Provisioning Profiles</p>
-]]></content>
-      <categories>
-        <category>Xcode</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何获取ios系统信息</title>
     <url>/2019/10/28/%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96ios%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/</url>
     <content><![CDATA[<p>如何获取ios系统信息</p>
@@ -35,6 +22,19 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NSString *deviceID  =  [[UIDevice currentDevice] uniqueIdentifier];//设备id</span><br><span class="line"></span><br><span class="line">// NSString *deviceID  =  [[UIApplication sharedApplication] uuid];</span><br><span class="line"></span><br><span class="line">NSString *systemVersion  =  [[UIDevice currentDevice] systemVersion];//系统版本</span><br><span class="line"></span><br><span class="line">NSString *systemModel    =  [[UIDevice currentDevice] model];//是iphone 还是 ipad</span><br><span class="line"></span><br><span class="line">NSDictionary *dic    =  [[NSBundle mainBundle] infoDictionary];//获取info－plist</span><br><span class="line"></span><br><span class="line">NSString *appName  =  [dic objectForKey:@&quot;CFBundleIdentifier&quot;];//获取Bundle identifier</span><br><span class="line"></span><br><span class="line">NSString *appVersion  =  [dic valueForKey:@&quot;CFBundleVersion&quot;];//获取Bundle Version</span><br><span class="line"></span><br><span class="line">NSDictionary *userInfo = [[NSDictionary alloc] initWithObjectsAndKeys:</span><br><span class="line"></span><br><span class="line">deviceID, @&quot;deviceID&quot;,</span><br><span class="line"></span><br><span class="line">systemVersion, @&quot;systemVersion&quot;,</span><br><span class="line"></span><br><span class="line">systemModel, @&quot;systemModel&quot;,</span><br><span class="line"></span><br><span class="line">appName, @&quot;appName&quot;,</span><br><span class="line"></span><br><span class="line">appVersion, @&quot;appVersion&quot;,nil];</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>删除Xcode中多余的证书provisioning profile</title>
+    <url>/2019/10/28/%E5%88%A0%E9%99%A4Xcode%E4%B8%AD%E5%A4%9A%E4%BD%99%E7%9A%84%E8%AF%81%E4%B9%A6provisioning%20profile/</url>
+    <content><![CDATA[<a id="more"></a>
+<p>rm ~/Library/MobileDevice/Provisioning Profiles</p>
+]]></content>
+      <categories>
+        <category>Xcode</category>
       </categories>
       <tags>
         <tag>随笔</tag>
@@ -110,19 +110,6 @@
       </categories>
       <tags>
         <tag>知识</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>清理Xcode编译项目产生的缓存垃圾</title>
-    <url>/2019/10/28/%E6%B8%85%E7%90%86Xcode%E7%BC%96%E8%AF%91%E9%A1%B9%E7%9B%AE%E4%BA%A7%E7%94%9F%E7%9A%84%E7%BC%93%E5%AD%98%E5%9E%83%E5%9C%BE/</url>
-    <content><![CDATA[<a id="more"></a>
-<p>rm ~/Library/Developer/Xcode/DerivedData</p>
-]]></content>
-      <categories>
-        <category>Xcode</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -207,67 +194,13 @@
       </tags>
   </entry>
   <entry>
-    <title>iOS 收藏一些好用的Demo与工具类(持续更新)</title>
-    <url>/2019/10/28/iOS%20%E6%94%B6%E8%97%8F%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84Demo%E4%B8%8E%E5%B7%A5%E5%85%B7%E7%B1%BB(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/</url>
+    <title>清理Xcode编译项目产生的缓存垃圾</title>
+    <url>/2019/10/28/%E6%B8%85%E7%90%86Xcode%E7%BC%96%E8%AF%91%E9%A1%B9%E7%9B%AE%E4%BA%A7%E7%94%9F%E7%9A%84%E7%BC%93%E5%AD%98%E5%9E%83%E5%9C%BE/</url>
     <content><![CDATA[<a id="more"></a>
-<p>1、访问照片、相机、图片多选等</p>
-<p><a href="https://github.com/MakeZL/ZLPhotoLib" target="_blank" rel="noopener">标准的多选</a></p>
-<p><a href="https://github.com/DaMingShen/SuPhotoPicker" target="_blank" rel="noopener">类似于QQ的多选</a></p>
-<p>2、网络数据请求（网络判断）</p>
-<p><a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="noopener">地址</a></p>
-<p>3、图片加载</p>
-<p><a href="https://github.com/rs/SDWebImage" target="_blank" rel="noopener">地址</a></p>
-<p>4、数据模型转换</p>
-<p><a href="https://github.com/CoderMJLee/MJExtension" target="_blank" rel="noopener">地址</a></p>
-<p>5、刷新加载</p>
-<p><a href="https://github.com/CoderMJLee/MJRefresh" target="_blank" rel="noopener">地址</a></p>
-<p>6、即时通讯</p>
-<p><a href="https://github.com/robbiehanson/XMPPFramework" target="_blank" rel="noopener">地址</a></p>
-<p>7、提示框</p>
-<p><a href="https://github.com/jdg/MBProgressHUD" target="_blank" rel="noopener">地址</a></p>
-<p>8、数据存储</p>
-<p><a href="https://github.com/ccgus/fmdb" target="_blank" rel="noopener">地址</a></p>
-<p>9、滑动返回（不需要系统POP）</p>
-<p><a href="https://github.com/forkingdog/FDFullscreenPopGesture" target="_blank" rel="noopener">地址</a></p>
-<p>10、音频转换 AMR&lt;—-&gt;WAV（安卓与iOS语音互聊）</p>
-<p><a href="https://github.com/AwakenDragon/VoiceConvert" target="_blank" rel="noopener">地址</a></p>
-<p>11、视频播放器</p>
-<p><a href="https://github.com/renzifeng/ZFPlayer" target="_blank" rel="noopener">支持单元格播放，断点下载等</a></p>
-<p><a href="https://github.com/0summer0/VideoPlayerDemo" target="_blank" rel="noopener">支持横竖屏旋转(90°&amp;&amp;180°)，音量、亮度调节，左侧为亮度调节，右侧为音量调节，以及快进快退、加载进度(非缓存）</a></p>
-<p>12、网易新闻类</p>
-<p><a href="https://github.com/iDvel/DDNews" target="_blank" rel="noopener">地址</a></p>
-<p>13、弹幕</p>
-<p><a href="https://github.com/unash/BarrageRenderer" target="_blank" rel="noopener">地址</a></p>
-<p>14、今日头条，网易新闻 标签页编辑页面</p>
-<p><a href="https://github.com/codeWorm2015/channelEdit" target="_blank" rel="noopener">地址</a></p>
-<p>15、其他小玩意</p>
-<p><a href="https://github.com/Naruto-yq/AnimationDemoOne" target="_blank" rel="noopener">表白程序员</a></p>
-<p>16、UIWebView页面信息的离线缓存</p>
-<p><a href="https://github.com/rnapier/RNCachingURLProtocol" target="_blank" rel="noopener">地址</a></p>
-<p>只需要在AppDelegate中加入下面即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[NSURLProtocolregisterClass:[RNCachingURLProtocol class]];</span><br></pre></td></tr></table></figure>
-
-<p>17、IM项目</p>
-<p><a href="https://github.com/imsdk/IMDev-iOS" target="_blank" rel="noopener">爱萌</a></p>
-<p>18、删除项目中多余的图片资源</p>
-<p><a href="https://github.com/tinymind/LSUnusedResources" target="_blank" rel="noopener">地址</a></p>
-<p>19、获取其他app的资源图片（Assets.car）</p>
-<p><a href="https://github.com/steventroughtonsmith/cartool" target="_blank" rel="noopener">地址</a></p>
-<p>20、OC代码规范</p>
-<p><a href="https://github.com/samlaudev/Objective-C-Coding-Style#underscores" target="_blank" rel="noopener">地址</a></p>
-<p>21、聊天界面（仿微信、QQ）</p>
-<p><a href="https://github.com/CCSH/SHChatMessageUI" target="_blank" rel="noopener">地址</a></p>
-<p>22、群组详情（微信的群详情）</p>
-<p><a href="https://github.com/CCSH/SHGroupDetailsUI" target="_blank" rel="noopener">地址</a></p>
-<p>23、发布界面（添加图片、文字）</p>
-<p><a href="https://github.com/CCSH/SHPublishUI" target="_blank" rel="noopener">地址</a></p>
-<p>24、表情键盘（图文混排）</p>
-<p><a href="https://github.com/CCSH/SHEmotionKeyboard" target="_blank" rel="noopener">地址</a></p>
-<p>25、粒子动画效果</p>
-<p><a href="https://github.com/Xieyupeng520/AZEmitter" target="_blank" rel="noopener">地址</a></p>
+<p>rm ~/Library/Developer/Xcode/DerivedData</p>
 ]]></content>
       <categories>
-        <category>iOS</category>
+        <category>Xcode</category>
       </categories>
       <tags>
         <tag>随笔</tag>
@@ -414,23 +347,6 @@ switch (status) {
       </tags>
   </entry>
   <entry>
-    <title>iOS 自动生成单例类</title>
-    <url>/2019/10/28/iOS%20%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%8D%95%E4%BE%8B%E7%B1%BB/</url>
-    <content><![CDATA[<p>自动生成单例类</p>
-<a id="more"></a>
-<p>创建一个头文件写入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// .h</span><br><span class="line">#define singleton_interface(class) + (instancetype)shared##class;</span><br><span class="line"></span><br><span class="line">// .m</span><br><span class="line">#define singleton_implementation(class) \</span><br><span class="line">static class *_instance; \</span><br><span class="line">\</span><br><span class="line">+ (id)allocWithZone:(struct _NSZone *)zone \</span><br><span class="line">&#123; \</span><br><span class="line">    static dispatch_once_t onceToken; \</span><br><span class="line">    dispatch_once(&amp;onceToken, ^&#123; \</span><br><span class="line">        _instance = [super allocWithZone:zone]; \</span><br><span class="line">    &#125;); \</span><br><span class="line">\</span><br><span class="line">    return _instance; \</span><br><span class="line">&#125; \</span><br><span class="line">\</span><br><span class="line">+ (instancetype)shared##class \</span><br><span class="line">&#123; \</span><br><span class="line">    if (_instance == nil) &#123; \</span><br><span class="line">        _instance = [[class alloc] init]; \</span><br><span class="line">    &#125; \</span><br><span class="line">\</span><br><span class="line">    return _instance; \</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.h</span><br><span class="line">singleton_interface(ABC);</span><br><span class="line">.m</span><br><span class="line">singleton_implementation(ABC)</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>方法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>iOS 视图抖动</title>
     <url>/2019/10/28/iOS%20%E8%A7%86%E5%9B%BE%E6%8A%96%E5%8A%A8/</url>
     <content><![CDATA[<p>iOS 视图抖动</p>
@@ -465,6 +381,90 @@ switch (status) {
       </categories>
       <tags>
         <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iOS 自动生成单例类</title>
+    <url>/2019/10/28/iOS%20%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%8D%95%E4%BE%8B%E7%B1%BB/</url>
+    <content><![CDATA[<p>自动生成单例类</p>
+<a id="more"></a>
+<p>创建一个头文件写入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// .h</span><br><span class="line">#define singleton_interface(class) + (instancetype)shared##class;</span><br><span class="line"></span><br><span class="line">// .m</span><br><span class="line">#define singleton_implementation(class) \</span><br><span class="line">static class *_instance; \</span><br><span class="line">\</span><br><span class="line">+ (id)allocWithZone:(struct _NSZone *)zone \</span><br><span class="line">&#123; \</span><br><span class="line">    static dispatch_once_t onceToken; \</span><br><span class="line">    dispatch_once(&amp;onceToken, ^&#123; \</span><br><span class="line">        _instance = [super allocWithZone:zone]; \</span><br><span class="line">    &#125;); \</span><br><span class="line">\</span><br><span class="line">    return _instance; \</span><br><span class="line">&#125; \</span><br><span class="line">\</span><br><span class="line">+ (instancetype)shared##class \</span><br><span class="line">&#123; \</span><br><span class="line">    if (_instance == nil) &#123; \</span><br><span class="line">        _instance = [[class alloc] init]; \</span><br><span class="line">    &#125; \</span><br><span class="line">\</span><br><span class="line">    return _instance; \</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.h</span><br><span class="line">singleton_interface(ABC);</span><br><span class="line">.m</span><br><span class="line">singleton_implementation(ABC)</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iOS 收藏一些好用的Demo与工具类(持续更新)</title>
+    <url>/2019/10/28/iOS%20%E6%94%B6%E8%97%8F%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84Demo%E4%B8%8E%E5%B7%A5%E5%85%B7%E7%B1%BB(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/</url>
+    <content><![CDATA[<a id="more"></a>
+<p>1、访问照片、相机、图片多选等</p>
+<p><a href="https://github.com/MakeZL/ZLPhotoLib" target="_blank" rel="noopener">标准的多选</a></p>
+<p><a href="https://github.com/DaMingShen/SuPhotoPicker" target="_blank" rel="noopener">类似于QQ的多选</a></p>
+<p>2、网络数据请求（网络判断）</p>
+<p><a href="https://github.com/AFNetworking/AFNetworking" target="_blank" rel="noopener">地址</a></p>
+<p>3、图片加载</p>
+<p><a href="https://github.com/rs/SDWebImage" target="_blank" rel="noopener">地址</a></p>
+<p>4、数据模型转换</p>
+<p><a href="https://github.com/CoderMJLee/MJExtension" target="_blank" rel="noopener">地址</a></p>
+<p>5、刷新加载</p>
+<p><a href="https://github.com/CoderMJLee/MJRefresh" target="_blank" rel="noopener">地址</a></p>
+<p>6、即时通讯</p>
+<p><a href="https://github.com/robbiehanson/XMPPFramework" target="_blank" rel="noopener">地址</a></p>
+<p>7、提示框</p>
+<p><a href="https://github.com/jdg/MBProgressHUD" target="_blank" rel="noopener">地址</a></p>
+<p>8、数据存储</p>
+<p><a href="https://github.com/ccgus/fmdb" target="_blank" rel="noopener">地址</a></p>
+<p>9、滑动返回（不需要系统POP）</p>
+<p><a href="https://github.com/forkingdog/FDFullscreenPopGesture" target="_blank" rel="noopener">地址</a></p>
+<p>10、音频转换 AMR&lt;—-&gt;WAV（安卓与iOS语音互聊）</p>
+<p><a href="https://github.com/AwakenDragon/VoiceConvert" target="_blank" rel="noopener">地址</a></p>
+<p>11、视频播放器</p>
+<p><a href="https://github.com/renzifeng/ZFPlayer" target="_blank" rel="noopener">支持单元格播放，断点下载等</a></p>
+<p><a href="https://github.com/0summer0/VideoPlayerDemo" target="_blank" rel="noopener">支持横竖屏旋转(90°&amp;&amp;180°)，音量、亮度调节，左侧为亮度调节，右侧为音量调节，以及快进快退、加载进度(非缓存）</a></p>
+<p>12、网易新闻类</p>
+<p><a href="https://github.com/iDvel/DDNews" target="_blank" rel="noopener">地址</a></p>
+<p>13、弹幕</p>
+<p><a href="https://github.com/unash/BarrageRenderer" target="_blank" rel="noopener">地址</a></p>
+<p>14、今日头条，网易新闻 标签页编辑页面</p>
+<p><a href="https://github.com/codeWorm2015/channelEdit" target="_blank" rel="noopener">地址</a></p>
+<p>15、其他小玩意</p>
+<p><a href="https://github.com/Naruto-yq/AnimationDemoOne" target="_blank" rel="noopener">表白程序员</a></p>
+<p>16、UIWebView页面信息的离线缓存</p>
+<p><a href="https://github.com/rnapier/RNCachingURLProtocol" target="_blank" rel="noopener">地址</a></p>
+<p>只需要在AppDelegate中加入下面即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[NSURLProtocolregisterClass:[RNCachingURLProtocol class]];</span><br></pre></td></tr></table></figure>
+
+<p>17、IM项目</p>
+<p><a href="https://github.com/imsdk/IMDev-iOS" target="_blank" rel="noopener">爱萌</a></p>
+<p>18、删除项目中多余的图片资源</p>
+<p><a href="https://github.com/tinymind/LSUnusedResources" target="_blank" rel="noopener">地址</a></p>
+<p>19、获取其他app的资源图片（Assets.car）</p>
+<p><a href="https://github.com/steventroughtonsmith/cartool" target="_blank" rel="noopener">地址</a></p>
+<p>20、OC代码规范</p>
+<p><a href="https://github.com/samlaudev/Objective-C-Coding-Style#underscores" target="_blank" rel="noopener">地址</a></p>
+<p>21、聊天界面（仿微信、QQ）</p>
+<p><a href="https://github.com/CCSH/SHChatMessageUI" target="_blank" rel="noopener">地址</a></p>
+<p>22、群组详情（微信的群详情）</p>
+<p><a href="https://github.com/CCSH/SHGroupDetailsUI" target="_blank" rel="noopener">地址</a></p>
+<p>23、发布界面（添加图片、文字）</p>
+<p><a href="https://github.com/CCSH/SHPublishUI" target="_blank" rel="noopener">地址</a></p>
+<p>24、表情键盘（图文混排）</p>
+<p><a href="https://github.com/CCSH/SHEmotionKeyboard" target="_blank" rel="noopener">地址</a></p>
+<p>25、粒子动画效果</p>
+<p><a href="https://github.com/Xieyupeng520/AZEmitter" target="_blank" rel="noopener">地址</a></p>
+]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -807,6 +807,41 @@ switch (status) {
       </tags>
   </entry>
   <entry>
+    <title>iOS 常用控件之NSString的文件路径操作</title>
+    <url>/2019/10/28/iOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BNSString%E7%9A%84%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<a id="more"></a>
+<ul>
+<li>字符串</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NSString *path = @&quot;123/qwert/csh.txt&quot;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取文件名（带格式）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">path.lastPathComponent</span><br><span class="line">输出：csh.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取文件路径（不带文件）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">path.stringByDeletingLastPathComponent</span><br><span class="line">输出：123/qwert</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取文件路径(带文件不带类型)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">path.stringByDeletingPathExtension</span><br><span class="line">输出：123/qwert/csh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取文件类型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">path.pathExtension</span><br><span class="line">输出：txt</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iOS 常用控件之MessageUI(短信发送框架)</title>
     <url>/2019/10/28/iOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BMessageUI(%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%A1%86%E6%9E%B6)/</url>
     <content><![CDATA[<p>iOS 常用控件之MessageUI(短信发送框架)</p>
@@ -848,41 +883,6 @@ default:
 </li>
 </ul>
 ]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>知识</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iOS 常用控件之NSString的文件路径操作</title>
-    <url>/2019/10/28/iOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BNSString%E7%9A%84%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<a id="more"></a>
-<ul>
-<li>字符串</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NSString *path = @&quot;123/qwert/csh.txt&quot;;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>获取文件名（带格式）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">path.lastPathComponent</span><br><span class="line">输出：csh.txt</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>获取文件路径（不带文件）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">path.stringByDeletingLastPathComponent</span><br><span class="line">输出：123/qwert</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>获取文件路径(带文件不带类型)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">path.stringByDeletingPathExtension</span><br><span class="line">输出：123/qwert/csh</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>获取文件类型</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">path.pathExtension</span><br><span class="line">输出：txt</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>iOS</category>
       </categories>
@@ -956,19 +956,6 @@ default:
       </tags>
   </entry>
   <entry>
-    <title>iOS 复制文字信息到剪切板</title>
-    <url>/2019/10/28/iOS%20%E5%A4%8D%E5%88%B6%E6%96%87%E5%AD%97%E4%BF%A1%E6%81%AF%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF/</url>
-    <content><![CDATA[<p>复制文字信息到剪切板</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[[UIPasteboard generalPasteboard] setString:@&quot;123&quot;];</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>iOS 封装控件之AlertView</title>
     <url>/2019/10/28/iOS%20%E5%B0%81%E8%A3%85%E6%8E%A7%E4%BB%B6%E4%B9%8BAlertView/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1011,33 +998,6 @@ default:
       </tags>
   </entry>
   <entry>
-    <title>iOS 封装控件之音视频播放</title>
-    <url>/2019/10/28/iOS%20%E5%B0%81%E8%A3%85%E6%8E%A7%E4%BB%B6%E4%B9%8B%E9%9F%B3%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE/</url>
-    <content><![CDATA[<ul>
-<li>音频播放</li>
-<li>视频播放</li>
-<li>本地播放、网络播放、边下边播</li>
-<li>缓存进度</li>
-<li>播放进度</li>
-<li>自动播放</li>
-<li>音频后台播放</li>
-<li>全屏播放(demo 中有方法)</li>
-<li>拖拽进度</li>
-<li>锁屏显示</li>
-<li>ios 9.1 以上支持 锁屏拖拽进度播放</li>
-<li>耳机控制</li>
-<li>锁屏控制 播放、暂停、下一首、上一首等<br><img src="https://upload-images.jianshu.io/upload_images/1897259-8b078f13990a29a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果"></li>
-</ul>
-<p><a href="https://github.com/CCSH/SHAVPlayer" target="_blank" rel="noopener">代码地址</a></p>
-]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>封装</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>iOS 屏幕强制旋转 (模态、Push、导航栏、状态栏)</title>
     <url>/2019/10/28/iOS%20%E5%B1%8F%E5%B9%95%E5%BC%BA%E5%88%B6%E6%97%8B%E8%BD%AC%20(%E6%A8%A1%E6%80%81%E3%80%81Push%E3%80%81%E5%AF%BC%E8%88%AA%E6%A0%8F%E3%80%81%E7%8A%B6%E6%80%81%E6%A0%8F)/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1071,6 +1031,33 @@ default:
       </tags>
   </entry>
   <entry>
+    <title>iOS 封装控件之音视频播放</title>
+    <url>/2019/10/28/iOS%20%E5%B0%81%E8%A3%85%E6%8E%A7%E4%BB%B6%E4%B9%8B%E9%9F%B3%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE/</url>
+    <content><![CDATA[<ul>
+<li>音频播放</li>
+<li>视频播放</li>
+<li>本地播放、网络播放、边下边播</li>
+<li>缓存进度</li>
+<li>播放进度</li>
+<li>自动播放</li>
+<li>音频后台播放</li>
+<li>全屏播放(demo 中有方法)</li>
+<li>拖拽进度</li>
+<li>锁屏显示</li>
+<li>ios 9.1 以上支持 锁屏拖拽进度播放</li>
+<li>耳机控制</li>
+<li>锁屏控制 播放、暂停、下一首、上一首等<br><img src="https://upload-images.jianshu.io/upload_images/1897259-8b078f13990a29a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果"></li>
+</ul>
+<p><a href="https://github.com/CCSH/SHAVPlayer" target="_blank" rel="noopener">代码地址</a></p>
+]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>封装</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iOS 屏幕旋转之后状态栏显示问题</title>
     <url>/2019/10/28/iOS%20%E5%B1%8F%E5%B9%95%E6%97%8B%E8%BD%AC%E4%B9%8B%E5%90%8E%E7%8A%B6%E6%80%81%E6%A0%8F%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1098,6 +1085,19 @@ default:
       </tags>
   </entry>
   <entry>
+    <title>iOS 复制文字信息到剪切板</title>
+    <url>/2019/10/28/iOS%20%E5%A4%8D%E5%88%B6%E6%96%87%E5%AD%97%E4%BF%A1%E6%81%AF%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF/</url>
+    <content><![CDATA[<p>复制文字信息到剪切板</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[[UIPasteboard generalPasteboard] setString:@&quot;123&quot;];</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iOS tableview footerview、headerview悬浮处理</title>
     <url>/2019/10/28/iOS%20tableview%20footerview%E3%80%81headerview%E6%82%AC%E6%B5%AE%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<p>悬浮处理</p>
@@ -1116,20 +1116,6 @@ default:
       </categories>
       <tags>
         <tag>方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iOS 仿写项目之微信聊天界面、QQ聊天界面</title>
-    <url>/2019/10/28/iOS%20%E4%BB%BF%E5%86%99%E9%A1%B9%E7%9B%AE%E4%B9%8B%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E7%95%8C%E9%9D%A2%E3%80%81QQ%E8%81%8A%E5%A4%A9%E7%95%8C%E9%9D%A2/</url>
-    <content><![CDATA[<a id="more"></a>
-<p><img src="https://upload-images.jianshu.io/upload_images/1897259-e4c047b16de11c93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果"></p>
-<p><a href="https://github.com/CCSH/SHChatMessageUI" target="_blank" rel="noopener">代码地址</a></p>
-]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>封装</tag>
       </tags>
   </entry>
   <entry>
@@ -1157,6 +1143,20 @@ default:
       </categories>
       <tags>
         <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iOS 仿写项目之微信聊天界面、QQ聊天界面</title>
+    <url>/2019/10/28/iOS%20%E4%BB%BF%E5%86%99%E9%A1%B9%E7%9B%AE%E4%B9%8B%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E7%95%8C%E9%9D%A2%E3%80%81QQ%E8%81%8A%E5%A4%A9%E7%95%8C%E9%9D%A2/</url>
+    <content><![CDATA[<a id="more"></a>
+<p><img src="https://upload-images.jianshu.io/upload_images/1897259-e4c047b16de11c93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果"></p>
+<p><a href="https://github.com/CCSH/SHChatMessageUI" target="_blank" rel="noopener">代码地址</a></p>
+]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>封装</tag>
       </tags>
   </entry>
   <entry>
@@ -1189,22 +1189,6 @@ default:
     <content><![CDATA[<p>问题：就算是设置了<code>automaticallyAdjustsScrollViewInsets = NO</code> 或者 <code>contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;</code> 不起作用 查看显示<code>UITableviewWrapperview</code> 与 <code>UITableView</code> 位置不一致</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//添加一个UIScrollView到最下层，让UIViewController去自动适配你添加的这个</span><br><span class="line">if (!self.sh_scroll) &#123;</span><br><span class="line">    self.sh_scroll = [[UIScrollView alloc]init];</span><br><span class="line">    [self.view addSubview:self.sh_scroll];</span><br><span class="line">&#125;</span><br><span class="line">[self.view sendSubviewToBack:self.sh_scroll];</span><br></pre></td></tr></table></figure>
 
-]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iOS 关于子视图超出父视图后无法响应点击事件的处理办法</title>
-    <url>/2019/10/28/iOS%20%E5%85%B3%E4%BA%8E%E5%AD%90%E8%A7%86%E5%9B%BE%E8%B6%85%E5%87%BA%E7%88%B6%E8%A7%86%E5%9B%BE%E5%90%8E%E6%97%A0%E6%B3%95%E5%93%8D%E5%BA%94%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%A4%84%E7%90%86%E5%8A%9E%E6%B3%95/</url>
-    <content><![CDATA[<p>关于子视图超出父视图后无法响应点击事件的处理办法</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event &#123;</span><br><span class="line">    </span><br><span class="line">    for (UIView *view in self.subviews) &#123;</span><br><span class="line"></span><br><span class="line">        CGPoint viewP = [self convertPoint:point toView:view];</span><br><span class="line">        </span><br><span class="line">        if ([view pointInside:viewP withEvent:event]) &#123;</span><br><span class="line">            return view;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return [super hitTest:point withEvent:event];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>其中Btn就是在self上超出的控件</p>
 ]]></content>
       <categories>
         <category>iOS</category>
@@ -1249,6 +1233,22 @@ default:
       </tags>
   </entry>
   <entry>
+    <title>iOS 关于子视图超出父视图后无法响应点击事件的处理办法</title>
+    <url>/2019/10/28/iOS%20%E5%85%B3%E4%BA%8E%E5%AD%90%E8%A7%86%E5%9B%BE%E8%B6%85%E5%87%BA%E7%88%B6%E8%A7%86%E5%9B%BE%E5%90%8E%E6%97%A0%E6%B3%95%E5%93%8D%E5%BA%94%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%A4%84%E7%90%86%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<p>关于子视图超出父视图后无法响应点击事件的处理办法</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event &#123;</span><br><span class="line">    </span><br><span class="line">    for (UIView *view in self.subviews) &#123;</span><br><span class="line"></span><br><span class="line">        CGPoint viewP = [self convertPoint:point toView:view];</span><br><span class="line">        </span><br><span class="line">        if ([view pointInside:viewP withEvent:event]) &#123;</span><br><span class="line">            return view;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return [super hitTest:point withEvent:event];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中Btn就是在self上超出的控件</p>
+]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iOS 8 以后滑动cell删除等菜单</title>
     <url>/2019/10/28/iOS%208%20%E4%BB%A5%E5%90%8E%E6%BB%91%E5%8A%A8cell%E5%88%A0%E9%99%A4%E7%AD%89%E8%8F%9C%E5%8D%95/</url>
     <content><![CDATA[<p>iOS 8 以后滑动cell删除等菜单</p>
@@ -1272,6 +1272,35 @@ default:
       </categories>
       <tags>
         <tag>tableview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iOS Block定义</title>
+    <url>/2019/10/28/iOS%20Block%E5%AE%9A%E4%B9%89/</url>
+    <content><![CDATA[<p>Block定义</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//直接定义</span><br><span class="line">@property (nonatomic, copy) void(^block)(NSInteger);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//方法中定义</span><br><span class="line">block:(void(^) (NSInteger index))block;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//其他定义</span><br><span class="line">typedef void(^Block)(NSInteger index);</span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) Block block;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iOS Pod 问题</title>
+    <url>/2019/10/28/iOS%20Pod%20%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="突然出现-bash-pod-command-not-found-的解决方法"><a href="#突然出现-bash-pod-command-not-found-的解决方法" class="headerlink" title="突然出现 -bash: pod: command not found 的解决方法"></a>突然出现 -bash: pod: command not found 的解决方法</h1><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ mkdir -p $HOME/Software/ruby</span><br><span class="line">$ export GEM_HOME=$HOME/Software/ruby</span><br><span class="line">$ gem install cocoapods</span><br><span class="line">$ export PATH=$PATH:$HOME/Software/ruby/bin</span><br><span class="line">$ pod --version</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1307,35 +1336,6 @@ default:
       </categories>
       <tags>
         <tag>方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iOS Block定义</title>
-    <url>/2019/10/28/iOS%20Block%E5%AE%9A%E4%B9%89/</url>
-    <content><![CDATA[<p>Block定义</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//直接定义</span><br><span class="line">@property (nonatomic, copy) void(^block)(NSInteger);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//方法中定义</span><br><span class="line">block:(void(^) (NSInteger index))block;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//其他定义</span><br><span class="line">typedef void(^Block)(NSInteger index);</span><br><span class="line"></span><br><span class="line">@property (nonatomic, copy) Block block;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iOS Pod 问题</title>
-    <url>/2019/10/28/iOS%20Pod%20%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="突然出现-bash-pod-command-not-found-的解决方法"><a href="#突然出现-bash-pod-command-not-found-的解决方法" class="headerlink" title="突然出现 -bash: pod: command not found 的解决方法"></a>突然出现 -bash: pod: command not found 的解决方法</h1><a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ mkdir -p $HOME/Software/ruby</span><br><span class="line">$ export GEM_HOME=$HOME/Software/ruby</span><br><span class="line">$ gem install cocoapods</span><br><span class="line">$ export PATH=$PATH:$HOME/Software/ruby/bin</span><br><span class="line">$ pod --version</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1437,21 +1437,6 @@ default:
       </tags>
   </entry>
   <entry>
-    <title>XCode 代码格式化 .clang-format配置</title>
-    <url>/2019/10/28/XCode%20%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96%20.clang-format%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<p>.clang-format配置</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 工具 https://github.com/mapbox/XcodeClangFormat</span><br><span class="line"># 函数名详细地址 英文 http://clang.llvm.org/docs/ClangFormatStyleOptions.html</span><br><span class="line"># 函数名详细地址 中文 https://www.cnblogs.com/PaulpauL/p/5929753.html</span><br><span class="line"></span><br><span class="line"># 基于样式</span><br><span class="line">BasedOnStyle: LLVM</span><br><span class="line"></span><br><span class="line"># 对齐注释</span><br><span class="line">AlignTrailingComments: true</span><br><span class="line"></span><br><span class="line"># 指针和引用的对齐方式</span><br><span class="line">PointerAlignment: Right</span><br><span class="line"></span><br><span class="line"># 用于缩进的列数</span><br><span class="line">IndentWidth: 4</span><br><span class="line"></span><br><span class="line"># switch的case缩进</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line"></span><br><span class="line"># OC里面，在@property后加空格</span><br><span class="line">ObjCSpaceAfterProperty: true</span><br><span class="line"></span><br><span class="line"># OC里面，在Protocol前后加空格</span><br><span class="line">ObjCSpaceBeforeProtocolList: true</span><br><span class="line"></span><br><span class="line"># 单行注释前的空格数</span><br><span class="line">SpacesBeforeTrailingComments: 1</span><br><span class="line"></span><br><span class="line"># 连续的空行保留几行</span><br><span class="line">MaxEmptyLinesToKeep: 1</span><br><span class="line"></span><br><span class="line"># 保留block里面的空行</span><br><span class="line">KeepEmptyLinesAtTheStartOfBlocks: false</span><br><span class="line"></span><br><span class="line"># 每行字符的限制，0表示没有限制</span><br><span class="line">ColumnLimit: 0</span><br><span class="line"></span><br><span class="line"># []中添加空格</span><br><span class="line">SpacesInSquareBrackets: false</span><br><span class="line"></span><br><span class="line"># ()中添加空格</span><br><span class="line">SpacesInParentheses : false</span><br><span class="line"></span><br><span class="line"># 容器类前添加空格</span><br><span class="line">SpacesInContainerLiterals: true</span><br><span class="line"></span><br><span class="line"># 赋值运算符前加空格</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line"></span><br><span class="line"># 在空括号中加空格</span><br><span class="line">SpaceInEmptyParentheses: false</span><br><span class="line"></span><br><span class="line"># 在&lt;&gt;中间插入空格</span><br><span class="line">SpacesInAngles: false</span><br><span class="line"></span><br><span class="line"># 换行的时候对齐操作符</span><br><span class="line">AlignOperands: true</span><br><span class="line"></span><br><span class="line"># 括号中的(),&#123;&#125;,[]代码对齐方式</span><br><span class="line">#AlignAfterOpenBracket: Align</span><br><span class="line"></span><br><span class="line">#ContinuationIndentWidth: 0</span><br><span class="line"></span><br><span class="line"># 赋值=对齐</span><br><span class="line">AlignConsecutiveAssignments: false</span><br><span class="line"></span><br><span class="line"># 声明参数对齐</span><br><span class="line">AlignConsecutiveDeclarations: false</span><br><span class="line"></span><br><span class="line"># 运算符位置</span><br><span class="line">BreakBeforeBinaryOperators: None</span><br><span class="line"></span><br><span class="line"># 允许短的函数放在同一行</span><br><span class="line">#AllowShortFunctionsOnASingleLine: None</span><br><span class="line"></span><br><span class="line"># 允许case在同一行</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line"></span><br><span class="line"># 允许if在同一行</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line"></span><br><span class="line"># 允许while在同一行</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line"></span><br><span class="line"># 允许将简单的语句块放到同一行</span><br><span class="line">AllowShortBlocksOnASingleLine: false</span><br><span class="line"></span><br><span class="line">#缩进函数名</span><br><span class="line">IndentWrappedFunctionNames: false</span><br><span class="line"></span><br><span class="line"># 形参 如果为false要么都在同一行，要么各有一行</span><br><span class="line">BinPackParameters: false</span><br><span class="line"></span><br><span class="line"># 实参 如果为false要么都在同一行，要么各有一行</span><br><span class="line">BinPackArguments: false</span><br><span class="line"></span><br><span class="line"># 大括号换行</span><br><span class="line">BreakBeforeBraces: Custom</span><br><span class="line">BraceWrapping:</span><br><span class="line">  # class定义后面</span><br><span class="line">  AfterClass: true</span><br><span class="line">  # 控制语句后面</span><br><span class="line">  AfterControlStatement: false</span><br><span class="line">  # enum定义后面</span><br><span class="line">  AfterEnum: false</span><br><span class="line">  # 函数定义后面</span><br><span class="line">  AfterFunction: false</span><br><span class="line">  # 命名空间定义后面</span><br><span class="line">  AfterNamespace: false</span><br><span class="line">  # struct定义后面</span><br><span class="line">  AfterStruct: false</span><br><span class="line">  # union定义后面</span><br><span class="line">  AfterUnion: false</span><br><span class="line">  # catch之前</span><br><span class="line">  BeforeCatch: false</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>XCode</category>
-      </categories>
-      <tags>
-        <tag>配置</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>VSCode 配置</title>
     <url>/2019/10/28/VSCode%20%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<p>VSCode 配置</p>
@@ -1465,6 +1450,21 @@ default:
 ]]></content>
       <categories>
         <category>VSCode</category>
+      </categories>
+      <tags>
+        <tag>配置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>XCode 代码格式化 .clang-format配置</title>
+    <url>/2019/10/28/XCode%20%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96%20.clang-format%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p>.clang-format配置</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 工具 https://github.com/mapbox/XcodeClangFormat</span><br><span class="line"># 函数名详细地址 英文 http://clang.llvm.org/docs/ClangFormatStyleOptions.html</span><br><span class="line"># 函数名详细地址 中文 https://www.cnblogs.com/PaulpauL/p/5929753.html</span><br><span class="line"></span><br><span class="line"># 基于样式</span><br><span class="line">BasedOnStyle: LLVM</span><br><span class="line"></span><br><span class="line"># 对齐注释</span><br><span class="line">AlignTrailingComments: true</span><br><span class="line"></span><br><span class="line"># 指针和引用的对齐方式</span><br><span class="line">PointerAlignment: Right</span><br><span class="line"></span><br><span class="line"># 用于缩进的列数</span><br><span class="line">IndentWidth: 4</span><br><span class="line"></span><br><span class="line"># switch的case缩进</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line"></span><br><span class="line"># OC里面，在@property后加空格</span><br><span class="line">ObjCSpaceAfterProperty: true</span><br><span class="line"></span><br><span class="line"># OC里面，在Protocol前后加空格</span><br><span class="line">ObjCSpaceBeforeProtocolList: true</span><br><span class="line"></span><br><span class="line"># 单行注释前的空格数</span><br><span class="line">SpacesBeforeTrailingComments: 1</span><br><span class="line"></span><br><span class="line"># 连续的空行保留几行</span><br><span class="line">MaxEmptyLinesToKeep: 1</span><br><span class="line"></span><br><span class="line"># 保留block里面的空行</span><br><span class="line">KeepEmptyLinesAtTheStartOfBlocks: false</span><br><span class="line"></span><br><span class="line"># 每行字符的限制，0表示没有限制</span><br><span class="line">ColumnLimit: 0</span><br><span class="line"></span><br><span class="line"># []中添加空格</span><br><span class="line">SpacesInSquareBrackets: false</span><br><span class="line"></span><br><span class="line"># ()中添加空格</span><br><span class="line">SpacesInParentheses : false</span><br><span class="line"></span><br><span class="line"># 容器类前添加空格</span><br><span class="line">SpacesInContainerLiterals: true</span><br><span class="line"></span><br><span class="line"># 赋值运算符前加空格</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line"></span><br><span class="line"># 在空括号中加空格</span><br><span class="line">SpaceInEmptyParentheses: false</span><br><span class="line"></span><br><span class="line"># 在&lt;&gt;中间插入空格</span><br><span class="line">SpacesInAngles: false</span><br><span class="line"></span><br><span class="line"># 换行的时候对齐操作符</span><br><span class="line">AlignOperands: true</span><br><span class="line"></span><br><span class="line"># 括号中的(),&#123;&#125;,[]代码对齐方式</span><br><span class="line">#AlignAfterOpenBracket: Align</span><br><span class="line"></span><br><span class="line">#ContinuationIndentWidth: 0</span><br><span class="line"></span><br><span class="line"># 赋值=对齐</span><br><span class="line">AlignConsecutiveAssignments: false</span><br><span class="line"></span><br><span class="line"># 声明参数对齐</span><br><span class="line">AlignConsecutiveDeclarations: false</span><br><span class="line"></span><br><span class="line"># 运算符位置</span><br><span class="line">BreakBeforeBinaryOperators: None</span><br><span class="line"></span><br><span class="line"># 允许短的函数放在同一行</span><br><span class="line">#AllowShortFunctionsOnASingleLine: None</span><br><span class="line"></span><br><span class="line"># 允许case在同一行</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line"></span><br><span class="line"># 允许if在同一行</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line"></span><br><span class="line"># 允许while在同一行</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line"></span><br><span class="line"># 允许将简单的语句块放到同一行</span><br><span class="line">AllowShortBlocksOnASingleLine: false</span><br><span class="line"></span><br><span class="line">#缩进函数名</span><br><span class="line">IndentWrappedFunctionNames: false</span><br><span class="line"></span><br><span class="line"># 形参 如果为false要么都在同一行，要么各有一行</span><br><span class="line">BinPackParameters: false</span><br><span class="line"></span><br><span class="line"># 实参 如果为false要么都在同一行，要么各有一行</span><br><span class="line">BinPackArguments: false</span><br><span class="line"></span><br><span class="line"># 大括号换行</span><br><span class="line">BreakBeforeBraces: Custom</span><br><span class="line">BraceWrapping:</span><br><span class="line">  # class定义后面</span><br><span class="line">  AfterClass: true</span><br><span class="line">  # 控制语句后面</span><br><span class="line">  AfterControlStatement: false</span><br><span class="line">  # enum定义后面</span><br><span class="line">  AfterEnum: false</span><br><span class="line">  # 函数定义后面</span><br><span class="line">  AfterFunction: false</span><br><span class="line">  # 命名空间定义后面</span><br><span class="line">  AfterNamespace: false</span><br><span class="line">  # struct定义后面</span><br><span class="line">  AfterStruct: false</span><br><span class="line">  # union定义后面</span><br><span class="line">  AfterUnion: false</span><br><span class="line">  # catch之前</span><br><span class="line">  BeforeCatch: false</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>XCode</category>
       </categories>
       <tags>
         <tag>配置</tag>

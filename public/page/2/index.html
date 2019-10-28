@@ -282,155 +282,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/28/iOS 显示与隐藏TabBar/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈胜辉">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈胜辉的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/28/iOS 显示与隐藏TabBar/" itemprop="url">iOS 显示与隐藏TabBar</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-28T14:22:00+08:00">
-                2019-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<p>3种方法<br>第一种</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark -隐藏TabBar</span><br><span class="line">- (void)hideTabBar &#123;</span><br><span class="line">    if (self.tabBarController.tabBar.hidden == YES) &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    UIView *contentView;</span><br><span class="line">    if ( [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] )</span><br><span class="line">        contentView = [self.tabBarController.view.subviews objectAtIndex:1];</span><br><span class="line">    else</span><br><span class="line">        contentView = [self.tabBarController.view.subviews objectAtIndex:0];</span><br><span class="line">    contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + self.tabBarController.tabBar.frame.size.height);</span><br><span class="line">    self.tabBarController.tabBar.hidden = YES;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark -显示TabBar</span><br><span class="line">- (void)showTabBar &#123;</span><br><span class="line">    if (self.tabBarController.tabBar.hidden == NO)</span><br><span class="line">    &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    UIView *contentView;</span><br><span class="line">    if ([[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]])</span><br><span class="line">        contentView = [self.tabBarController.view.subviews objectAtIndex:1];</span><br><span class="line">    </span><br><span class="line">    else</span><br><span class="line">        </span><br><span class="line">        contentView = [self.tabBarController.view.subviews objectAtIndex:0];</span><br><span class="line">    contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height - self.tabBarController.tabBar.frame.size.height);</span><br><span class="line">    self.tabBarController.tabBar.hidden = NO;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>第二种</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//隐藏</span><br><span class="line">self.hidesBottomBarWhenPushed = YES;</span><br><span class="line">//显示</span><br><span class="line">self.hidesBottomBarWhenPushed = NO;</span><br></pre></td></tr></table></figure>
-
-<p>第三种</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vc.hidesBottomBarWhenPushed = YES;</span><br><span class="line">[self.navigationController pushViewController:vc animated:YES];</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/28/iOS 权限获取/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -524,55 +375,18 @@
       
         
           
-            <a id="more"></a>
-<p>iOS 8 以后需要进行plist文件配置<br><a href="http://www.jianshu.com/p/d407d2d477f1" target="_blank" rel="noopener">plist文件配置</a></p>
-<p>####摄像头权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];</span><br><span class="line">    </span><br><span class="line">    if (authStatus == AVAuthorizationStatusRestricted|| authStatus == AVAuthorizationStatusDenied) &#123;//没有权限</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        </span><br><span class="line">        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) &#123;//成功获取</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">        &#125;else&#123;//没有摄像头</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">```      </span><br><span class="line"></span><br><span class="line">####麦克风权限</span><br></pre></td></tr></table></figure>
-
-<p>[[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {</p>
-<pre><code>    if (granted) {//成功访问
-
-    } else {//访问受限
-
-    }
-}];</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">####照片权限</span><br></pre></td></tr></table></figure>
-
-<p>if ([PHPhotoLibrary authorizationStatus] != PHAuthorizationStatusAuthorized) {//成功访问</p>
-<p>}else{//访问受限</p>
-<p>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">####定位权限</span><br></pre></td></tr></table></figure>
-
-<p>//判断定位用户权限<br>    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];</p>
-<pre><code>//判断状态
-switch (status) {
-    case kCLAuthorizationStatusAuthorizedAlways://一直获取
-
-        break;
-    case kCLAuthorizationStatusAuthorizedWhenInUse://使用期间
-
-        break;
-    case kCLAuthorizationStatusDenied://用户禁止
-
-        break;
-    case kCLAuthorizationStatusNotDetermined://未做决定
-    {
-        //获取权限
-        //使用期间使用 NSLocationWhenInUseUsageDescription
-        [_locationManager requestWhenInUseAuthorization];
-        //一直使用 NSLocationAlwaysUsageDescription</code></pre><p>//            [_locationManager requestAlwaysAuthorization];<br>        }<br>            break;<br>        case kCLAuthorizationStatusRestricted://受限制</p>
-<pre><code>        break;
-    default:
-        break;
-}</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">####通讯录权限</span><br></pre></td></tr></table></figure>
-
-<p>ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, NULL);<br>    //请求访问用户通讯录，无论成功与否block都会调用<br>    ABAddressBookRequestAccessWithCompletion(addressBookRef, ^(bool granted, CFErrorRef error) {</p>
-<pre><code>    if (granted) {//成功访问
-
-    }else{//访问受限
-
-    }
-});</code></pre><pre><code></code></pre>
           
+iOS 8 以后需要进行plist文件配置plist文件配置
+####摄像头权限
+12345678910111213141516171819    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForM
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/10/28/iOS 权限获取/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -715,152 +529,6 @@ switch (status) {
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/10/28/iOS 网络判断(2G、3G、4G、WiFi、无网络)/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/28/iOS 自动生成单例类/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="陈胜辉">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="陈胜辉的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/28/iOS 自动生成单例类/" itemprop="url">iOS 自动生成单例类</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-28T14:22:00+08:00">
-                2019-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>自动生成单例类</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/10/28/iOS 自动生成单例类/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1153,6 +821,320 @@ switch (status) {
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/10/28/iOS 跑马灯，弹幕，滚动文字效果实现/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/28/iOS 自动生成单例类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈胜辉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈胜辉的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/28/iOS 自动生成单例类/" itemprop="url">iOS 自动生成单例类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-28T14:22:00+08:00">
+                2019-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>自动生成单例类</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/10/28/iOS 自动生成单例类/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/28/iOS 收藏一些好用的Demo与工具类(持续更新)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈胜辉">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈胜辉的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/28/iOS 收藏一些好用的Demo与工具类(持续更新)/" itemprop="url">iOS 收藏一些好用的Demo与工具类(持续更新)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-28T14:22:00+08:00">
+                2019-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+1、访问照片、相机、图片多选等
+标准的多选
+类似于QQ的多选
+2、网络数据请求（网络判断）
+地址
+3、图片加载
+地址
+4、数据模型转换
+地址
+5、刷新加载
+地址
+6、即时通讯
+地址
+7、提示框
+地址
+8、数据存储
+地址
+9、滑动返回（不需要系统POP）
+地址
+10、音频转换 AMR&lt;—-&g
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/10/28/iOS 收藏一些好用的Demo与工具类(持续更新)/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1588,13 +1570,17 @@ switch (status) {
       
         
           
-            <a id="more"></a>
-<p>实例化UISearchBar</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, SHWidth, 40)];</span><br><span class="line">//设置提示文字</span><br><span class="line">searchBar.placeholder = @&quot;搜索&quot;;</span><br><span class="line">//设置边框背景图片</span><br><span class="line">searchBar.backgroundImage = [UIImage imageNamed:@&quot;searchBar_BG&quot;];</span><br><span class="line">//设置代理</span><br><span class="line">searchBar.delegate = self;</span><br><span class="line">//添加到视图</span><br><span class="line">self.tableView.tableHeaderView = searchBar;</span><br></pre></td></tr></table></figure>
-
-<p>UISearchBar代理方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - UISearchBarDelegate</span><br><span class="line">#pragma mark 搜索文字改变</span><br><span class="line">- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">#pragma mark 搜索开始编辑</span><br><span class="line">- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar</span><br><span class="line">&#123;</span><br><span class="line">    //设置取消按钮样式</span><br><span class="line">    //首先取出cancelBtn</span><br><span class="line">    UIButton *cancelBtn = [searchBar valueForKey:@&quot;cancelButton&quot;];</span><br><span class="line">    //取消按钮文字</span><br><span class="line">    [cancelBtn setTitle:@&quot;取消&quot; forState:UIControlStateNormal];</span><br><span class="line">    //取消按钮文字颜色</span><br><span class="line">    [cancelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark  编辑</span><br><span class="line">- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar</span><br><span class="line">&#123;</span><br><span class="line">    //展示取消按钮</span><br><span class="line">    searchBar.showsCancelButton = YES;</span><br><span class="line"> </span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line">#pragma mark  编辑</span><br><span class="line">- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar</span><br><span class="line">&#123;</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line">#pragma mark 取消按钮点击</span><br><span class="line">- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar</span><br><span class="line">&#123;</span><br><span class="line">    searchBar.text = @&quot;&quot;;</span><br><span class="line">    //收起键盘</span><br><span class="line">    [searchBar resignFirstResponder];</span><br><span class="line">    //隐藏取消按钮</span><br><span class="line">    [searchBar setShowsCancelButton:NO animated:YES];</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
+实例化UISearchBar
+123456789UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 64, SHWidth, 40)];//设置提示文字searchBar.placeholder = @&
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/10/28/iOS 常用控件之UISearchBar/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1734,50 +1720,30 @@ switch (status) {
       
         
           
-            <a id="more"></a>
-<p>UIViewAutoresizing是一个枚举类型，默认是UIViewAutoresizingNone，也就是不做任何处理。</p>
-<hr>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>UIViewAutoresizingNone</td>
-<td>不会随父视图的改变而改变</td>
-</tr>
-<tr>
-<td>UIViewAutoresizingFlexibleLeftMargin</td>
-<td>自动调整view与父视图左边距，以保证右边距不变</td>
-</tr>
-<tr>
-<td>UIViewAutoresizingFlexibleWidth</td>
-<td>自动调整view的宽度，保证左边距和右边距不变</td>
-</tr>
-<tr>
-<td>UIViewAutoresizingFlexibleRightMargin</td>
-<td>自动调整view与父视图右边距，以保证左边距不变</td>
-</tr>
-<tr>
-<td>UIViewAutoresizingFlexibleTopMargin</td>
-<td>自动调整view与父视图上边距，以保证下边距不变</td>
-</tr>
-<tr>
-<td>UIViewAutoresizingFlexibleHeight</td>
-<td>自动调整view的高度，以保证上边距和下边距不变</td>
-</tr>
-<tr>
-<td>UIViewAutoresizingFlexibleBottomMargin</td>
-<td>自动调整view与父视图的下边距，以保证上边距不变</td>
-</tr>
-</tbody></table>
-<p>特别说明:<br>例如：如果想要调整视图的宽高来达到上下左右距离不变，可以使用如下方法，其他情况类似</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;</span><br></pre></td></tr></table></figure>
-
-
           
+UIViewAutoresizing是一个枚举类型，默认是UIViewAutoresizingNone，也就是不做任何处理。
+
+
+
+
+属性名
+说明
+
+
+
+UIViewAutoresizingNone
+不会随父视图的改变而改变
+
+
+UIViewAutoresizingFlexibleLeftMarg
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/10/28/iOS 常用控件之UIViewAutoresizing(自动适配)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1948,15 +1914,9 @@ switch (status) {
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
