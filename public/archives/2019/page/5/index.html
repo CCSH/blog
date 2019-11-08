@@ -102,7 +102,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -122,7 +122,7 @@
 
 
 
-  <title>Archive | 陈胜辉的博客</title>
+  <title>归档 | 陈胜辉的博客</title>
   
 
 
@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
-            Home
+            首页
           </a>
         </li>
       
@@ -192,7 +192,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
-            About
+            关于
           </a>
         </li>
       
@@ -202,7 +202,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
-            Tags
+            标签
           </a>
         </li>
       
@@ -212,7 +212,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
-            Categories
+            分类
           </a>
         </li>
       
@@ -222,7 +222,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-book"></i> <br>
             
-            Message
+            留言板
           </a>
         </li>
       
@@ -235,7 +235,7 @@
             
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
             
-            Search
+            搜索
           </a>
         </li>
       
@@ -254,7 +254,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -289,7 +289,7 @@
         
          
           
-        Nice! 69 posts in total. Keep on posting.
+        好! 目前共计 69 篇日志。 继续努力。
       </span>
 
       
@@ -453,9 +453,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2019/11/08/iOS 复制文字信息到剪切板/" itemprop="url">
+            <a class="post-title-link" href="/2019/11/08/iOS 封装控件之AlertView/" itemprop="url">
               
-                <span itemprop="name">iOS 复制文字信息到剪切板</span>
+                <span itemprop="name">iOS 封装控件之AlertView</span>
               
             </a>
         
@@ -488,9 +488,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2019/11/08/iOS 封装控件之AlertView/" itemprop="url">
+            <a class="post-title-link" href="/2019/11/08/iOS 复制文字信息到剪切板/" itemprop="url">
               
-                <span itemprop="name">iOS 封装控件之AlertView</span>
+                <span itemprop="name">iOS 复制文字信息到剪切板</span>
               
             </a>
         
@@ -707,7 +707,7 @@
                 <a href="/archives">
               
                   <span class="site-state-item-count">69</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -718,7 +718,7 @@
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
                   <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">categories</span>
+                  <span class="site-state-item-name">分类</span>
                 </a>
               </div>
             
@@ -729,7 +729,7 @@
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
                   <span class="site-state-item-count">11</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">标签</span>
                 </a>
               </div>
             
@@ -944,21 +944,30 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
 
 
 
-
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'ASVIdVHLzePOhgJemp47lGq9-gzGzoHsz',
+        appKey: 'w3fk2P8yNgD68jCCCj5R5vFQ',
+        placeholder: '说点什么吧',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
