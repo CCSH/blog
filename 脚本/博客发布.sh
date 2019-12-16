@@ -1,8 +1,6 @@
 
 #!/bin/sh
 
-cd /Users/chenshenghui/Desktop/项目/blog
-
 #npm audit fix --force
 #
 #npm audit

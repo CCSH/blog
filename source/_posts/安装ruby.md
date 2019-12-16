@@ -3,12 +3,10 @@ title: 安装ruby
 categories:
   - ruby
 tags:
-  - 随笔
+  - 安装
 comments: true
 ---
 
-
-<!-- more -->
 curl -sSL https://get.rvm.io | bash -s stable
 
 source ~/.rvm/scripts/rvm
@@ -19,4 +17,4 @@ rvm install 2.6
 
 rvm use ruby-2.6.3 --default
 
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+ruby -e "\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
