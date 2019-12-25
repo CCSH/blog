@@ -86,18 +86,15 @@
 
 
 
-<meta name="description" content="原文 基本的jabber客户端必须实现以下标准协议（XEP-0211） 1、RFC3920 Core http://tools.ietf.org/html/rfc3920 2、RFC3921 Instant Messaging and Presence http://tools.ietf.org/html/rfc3921 3、XEP-030 Service Discovery http://ww">
 <meta name="keywords" content="XMPP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="［转］XMPP协议及其扩展详解">
 <meta property="og:url" content="http://yoursite.com/2019/11/22/［转］XMPP协议及其扩展详解/index.html">
 <meta property="og:site_name" content="陈胜辉的博客">
-<meta property="og:description" content="原文 基本的jabber客户端必须实现以下标准协议（XEP-0211） 1、RFC3920 Core http://tools.ietf.org/html/rfc3920 2、RFC3921 Instant Messaging and Presence http://tools.ietf.org/html/rfc3921 3、XEP-030 Service Discovery http://ww">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-22T05:21:03.797Z">
+<meta property="og:updated_time" content="2019-12-25T06:37:42.110Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="［转］XMPP协议及其扩展详解">
-<meta name="twitter:description" content="原文 基本的jabber客户端必须实现以下标准协议（XEP-0211） 1、RFC3920 Core http://tools.ietf.org/html/rfc3920 2、RFC3921 Instant Messaging and Presence http://tools.ietf.org/html/rfc3921 3、XEP-030 Service Discovery http://ww">
 
 
 
@@ -389,8 +386,910 @@
       
 
       
-        <a id="more"></a>
+        <!-- more ---
+title: ［转］XMPP协议及其扩展详解
+categories:
+  - 转载
+tags:
+  - XMPP
+comments: true
+---
+
+
+<a id="more"></a>
 <p><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
+<p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>4、XEP-0115 Entity Capabilities <a href="http://www.xmpp.org/extensions/xep-0115.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0115.html</a></p>
+<p>基本的jabber服务器必须实现以下标准协议(XEP-0212)</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>一、注册</p>
+<p>XEP-0077 In-Band Registration <a href="http://www.xmpp.org/extensions/xep-0077.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0077.html</a></p>
+<p>二、登录</p>
+<p>XEP-0020 Software Version <a href="http://www.xmpp.org/extensions/xep-0092.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0092.html</a></p>
+<p>三、好友列表</p>
+<p>XEP-0083 Nested Roster Groups <a href="http://www.xmpp.org/extensions/xep-0083.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0083.html</a></p>
+<p>1、获取好友列表</p>
+<p>2、存储好友列表</p>
+<p>XEP-0049 Private XML Storage <a href="http://www.xmpp.org/extensions/xep-0049.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0049.html</a></p>
+<p>3、备注好友信息</p>
+<p>XEP-0145 Annotations <a href="http://www.xmpp.org/extensions/xep-0145.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0145.html</a></p>
+<p>4、存储书签</p>
+<p>XEP-0048 Bookmark Storage <a href="http://www.xmpp.org/extensions/xep-0048.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0048.html</a></p>
+<p>5、好友头像</p>
+<p>XEP-0008 IQ-Based Avatars <a href="http://www.xmpp.org/extensions/xep-0008.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0008.html</a></p>
+<p>XEP-0084 User Avatar <a href="http://www.xmpp.org/extensions/xep-0084.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0084.html</a></p>
+<p>XEP-0054 vcard-temp <a href="http://www.xmpp.org/extensions/xep-0054.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0054.html</a></p>
+<p>四、用户状态</p>
+<p>RFC-3921 Subscription States <a href="http://www.ietf.org/rfc/rfc3921.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc3921.txt</a></p>
+<p>五、文本消息</p>
+<p>1、在线消息</p>
+<p>2、离线消息</p>
+<p>XEP-0013 Flexible Offline Message Retrieval <a href="http://www.xmpp.org/extensions/xep-0013.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0013.html</a></p>
+<p>XEP-0160 Best Practices for Handling Offline Messages <a href="http://www.xmpp.org/extensions/xep-0160.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0160.html</a></p>
+<p>XEP-0203 Delayed Delivery <a href="http://www.xmpp.org/extensions/xep-0203.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0203.html</a></p>
+<p>3、聊天状态通知</p>
+<p>XEP-0085 Chat State Notifications <a href="http://www.xmpp.org/extensions/xep-0085.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0085.html</a></p>
+<p>六、群组聊天</p>
+<p>1、XEP-0045 Multi-User Chat <a href="http://www.xmpp.org/extensions/xep-0045.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0045.html</a></p>
+<p>七、文件传输</p>
+<p>1、XEP-0095 Stream Initiation <a href="http://www.xmpp.org/extensions/xep-0095.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0095.html</a></p>
+<p>2、XEP-0096 File Transfer <a href="http://www.xmpp.org/extensions/xep-0096.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0096.html</a></p>
+<p>3、XEP-0065 SOCKS5 Bytestreams <a href="http://www.xmpp.org/extensions/xep-0065.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0065.html</a></p>
+<p>4、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>5、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>八、音视频会议</p>
+<p>1、XEP-0166 Jingle <a href="http://www.xmpp.org/extensions/xep-0166.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0166.html#negotiation</a></p>
+<p>2、XEP-0167 Jingle Audio via RTP <a href="http://www.xmpp.org/extensions/xep-0167.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0167.html</a></p>
+<p>3、XEP-0176 Jingle ICE Transport <a href="http://www.xmpp.org/extensions/xep-0176.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0176.html</a></p>
+<p>4、XEP-0180 Jingle Video via RTP <a href="http://www.xmpp.org/extensions/xep-0180.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0180.html#negotiation</a></p>
+<p>5、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>6、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>九、用户查询</p>
+<p>XEP-0055 Jabber Search <a href="http://www.xmpp.org/extensions/xep-0055.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0055.html</a></p>
+<p>十、用户保活 (peakflys增加)</p>
+<p>XEP-0199 Ping <a href="http://xmpp.org/extensions/xep-0199.html" target="_blank" rel="noopener">http://xmpp.org/extensions/xep-0199.html</a></p>
+<p>整体：</p>
+<p>一、协议数据交互</p>
+<p>XEP-0004 Data Forms <a href="http://www.xmpp.org/extensions/xep-0004.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0004.html</a></p>
+<p>二、jabber-RPC</p>
+<p>XEP-0009 Jabber-RPC <a href="http://www.xmpp.org/extensions/xep-0009.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0009.html</a></p>
+<p>三、功能协商</p>
+<p>XEP-0020 Feature Negotiation <a href="http://www.xmpp.org/extensions/xep-0020.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0020.html</a></p>
+<p>四、服务发现</p>
+<p>XEP-0030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>五、会话建立</p>
+<p>XEP-0116 Encrypted Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0116.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0116.html</a></p>
+<p>XEP-0155 Stanza Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0155.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0155.html</a></p>
+<p>XEP-0201 Best Practices for Message Threads <a href="http://www.xmpp.org/extensions/xep-0201.html---" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0201.html---</a><br>title: ［转］XMPP协议及其扩展详解<br>categories:</p>
+<ul>
+<li>转载<br>tags:</li>
+<li>XMPP<br>comments: true</li>
+</ul>
+<hr>
+<!-- more -->
+<p><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
+<p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>4、XEP-0115 Entity Capabilities <a href="http://www.xmpp.org/extensions/xep-0115.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0115.html</a></p>
+<p>基本的jabber服务器必须实现以下标准协议(XEP-0212)</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>一、注册</p>
+<p>XEP-0077 In-Band Registration <a href="http://www.xmpp.org/extensions/xep-0077.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0077.html</a></p>
+<p>二、登录</p>
+<p>XEP-0020 Software Version <a href="http://www.xmpp.org/extensions/xep-0092.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0092.html</a></p>
+<p>三、好友列表</p>
+<p>XEP-0083 Nested Roster Groups <a href="http://www.xmpp.org/extensions/xep-0083.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0083.html</a></p>
+<p>1、获取好友列表</p>
+<p>2、存储好友列表</p>
+<p>XEP-0049 Private XML Storage <a href="http://www.xmpp.org/extensions/xep-0049.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0049.html</a></p>
+<p>3、备注好友信息</p>
+<p>XEP-0145 Annotations <a href="http://www.xmpp.org/extensions/xep-0145.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0145.html</a></p>
+<p>4、存储书签</p>
+<p>XEP-0048 Bookmark Storage <a href="http://www.xmpp.org/extensions/xep-0048.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0048.html</a></p>
+<p>5、好友头像</p>
+<p>XEP-0008 IQ-Based Avatars <a href="http://www.xmpp.org/extensions/xep-0008.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0008.html</a></p>
+<p>XEP-0084 User Avatar <a href="http://www.xmpp.org/extensions/xep-0084.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0084.html</a></p>
+<p>XEP-0054 vcard-temp <a href="http://www.xmpp.org/extensions/xep-0054.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0054.html</a></p>
+<p>四、用户状态</p>
+<p>RFC-3921 Subscription States <a href="http://www.ietf.org/rfc/rfc3921.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc3921.txt</a></p>
+<p>五、文本消息</p>
+<p>1、在线消息</p>
+<p>2、离线消息</p>
+<p>XEP-0013 Flexible Offline Message Retrieval <a href="http://www.xmpp.org/extensions/xep-0013.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0013.html</a></p>
+<p>XEP-0160 Best Practices for Handling Offline Messages <a href="http://www.xmpp.org/extensions/xep-0160.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0160.html</a></p>
+<p>XEP-0203 Delayed Delivery <a href="http://www.xmpp.org/extensions/xep-0203.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0203.html</a></p>
+<p>3、聊天状态通知</p>
+<p>XEP-0085 Chat State Notifications <a href="http://www.xmpp.org/extensions/xep-0085.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0085.html</a></p>
+<p>六、群组聊天</p>
+<p>1、XEP-0045 Multi-User Chat <a href="http://www.xmpp.org/extensions/xep-0045.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0045.html</a></p>
+<p>七、文件传输</p>
+<p>1、XEP-0095 Stream Initiation <a href="http://www.xmpp.org/extensions/xep-0095.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0095.html</a></p>
+<p>2、XEP-0096 File Transfer <a href="http://www.xmpp.org/extensions/xep-0096.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0096.html</a></p>
+<p>3、XEP-0065 SOCKS5 Bytestreams <a href="http://www.xmpp.org/extensions/xep-0065.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0065.html</a></p>
+<p>4、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>5、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>八、音视频会议</p>
+<p>1、XEP-0166 Jingle <a href="http://www.xmpp.org/extensions/xep-0166.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0166.html#negotiation</a></p>
+<p>2、XEP-0167 Jingle Audio via RTP <a href="http://www.xmpp.org/extensions/xep-0167.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0167.html</a></p>
+<p>3、XEP-0176 Jingle ICE Transport <a href="http://www.xmpp.org/extensions/xep-0176.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0176.html</a></p>
+<p>4、XEP-0180 Jingle Video via RTP <a href="http://www.xmpp.org/extensions/xep-0180.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0180.html#negotiation</a></p>
+<p>5、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>6、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>九、用户查询</p>
+<p>XEP-0055 Jabber Search <a href="http://www.xmpp.org/extensions/xep-0055.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0055.html</a></p>
+<p>十、用户保活 (peakflys增加)</p>
+<p>XEP-0199 Ping <a href="http://xmpp.org/extensions/xep-0199.html" target="_blank" rel="noopener">http://xmpp.org/extensions/xep-0199.html</a></p>
+<p>整体：</p>
+<p>一、协议数据交互</p>
+<p>XEP-0004 Data Forms <a href="http://www.xmpp.org/extensions/xep-0004.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0004.html</a></p>
+<p>二、jabber-RPC</p>
+<h2 id="XEP-0009-Jabber-RPC-http-www-xmpp-org-extensions-xep-0009-html"><a href="#XEP-0009-Jabber-RPC-http-www-xmpp-org-extensions-xep-0009-html" class="headerlink" title="XEP-0009 Jabber-RPC http://www.xmpp.org/extensions/xep-0009.html"></a>XEP-0009 Jabber-RPC <a href="http://www.xmpp.org/extensions/xep-0009.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0009.html</a></h2><p>title: ［转］XMPP协议及其扩展详解<br>categories:</p>
+<ul>
+<li>转载<br>tags:</li>
+<li>XMPP<br>comments: true</li>
+</ul>
+<hr>
+<!-- more -->
+<p><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
+<p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>4、XEP-0115 Entity Capabilities <a href="http://www.xmpp.org/extensions/xep-0115.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0115.html</a></p>
+<p>基本的jabber服务器必须实现以下标准协议(XEP-0212)</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>一、注册</p>
+<p>XEP-0077 In-Band Registration <a href="http://www.xmpp.org/extensions/xep-0077.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0077.html</a></p>
+<p>二、登录</p>
+<p>XEP-0020 Software Version <a href="http://www.xmpp.org/extensions/xep-0092.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0092.html</a></p>
+<p>三、好友列表</p>
+<p>XEP-0083 Nested Roster Groups <a href="http://www.xmpp.org/extensions/xep-0083.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0083.html</a></p>
+<p>1、获取好友列表</p>
+<p>2、存储好友列表</p>
+<p>XEP-0049 Private XML Storage <a href="http://www.xmpp.org/extensions/xep-0049.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0049.html</a></p>
+<p>3、备注好友信息</p>
+<p>XEP-0145 Annotations <a href="http://www.xmpp.org/extensions/xep-0145.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0145.html</a></p>
+<p>4、存储书签</p>
+<p>XEP-0048 Bookmark Storage <a href="http://www.xmpp.org/extensions/xep-0048.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0048.html</a></p>
+<p>5、好友头像</p>
+<p>XEP-0008 IQ-Based Avatars <a href="http://www.xmpp.org/extensions/xep-0008.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0008.html</a></p>
+<p>XEP-0084 User Avatar <a href="http://www.xmpp.org/extensions/xep-0084.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0084.html</a></p>
+<p>XEP-0054 vcard-temp <a href="http://www.xmpp.org/extensions/xep-0054.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0054.html</a></p>
+<p>四、用户状态</p>
+<p>RFC-3921 Subscription States <a href="http://www.ietf.org/rfc/rfc3921.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc3921.txt</a></p>
+<p>五、文本消息</p>
+<p>1、在线消息</p>
+<p>2、离线消息</p>
+<p>XEP-0013 Flexible Offline Message Retrieval <a href="http://www.xmpp.org/extensions/xep-0013.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0013.html</a></p>
+<p>XEP-0160 Best Practices for Handling Offline Messages <a href="http://www.xmpp.org/extensions/xep-0160.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0160.html</a></p>
+<p>XEP-0203 Delayed Delivery <a href="http://www.xmpp.org/extensions/xep-0203.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0203.html</a></p>
+<p>3、聊天状态通知</p>
+<p>XEP-0085 Chat State Notifications <a href="http://www.xmpp.org/extensions/xep-0085.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0085.html</a></p>
+<p>六、群组聊天</p>
+<p>1、XEP-0045 Multi-User Chat <a href="http://www.xmpp.org/extensions/xep-0045.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0045.html</a></p>
+<p>七、文件传输</p>
+<p>1、XEP-0095 Stream Initiation <a href="http://www.xmpp.org/extensions/xep-0095.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0095.html</a></p>
+<p>2、XEP-0096 File Transfer <a href="http://www.xmpp.org/extensions/xep-0096.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0096.html</a></p>
+<p>3、XEP-0065 SOCKS5 Bytestreams <a href="http://www.xmpp.org/extensions/xep-0065.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0065.html</a></p>
+<p>4、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>5、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>八、音视频会议</p>
+<p>1、XEP-0166 Jingle <a href="http://www.xmpp.org/extensions/xep-0166.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0166.html#negotiation</a></p>
+<p>2、XEP-0167 Jingle Audio via RTP <a href="http://www.xmpp.org/extensions/xep-0167.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0167.html</a></p>
+<p>3、XEP-0176 Jingle ICE Transport <a href="http://www.xmpp.org/extensions/xep-0176.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0176.html</a></p>
+<p>4、XEP-0180 Jingle Video via RTP <a href="http://www.xmpp.org/extensions/xep-0180.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0180.html#negotiation</a></p>
+<p>5、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>6、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>九、用户查询</p>
+<p>XEP-0055 Jabber Search <a href="http://www.xmpp.org/extensions/xep-0055.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0055.html</a></p>
+<p>十、用户保活 (peakflys增加)</p>
+<p>XEP-0199 Ping <a href="http://xmpp.org/extensions/xep-0199.html" target="_blank" rel="noopener">http://xmpp.org/extensions/xep-0199.html</a></p>
+<p>整体：</p>
+<p>一、协议数据交互</p>
+<p>XEP-0004 Data Forms <a href="http://www.xmpp.org/extensions/xep-0004.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0004.html</a></p>
+<p>二、jabber-RPC</p>
+<p>XEP-0009 Jabber-RPC <a href="http://www.xmpp.org/extensions/xep-0009.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0009.html</a></p>
+<p>三、功能协商</p>
+<p>XEP-0020 Feature Negotiation <a href="http://www.xmpp.org/extensions/xep-0020.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0020.html</a></p>
+<p>四、服务发现</p>
+<p>XEP-0030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>五、会话建立</p>
+<p>XEP-0116 Encrypted Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0116.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0116.html</a></p>
+<p>XEP-0155 Stanza Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0155.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0155.html</a></p>
+<p>XEP-0201 Best Practices for Message Threads <a href="http://www.xmpp.org/extensions/xep-0201.html---" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0201.html---</a><br>title: ［转］XMPP协议及其扩展详解<br>categories:</p>
+<ul>
+<li>转载<br>tags:</li>
+<li>XMPP<br>comments: true</li>
+</ul>
+<hr>
+<!-- more -->
+<p><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
+<p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>4、XEP-0115 Entity Capabilities <a href="http://www.xmpp.org/extensions/xep-0115.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0115.html</a></p>
+<p>基本的jabber服务器必须实现以下标准协议(XEP-0212)</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>一、注册</p>
+<p>XEP-0077 In-Band Registration <a href="http://www.xmpp.org/extensions/xep-0077.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0077.html</a></p>
+<p>二、登录</p>
+<p>XEP-0020 Software Version <a href="http://www.xmpp.org/extensions/xep-0092.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0092.html</a></p>
+<p>三、好友列表</p>
+<p>XEP-0083 Nested Roster Groups <a href="http://www.xmpp.org/extensions/xep-0083.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0083.html</a></p>
+<p>1、获取好友列表</p>
+<p>2、存储好友列表</p>
+<p>XEP-0049 Private XML Storage <a href="http://www.xmpp.org/extensions/xep-0049.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0049.html</a></p>
+<p>3、备注好友信息</p>
+<p>XEP-0145 Annotations <a href="http://www.xmpp.org/extensions/xep-0145.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0145.html</a></p>
+<p>4、存储书签</p>
+<p>XEP-0048 Bookmark Storage <a href="http://www.xmpp.org/extensions/xep-0048.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0048.html</a></p>
+<p>5、好友头像</p>
+<p>XEP-0008 IQ-Based Avatars <a href="http://www.xmpp.org/extensions/xep-0008.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0008.html</a></p>
+<p>XEP-0084 User Avatar <a href="http://www.xmpp.org/extensions/xep-0084.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0084.html</a></p>
+<p>XEP-0054 vcard-temp <a href="http://www.xmpp.org/extensions/xep-0054.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0054.html</a></p>
+<p>四、用户状态</p>
+<p>RFC-3921 Subscription States <a href="http://www.ietf.org/rfc/rfc3921.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc3921.txt</a></p>
+<p>五、文本消息</p>
+<p>1、在线消息</p>
+<p>2、离线消息</p>
+<p>XEP-0013 Flexible Offline Message Retrieval <a href="http://www.xmpp.org/extensions/xep-0013.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0013.html</a></p>
+<p>XEP-0160 Best Practices for Handling Offline Messages <a href="http://www.xmpp.org/extensions/xep-0160.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0160.html</a></p>
+<p>XEP-0203 Delayed Delivery <a href="http://www.xmpp.org/extensions/xep-0203.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0203.html</a></p>
+<p>3、聊天状态通知</p>
+<p>XEP-0085 Chat State Notifications <a href="http://www.xmpp.org/extensions/xep-0085.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0085.html</a></p>
+<p>六、群组聊天</p>
+<p>1、XEP-0045 Multi-User Chat <a href="http://www.xmpp.org/extensions/xep-0045.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0045.html</a></p>
+<p>七、文件传输</p>
+<p>1、XEP-0095 Stream Initiation <a href="http://www.xmpp.org/extensions/xep-0095.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0095.html</a></p>
+<p>2、XEP-0096 File Transfer <a href="http://www.xmpp.org/extensions/xep-0096.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0096.html</a></p>
+<p>3、XEP-0065 SOCKS5 Bytestreams <a href="http://www.xmpp.org/extensions/xep-0065.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0065.html</a></p>
+<p>4、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>5、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>八、音视频会议</p>
+<p>1、XEP-0166 Jingle <a href="http://www.xmpp.org/extensions/xep-0166.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0166.html#negotiation</a></p>
+<p>2、XEP-0167 Jingle Audio via RTP <a href="http://www.xmpp.org/extensions/xep-0167.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0167.html</a></p>
+<p>3、XEP-0176 Jingle ICE Transport <a href="http://www.xmpp.org/extensions/xep-0176.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0176.html</a></p>
+<p>4、XEP-0180 Jingle Video via RTP <a href="http://www.xmpp.org/extensions/xep-0180.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0180.html#negotiation</a></p>
+<p>5、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>6、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>九、用户查询</p>
+<p>XEP-0055 Jabber Search <a href="http://www.xmpp.org/extensions/xep-0055.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0055.html</a></p>
+<p>十、用户保活 (peakflys增加)</p>
+<p>XEP-0199 Ping <a href="http://xmpp.org/extensions/xep-0199.html" target="_blank" rel="noopener">http://xmpp.org/extensions/xep-0199.html</a></p>
+<p>整体：</p>
+<p>一、协议数据交互</p>
+<p>XEP-0004 Data Forms <a href="http://www.xmpp.org/extensions/xep-0004.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0004.html</a></p>
+<p>二、jabber-RPC</p>
+<p>XEP-0009 Jabber-RPC <a href="http://www.xmpp.org/extensions/xep-0009.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0009.html</a></p>
+<p>三、功能协商</p>
+<p>XEP-0020 Feature Negotiation <a href="http://www.xmpp.org/extensions/xep-0020.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0020.html</a></p>
+<p>四、服务发现</p>
+<p>XEP-0030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>五、会话建立</p>
+<p>XEP-0116 Encrypted Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0116.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0116.html</a></p>
+<p>XEP-0155 Stanza Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0155.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0155.html</a></p>
+<p>XEP-0201 Best Practices for Message Threads <a href="http://www.xmpp.org/extensions/xep-0201.html---" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0201.html---</a><br>title: ［转］XMPP协议及其扩展详解<br>categories:</p>
+<ul>
+<li>转载<br>tags:</li>
+<li>XMPP<br>comments: true</li>
+</ul>
+<hr>
+<!-- more -->
+<p><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
+<p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>4、XEP-0115 Entity Capabilities <a href="http://www.xmpp.org/extensions/xep-0115.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0115.html</a></p>
+<p>基本的jabber服务器必须实现以下标准协议(XEP-0212)</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>一、注册</p>
+<p>XEP-0077 In-Band Registration <a href="http://www.xmpp.org/extensions/xep-0077.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0077.html</a></p>
+<p>二、登录</p>
+<p>XEP-0020 Software Version <a href="http://www.xmpp.org/extensions/xep-0092.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0092.html</a></p>
+<p>三、好友列表</p>
+<p>XEP-0083 Nested Roster Groups <a href="http://www.xmpp.org/extensions/xep-0083.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0083.html</a></p>
+<p>1、获取好友列表</p>
+<p>2、存储好友列表</p>
+<p>XEP-0049 Private XML Storage <a href="http://www.xmpp.org/extensions/xep-0049.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0049.html</a></p>
+<p>3、备注好友信息</p>
+<p>XEP-0145 Annotations <a href="http://www.xmpp.org/extensions/xep-0145.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0145.html</a></p>
+<p>4、存储书签</p>
+<p>XEP-0048 Bookmark Storage <a href="http://www.xmpp.org/extensions/xep-0048.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0048.html</a></p>
+<p>5、好友头像</p>
+<p>XEP-0008 IQ-Based Avatars <a href="http://www.xmpp.org/extensions/xep-0008.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0008.html</a></p>
+<p>XEP-0084 User Avatar <a href="http://www.xmpp.org/extensions/xep-0084.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0084.html</a></p>
+<p>XEP-0054 vcard-temp <a href="http://www.xmpp.org/extensions/xep-0054.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0054.html</a></p>
+<p>四、用户状态</p>
+<p>RFC-3921 Subscription States <a href="http://www.ietf.org/rfc/rfc3921.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc3921.txt</a></p>
+<p>五、文本消息</p>
+<p>1、在线消息</p>
+<p>2、离线消息</p>
+<p>XEP-0013 Flexible Offline Message Retrieval <a href="http://www.xmpp.org/extensions/xep-0013.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0013.html</a></p>
+<p>XEP-0160 Best Practices for Handling Offline Messages <a href="http://www.xmpp.org/extensions/xep-0160.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0160.html</a></p>
+<p>XEP-0203 Delayed Delivery <a href="http://www.xmpp.org/extensions/xep-0203.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0203.html</a></p>
+<p>3、聊天状态通知</p>
+<p>XEP-0085 Chat State Notifications <a href="http://www.xmpp.org/extensions/xep-0085.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0085.html</a></p>
+<p>六、群组聊天</p>
+<p>1、XEP-0045 Multi-User Chat <a href="http://www.xmpp.org/extensions/xep-0045.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0045.html</a></p>
+<p>七、文件传输</p>
+<p>1、XEP-0095 Stream Initiation <a href="http://www.xmpp.org/extensions/xep-0095.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0095.html</a></p>
+<p>2、XEP-0096 File Transfer <a href="http://www.xmpp.org/extensions/xep-0096.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0096.html</a></p>
+<p>3、XEP-0065 SOCKS5 Bytestreams <a href="http://www.xmpp.org/extensions/xep-0065.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0065.html</a></p>
+<p>4、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>5、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>八、音视频会议</p>
+<p>1、XEP-0166 Jingle <a href="http://www.xmpp.org/extensions/xep-0166.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0166.html#negotiation</a></p>
+<p>2、XEP-0167 Jingle Audio via RTP <a href="http://www.xmpp.org/extensions/xep-0167.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0167.html</a></p>
+<p>3、XEP-0176 Jingle ICE Transport <a href="http://www.xmpp.org/extensions/xep-0176.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0176.html</a></p>
+<p>4、XEP-0180 Jingle Video via RTP <a href="http://www.xmpp.org/extensions/xep-0180.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0180.html#negotiation</a></p>
+<p>5、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>6、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>九、用户查询</p>
+<p>XEP-0055 Jabber Search <a href="http://www.xmpp.org/extensions/xep-0055.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0055.html</a></p>
+<p>十、用户保活 (peakflys增加)</p>
+<p>XEP-0199 Ping <a href="http://xmpp.org/extensions/xep-0199.html" target="_blank" rel="noopener">http://xmpp.org/extensions/xep-0199.html</a></p>
+<p>整体：</p>
+<p>一、协议数据交互</p>
+<p>XEP-0004 Data Forms <a href="http://www.xmpp.org/extensions/xep-0004.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0004.html</a></p>
+<p>二、jabber-RPC</p>
+<p>XEP-0009 Jabber-RPC <a href="http://www.xmpp.org/extensions/xep-0009.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0009.html</a></p>
+<p>三、功能协商</p>
+<p>XEP-0020 Feature Negotiation <a href="http://www.xmpp.org/extensions/xep-0020.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0020.html</a></p>
+<p>四、服务发现</p>
+<p>XEP-0030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>五、会话建立</p>
+<p>XEP-0116 Encrypted Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0116.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0116.html</a></p>
+<p>XEP-0155 Stanza Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0155.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0155.html</a></p>
+<p>XEP-0201 Best Practices for Message Threads <a href="http://www.xmpp.org/extensions/xep-0201.html---" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0201.html---</a><br>title: ［转］XMPP协议及其扩展详解<br>categories:</p>
+<ul>
+<li>转载<br>tags:</li>
+<li>XMPP<br>comments: true</li>
+</ul>
+<hr>
+<!-- more -->
+<p><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
+<p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>4、XEP-0115 Entity Capabilities <a href="http://www.xmpp.org/extensions/xep-0115.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0115.html</a></p>
+<p>基本的jabber服务器必须实现以下标准协议(XEP-0212)</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>一、注册</p>
+<p>XEP-0077 In-Band Registration <a href="http://www.xmpp.org/extensions/xep-0077.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0077.html</a></p>
+<p>二、登录</p>
+<p>XEP-0020 Software Version <a href="http://www.xmpp.org/extensions/xep-0092.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0092.html</a></p>
+<p>三、好友列表</p>
+<p>XEP-0083 Nested Roster Groups <a href="http://www.xmpp.org/extensions/xep-0083.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0083.html</a></p>
+<p>1、获取好友列表</p>
+<p>2、存储好友列表</p>
+<p>XEP-0049 Private XML Storage <a href="http://www.xmpp.org/extensions/xep-0049.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0049.html</a></p>
+<p>3、备注好友信息</p>
+<p>XEP-0145 Annotations <a href="http://www.xmpp.org/extensions/xep-0145.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0145.html</a></p>
+<p>4、存储书签</p>
+<p>XEP-0048 Bookmark Storage <a href="http://www.xmpp.org/extensions/xep-0048.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0048.html</a></p>
+<p>5、好友头像</p>
+<p>XEP-0008 IQ-Based Avatars <a href="http://www.xmpp.org/extensions/xep-0008.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0008.html</a></p>
+<p>XEP-0084 User Avatar <a href="http://www.xmpp.org/extensions/xep-0084.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0084.html</a></p>
+<p>XEP-0054 vcard-temp <a href="http://www.xmpp.org/extensions/xep-0054.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0054.html</a></p>
+<p>四、用户状态</p>
+<p>RFC-3921 Subscription States <a href="http://www.ietf.org/rfc/rfc3921.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc3921.txt</a></p>
+<p>五、文本消息</p>
+<p>1、在线消息</p>
+<p>2、离线消息</p>
+<p>XEP-0013 Flexible Offline Message Retrieval <a href="http://www.xmpp.org/extensions/xep-0013.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0013.html</a></p>
+<p>XEP-0160 Best Practices for Handling Offline Messages <a href="http://www.xmpp.org/extensions/xep-0160.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0160.html</a></p>
+<p>XEP-0203 Delayed Delivery <a href="http://www.xmpp.org/extensions/xep-0203.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0203.html</a></p>
+<p>3、聊天状态通知</p>
+<p>XEP-0085 Chat State Notifications <a href="http://www.xmpp.org/extensions/xep-0085.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0085.html</a></p>
+<p>六、群组聊天</p>
+<p>1、XEP-0045 Multi-User Chat <a href="http://www.xmpp.org/extensions/xep-0045.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0045.html</a></p>
+<p>七、文件传输</p>
+<p>1、XEP-0095 Stream Initiation <a href="http://www.xmpp.org/extensions/xep-0095.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0095.html</a></p>
+<p>2、XEP-0096 File Transfer <a href="http://www.xmpp.org/extensions/xep-0096.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0096.html</a></p>
+<p>3、XEP-0065 SOCKS5 Bytestreams <a href="http://www.xmpp.org/extensions/xep-0065.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0065.html</a></p>
+<p>4、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>5、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>八、音视频会议</p>
+<p>1、XEP-0166 Jingle <a href="http://www.xmpp.org/extensions/xep-0166.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0166.html#negotiation</a></p>
+<p>2、XEP-0167 Jingle Audio via RTP <a href="http://www.xmpp.org/extensions/xep-0167.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0167.html</a></p>
+<p>3、XEP-0176 Jingle ICE Transport <a href="http://www.xmpp.org/extensions/xep-0176.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0176.html</a></p>
+<p>4、XEP-0180 Jingle Video via RTP <a href="http://www.xmpp.org/extensions/xep-0180.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0180.html#negotiation</a></p>
+<p>5、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>6、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>九、用户查询</p>
+<p>XEP-0055 Jabber Search <a href="http://www.xmpp.org/extensions/xep-0055.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0055.html</a></p>
+<p>十、用户保活 (peakflys增加)</p>
+<p>XEP-0199 Ping <a href="http://xmpp.org/extensions/xep-0199.html" target="_blank" rel="noopener">http://xmpp.org/extensions/xep-0199.html</a></p>
+<p>整体：</p>
+<p>一、协议数据交互</p>
+<p>XEP-0004 Data Forms <a href="http://www.xmpp.org/extensions/xep-0004.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0004.html</a></p>
+<p>二、jabber-RPC</p>
+<p>XEP-0009 Jabber-RPC <a href="http://www.xmpp.org/extensions/xep-0009.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0009.html</a></p>
+<p>三、功能协商</p>
+<p>XEP-0020 Feature Negotiation <a href="http://www.xmpp.org/extensions/xep-0020.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0020.html</a></p>
+<p>四、服务发现</p>
+<p>XEP-0030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>五、会话建立</p>
+<p>XEP-0116 Encrypted Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0116.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0116.html</a></p>
+<p>XEP-0155 Stanza Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0155.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0155.html</a></p>
+<p>XEP-0201 Best Practices for Message Threads <a href="http://www.xmpp.org/extensions/xep-0201.html---" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0201.html---</a><br>title: ［转］XMPP协议及其扩展详解<br>categories:</p>
+<ul>
+<li>转载<br>tags:</li>
+<li>XMPP<br>comments: true</li>
+</ul>
+<hr>
+<!-- more -->
+<p><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
+<p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>4、XEP-0115 Entity Capabilities <a href="http://www.xmpp.org/extensions/xep-0115.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0115.html</a></p>
+<p>基本的jabber服务器必须实现以下标准协议(XEP-0212)</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>一、注册</p>
+<p>XEP-0077 In-Band Registration <a href="http://www.xmpp.org/extensions/xep-0077.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0077.html</a></p>
+<p>二、登录</p>
+<p>XEP-0020 Software Version <a href="http://www.xmpp.org/extensions/xep-0092.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0092.html</a></p>
+<p>三、好友列表</p>
+<p>XEP-0083 Nested Roster Groups <a href="http://www.xmpp.org/extensions/xep-0083.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0083.html</a></p>
+<p>1、获取好友列表</p>
+<p>2、存储好友列表</p>
+<p>XEP-0049 Private XML Storage <a href="http://www.xmpp.org/extensions/xep-0049.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0049.html</a></p>
+<p>3、备注好友信息</p>
+<p>XEP-0145 Annotations <a href="http://www.xmpp.org/extensions/xep-0145.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0145.html</a></p>
+<p>4、存储书签</p>
+<p>XEP-0048 Bookmark Storage <a href="http://www.xmpp.org/extensions/xep-0048.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0048.html</a></p>
+<p>5、好友头像</p>
+<p>XEP-0008 IQ-Based Avatars <a href="http://www.xmpp.org/extensions/xep-0008.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0008.html</a></p>
+<p>XEP-0084 User Avatar <a href="http://www.xmpp.org/extensions/xep-0084.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0084.html</a></p>
+<p>XEP-0054 vcard-temp <a href="http://www.xmpp.org/extensions/xep-0054.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0054.html</a></p>
+<p>四、用户状态</p>
+<p>RFC-3921 Subscription States <a href="http://www.ietf.org/rfc/rfc3921.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc3921.txt</a></p>
+<p>五、文本消息</p>
+<p>1、在线消息</p>
+<p>2、离线消息</p>
+<p>XEP-0013 Flexible Offline Message Retrieval <a href="http://www.xmpp.org/extensions/xep-0013.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0013.html</a></p>
+<p>XEP-0160 Best Practices for Handling Offline Messages <a href="http://www.xmpp.org/extensions/xep-0160.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0160.html</a></p>
+<p>XEP-0203 Delayed Delivery <a href="http://www.xmpp.org/extensions/xep-0203.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0203.html</a></p>
+<p>3、聊天状态通知</p>
+<p>XEP-0085 Chat State Notifications <a href="http://www.xmpp.org/extensions/xep-0085.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0085.html</a></p>
+<p>六、群组聊天</p>
+<p>1、XEP-0045 Multi-User Chat <a href="http://www.xmpp.org/extensions/xep-0045.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0045.html</a></p>
+<p>七、文件传输</p>
+<p>1、XEP-0095 Stream Initiation <a href="http://www.xmpp.org/extensions/xep-0095.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0095.html</a></p>
+<p>2、XEP-0096 File Transfer <a href="http://www.xmpp.org/extensions/xep-0096.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0096.html</a></p>
+<p>3、XEP-0065 SOCKS5 Bytestreams <a href="http://www.xmpp.org/extensions/xep-0065.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0065.html</a></p>
+<p>4、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>5、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>八、音视频会议</p>
+<p>1、XEP-0166 Jingle <a href="http://www.xmpp.org/extensions/xep-0166.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0166.html#negotiation</a></p>
+<p>2、XEP-0167 Jingle Audio via RTP <a href="http://www.xmpp.org/extensions/xep-0167.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0167.html</a></p>
+<p>3、XEP-0176 Jingle ICE Transport <a href="http://www.xmpp.org/extensions/xep-0176.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0176.html</a></p>
+<p>4、XEP-0180 Jingle Video via RTP <a href="http://www.xmpp.org/extensions/xep-0180.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0180.html#negotiation</a></p>
+<p>5、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>6、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>九、用户查询</p>
+<p>XEP-0055 Jabber Search <a href="http://www.xmpp.org/extensions/xep-0055.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0055.html</a></p>
+<p>十、用户保活 (peakflys增加)</p>
+<p>XEP-0199 Ping <a href="http://xmpp.org/extensions/xep-0199.html" target="_blank" rel="noopener">http://xmpp.org/extensions/xep-0199.html</a></p>
+<p>整体：</p>
+<p>一、协议数据交互</p>
+<p>XEP-0004 Data Forms <a href="http://www.xmpp.org/extensions/xep-0004.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0004.html</a></p>
+<p>二、jabber-RPC</p>
+<p>XEP-0009 Jabber-RPC <a href="http://www.xmpp.org/extensions/xep-0009.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0009.html</a></p>
+<p>三、功能协商</p>
+<p>XEP-0020 Feature Negotiation <a href="http://www.xmpp.org/extensions/xep-0020.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0020.html</a></p>
+<p>四、服务发现</p>
+<p>XEP-0030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>五、会话建立</p>
+<p>XEP-0116 Encrypted Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0116.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0116.html</a></p>
+<p>XEP-0155 Stanza Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0155.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0155.html</a></p>
+<p>XEP-0201 Best Practices for Message Threads <a href="http://www.xmpp.org/extensions/xep-0201.html---" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0201.html---</a><br>title: ［转］XMPP协议及其扩展详解<br>categories:</p>
+<ul>
+<li>转载<br>tags:</li>
+<li>XMPP<br>comments: true</li>
+</ul>
+<hr>
+<!-- more -->
+<p><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
+<p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>4、XEP-0115 Entity Capabilities <a href="http://www.xmpp.org/extensions/xep-0115.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0115.html</a></p>
+<p>基本的jabber服务器必须实现以下标准协议(XEP-0212)</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>一、注册</p>
+<p>XEP-0077 In-Band Registration <a href="http://www.xmpp.org/extensions/xep-0077.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0077.html</a></p>
+<p>二、登录</p>
+<p>XEP-0020 Software Version <a href="http://www.xmpp.org/extensions/xep-0092.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0092.html</a></p>
+<p>三、好友列表</p>
+<p>XEP-0083 Nested Roster Groups <a href="http://www.xmpp.org/extensions/xep-0083.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0083.html</a></p>
+<p>1、获取好友列表</p>
+<p>2、存储好友列表</p>
+<p>XEP-0049 Private XML Storage <a href="http://www.xmpp.org/extensions/xep-0049.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0049.html</a></p>
+<p>3、备注好友信息</p>
+<p>XEP-0145 Annotations <a href="http://www.xmpp.org/extensions/xep-0145.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0145.html</a></p>
+<p>4、存储书签</p>
+<p>XEP-0048 Bookmark Storage <a href="http://www.xmpp.org/extensions/xep-0048.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0048.html</a></p>
+<p>5、好友头像</p>
+<p>XEP-0008 IQ-Based Avatars <a href="http://www.xmpp.org/extensions/xep-0008.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0008.html</a></p>
+<p>XEP-0084 User Avatar <a href="http://www.xmpp.org/extensions/xep-0084.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0084.html</a></p>
+<p>XEP-0054 vcard-temp <a href="http://www.xmpp.org/extensions/xep-0054.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0054.html</a></p>
+<p>四、用户状态</p>
+<p>RFC-3921 Subscription States <a href="http://www.ietf.org/rfc/rfc3921.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc3921.txt</a></p>
+<p>五、文本消息</p>
+<p>1、在线消息</p>
+<p>2、离线消息</p>
+<p>XEP-0013 Flexible Offline Message Retrieval <a href="http://www.xmpp.org/extensions/xep-0013.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0013.html</a></p>
+<p>XEP-0160 Best Practices for Handling Offline Messages <a href="http://www.xmpp.org/extensions/xep-0160.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0160.html</a></p>
+<p>XEP-0203 Delayed Delivery <a href="http://www.xmpp.org/extensions/xep-0203.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0203.html</a></p>
+<p>3、聊天状态通知</p>
+<p>XEP-0085 Chat State Notifications <a href="http://www.xmpp.org/extensions/xep-0085.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0085.html</a></p>
+<p>六、群组聊天</p>
+<p>1、XEP-0045 Multi-User Chat <a href="http://www.xmpp.org/extensions/xep-0045.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0045.html</a></p>
+<p>七、文件传输</p>
+<p>1、XEP-0095 Stream Initiation <a href="http://www.xmpp.org/extensions/xep-0095.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0095.html</a></p>
+<p>2、XEP-0096 File Transfer <a href="http://www.xmpp.org/extensions/xep-0096.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0096.html</a></p>
+<p>3、XEP-0065 SOCKS5 Bytestreams <a href="http://www.xmpp.org/extensions/xep-0065.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0065.html</a></p>
+<p>4、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>5、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>八、音视频会议</p>
+<p>1、XEP-0166 Jingle <a href="http://www.xmpp.org/extensions/xep-0166.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0166.html#negotiation</a></p>
+<p>2、XEP-0167 Jingle Audio via RTP <a href="http://www.xmpp.org/extensions/xep-0167.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0167.html</a></p>
+<p>3、XEP-0176 Jingle ICE Transport <a href="http://www.xmpp.org/extensions/xep-0176.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0176.html</a></p>
+<p>4、XEP-0180 Jingle Video via RTP <a href="http://www.xmpp.org/extensions/xep-0180.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0180.html#negotiation</a></p>
+<p>5、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>6、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>九、用户查询</p>
+<p>XEP-0055 Jabber Search <a href="http://www.xmpp.org/extensions/xep-0055.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0055.html</a></p>
+<p>十、用户保活 (peakflys增加)</p>
+<p>XEP-0199 Ping <a href="http://xmpp.org/extensions/xep-0199.html" target="_blank" rel="noopener">http://xmpp.org/extensions/xep-0199.html</a></p>
+<p>整体：</p>
+<p>一、协议数据交互</p>
+<p>XEP-0004 Data Forms <a href="http://www.xmpp.org/extensions/xep-0004.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0004.html</a></p>
+<p>二、jabber-RPC</p>
+<p>XEP-0009 Jabber-RPC <a href="http://www.xmpp.org/extensions/xep-0009.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0009.html</a></p>
+<p>三、功能协商</p>
+<p>XEP-0020 Feature Negotiation <a href="http://www.xmpp.org/extensions/xep-0020.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0020.html</a></p>
+<p>四、服务发现</p>
+<p>XEP-0030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>五、会话建立</p>
+<p>XEP-0116 Encrypted Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0116.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0116.html</a></p>
+<p>XEP-0155 Stanza Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0155.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0155.html</a></p>
+<p>XEP-0201 Best Practices for Message Threads <a href="http://www.xmpp.org/extensions/xep-0201.html---" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0201.html---</a><br>title: ［转］XMPP协议及其扩展详解<br>categories:</p>
+<ul>
+<li>转载<br>tags:</li>
+<li>XMPP<br>comments: true</li>
+</ul>
+<hr>
+<!-- more -->
+<p><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
+<p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>4、XEP-0115 Entity Capabilities <a href="http://www.xmpp.org/extensions/xep-0115.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0115.html</a></p>
+<p>基本的jabber服务器必须实现以下标准协议(XEP-0212)</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>一、注册</p>
+<p>XEP-0077 In-Band Registration <a href="http://www.xmpp.org/extensions/xep-0077.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0077.html</a></p>
+<p>二、登录</p>
+<p>XEP-0020 Software Version <a href="http://www.xmpp.org/extensions/xep-0092.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0092.html</a></p>
+<p>三、好友列表</p>
+<p>XEP-0083 Nested Roster Groups <a href="http://www.xmpp.org/extensions/xep-0083.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0083.html</a></p>
+<p>1、获取好友列表</p>
+<p>2、存储好友列表</p>
+<p>XEP-0049 Private XML Storage <a href="http://www.xmpp.org/extensions/xep-0049.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0049.html</a></p>
+<p>3、备注好友信息</p>
+<p>XEP-0145 Annotations <a href="http://www.xmpp.org/extensions/xep-0145.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0145.html</a></p>
+<p>4、存储书签</p>
+<p>XEP-0048 Bookmark Storage <a href="http://www.xmpp.org/extensions/xep-0048.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0048.html</a></p>
+<p>5、好友头像</p>
+<p>XEP-0008 IQ-Based Avatars <a href="http://www.xmpp.org/extensions/xep-0008.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0008.html</a></p>
+<p>XEP-0084 User Avatar <a href="http://www.xmpp.org/extensions/xep-0084.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0084.html</a></p>
+<p>XEP-0054 vcard-temp <a href="http://www.xmpp.org/extensions/xep-0054.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0054.html</a></p>
+<p>四、用户状态</p>
+<p>RFC-3921 Subscription States <a href="http://www.ietf.org/rfc/rfc3921.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc3921.txt</a></p>
+<p>五、文本消息</p>
+<p>1、在线消息</p>
+<p>2、离线消息</p>
+<p>XEP-0013 Flexible Offline Message Retrieval <a href="http://www.xmpp.org/extensions/xep-0013.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0013.html</a></p>
+<p>XEP-0160 Best Practices for Handling Offline Messages <a href="http://www.xmpp.org/extensions/xep-0160.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0160.html</a></p>
+<p>XEP-0203 Delayed Delivery <a href="http://www.xmpp.org/extensions/xep-0203.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0203.html</a></p>
+<p>3、聊天状态通知</p>
+<p>XEP-0085 Chat State Notifications <a href="http://www.xmpp.org/extensions/xep-0085.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0085.html</a></p>
+<p>六、群组聊天</p>
+<p>1、XEP-0045 Multi-User Chat <a href="http://www.xmpp.org/extensions/xep-0045.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0045.html</a></p>
+<p>七、文件传输</p>
+<p>1、XEP-0095 Stream Initiation <a href="http://www.xmpp.org/extensions/xep-0095.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0095.html</a></p>
+<p>2、XEP-0096 File Transfer <a href="http://www.xmpp.org/extensions/xep-0096.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0096.html</a></p>
+<p>3、XEP-0065 SOCKS5 Bytestreams <a href="http://www.xmpp.org/extensions/xep-0065.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0065.html</a></p>
+<p>4、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>5、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>八、音视频会议</p>
+<p>1、XEP-0166 Jingle <a href="http://www.xmpp.org/extensions/xep-0166.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0166.html#negotiation</a></p>
+<p>2、XEP-0167 Jingle Audio via RTP <a href="http://www.xmpp.org/extensions/xep-0167.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0167.html</a></p>
+<p>3、XEP-0176 Jingle ICE Transport <a href="http://www.xmpp.org/extensions/xep-0176.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0176.html</a></p>
+<p>4、XEP-0180 Jingle Video via RTP <a href="http://www.xmpp.org/extensions/xep-0180.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0180.html#negotiation</a></p>
+<p>5、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>6、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>九、用户查询</p>
+<p>XEP-0055 Jabber Search <a href="http://www.xmpp.org/extensions/xep-0055.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0055.html</a></p>
+<p>十、用户保活 (peakflys增加)</p>
+<p>XEP-0199 Ping <a href="http://xmpp.org/extensions/xep-0199.html" target="_blank" rel="noopener">http://xmpp.org/extensions/xep-0199.html</a></p>
+<p>整体：</p>
+<p>一、协议数据交互</p>
+<p>XEP-0004 Data Forms <a href="http://www.xmpp.org/extensions/xep-0004.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0004.html</a></p>
+<p>二、jabber-RPC</p>
+<p>XEP-0009 Jabber-RPC <a href="http://www.xmpp.org/extensions/xep-0009.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0009.html</a></p>
+<p>三、功能协商</p>
+<p>XEP-0020 Feature Negotiation <a href="http://www.xmpp.org/extensions/xep-0020.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0020.html</a></p>
+<p>四、服务发现</p>
+<p>XEP-0030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>五、会话建立</p>
+<p>XEP-0116 Encrypted Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0116.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0116.html</a></p>
+<p>XEP-0155 Stanza Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0155.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0155.html</a></p>
+<p>XEP-0201 Best Practices for Message Threads <a href="http://www.xmpp.org/extensions/xep-0201.html---" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0201.html---</a><br>title: ［转］XMPP协议及其扩展详解<br>categories:</p>
+<ul>
+<li>转载<br>tags:</li>
+<li>XMPP<br>comments: true</li>
+</ul>
+<hr>
+<!-- more -->
+<p><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
+<p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>4、XEP-0115 Entity Capabilities <a href="http://www.xmpp.org/extensions/xep-0115.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0115.html</a></p>
+<p>基本的jabber服务器必须实现以下标准协议(XEP-0212)</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>一、注册</p>
+<p>XEP-0077 In-Band Registration <a href="http://www.xmpp.org/extensions/xep-0077.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0077.html</a></p>
+<p>二、登录</p>
+<p>XEP-0020 Software Version <a href="http://www.xmpp.org/extensions/xep-0092.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0092.html</a></p>
+<p>三、好友列表</p>
+<p>XEP-0083 Nested Roster Groups <a href="http://www.xmpp.org/extensions/xep-0083.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0083.html</a></p>
+<p>1、获取好友列表</p>
+<p>2、存储好友列表</p>
+<p>XEP-0049 Private XML Storage <a href="http://www.xmpp.org/extensions/xep-0049.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0049.html</a></p>
+<p>3、备注好友信息</p>
+<p>XEP-0145 Annotations <a href="http://www.xmpp.org/extensions/xep-0145.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0145.html</a></p>
+<p>4、存储书签</p>
+<p>XEP-0048 Bookmark Storage <a href="http://www.xmpp.org/extensions/xep-0048.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0048.html</a></p>
+<p>5、好友头像</p>
+<p>XEP-0008 IQ-Based Avatars <a href="http://www.xmpp.org/extensions/xep-0008.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0008.html</a></p>
+<p>XEP-0084 User Avatar <a href="http://www.xmpp.org/extensions/xep-0084.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0084.html</a></p>
+<p>XEP-0054 vcard-temp <a href="http://www.xmpp.org/extensions/xep-0054.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0054.html</a></p>
+<p>四、用户状态</p>
+<p>RFC-3921 Subscription States <a href="http://www.ietf.org/rfc/rfc3921.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc3921.txt</a></p>
+<p>五、文本消息</p>
+<p>1、在线消息</p>
+<p>2、离线消息</p>
+<p>XEP-0013 Flexible Offline Message Retrieval <a href="http://www.xmpp.org/extensions/xep-0013.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0013.html</a></p>
+<p>XEP-0160 Best Practices for Handling Offline Messages <a href="http://www.xmpp.org/extensions/xep-0160.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0160.html</a></p>
+<p>XEP-0203 Delayed Delivery <a href="http://www.xmpp.org/extensions/xep-0203.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0203.html</a></p>
+<p>3、聊天状态通知</p>
+<p>XEP-0085 Chat State Notifications <a href="http://www.xmpp.org/extensions/xep-0085.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0085.html</a></p>
+<p>六、群组聊天</p>
+<p>1、XEP-0045 Multi-User Chat <a href="http://www.xmpp.org/extensions/xep-0045.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0045.html</a></p>
+<p>七、文件传输</p>
+<p>1、XEP-0095 Stream Initiation <a href="http://www.xmpp.org/extensions/xep-0095.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0095.html</a></p>
+<p>2、XEP-0096 File Transfer <a href="http://www.xmpp.org/extensions/xep-0096.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0096.html</a></p>
+<p>3、XEP-0065 SOCKS5 Bytestreams <a href="http://www.xmpp.org/extensions/xep-0065.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0065.html</a></p>
+<p>4、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>5、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>八、音视频会议</p>
+<p>1、XEP-0166 Jingle <a href="http://www.xmpp.org/extensions/xep-0166.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0166.html#negotiation</a></p>
+<p>2、XEP-0167 Jingle Audio via RTP <a href="http://www.xmpp.org/extensions/xep-0167.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0167.html</a></p>
+<p>3、XEP-0176 Jingle ICE Transport <a href="http://www.xmpp.org/extensions/xep-0176.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0176.html</a></p>
+<p>4、XEP-0180 Jingle Video via RTP <a href="http://www.xmpp.org/extensions/xep-0180.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0180.html#negotiation</a></p>
+<p>5、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>6、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>九、用户查询</p>
+<p>XEP-0055 Jabber Search <a href="http://www.xmpp.org/extensions/xep-0055.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0055.html</a></p>
+<p>十、用户保活 (peakflys增加)</p>
+<p>XEP-0199 Ping <a href="http://xmpp.org/extensions/xep-0199.html" target="_blank" rel="noopener">http://xmpp.org/extensions/xep-0199.html</a></p>
+<p>整体：</p>
+<p>一、协议数据交互</p>
+<p>XEP-0004 Data Forms <a href="http://www.xmpp.org/extensions/xep-0004.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0004.html</a></p>
+<p>二、jabber-RPC</p>
+<p>XEP-0009 Jabber-RPC <a href="http://www.xmpp.org/extensions/xep-0009.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0009.html</a></p>
+<p>三、功能协商</p>
+<p>XEP-0020 Feature Negotiation <a href="http://www.xmpp.org/extensions/xep-0020.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0020.html</a></p>
+<p>四、服务发现</p>
+<p>XEP-0030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>五、会话建立</p>
+<p>XEP-0116 Encrypted Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0116.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0116.html</a></p>
+<p>XEP-0155 Stanza Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0155.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0155.html</a></p>
+<p>XEP-0201 Best Practices for Message Threads <a href="http://www.xmpp.org/extensions/xep-0201.html---" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0201.html---</a><br>title: ［转］XMPP协议及其扩展详解<br>categories:</p>
+<ul>
+<li>转载<br>tags:</li>
+<li>XMPP<br>comments: true</li>
+</ul>
+<hr>
+<!-- more -->
+<p><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
+<p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>4、XEP-0115 Entity Capabilities <a href="http://www.xmpp.org/extensions/xep-0115.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0115.html</a></p>
+<p>基本的jabber服务器必须实现以下标准协议(XEP-0212)</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>一、注册</p>
+<p>XEP-0077 In-Band Registration <a href="http://www.xmpp.org/extensions/xep-0077.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0077.html</a></p>
+<p>二、登录</p>
+<p>XEP-0020 Software Version <a href="http://www.xmpp.org/extensions/xep-0092.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0092.html</a></p>
+<p>三、好友列表</p>
+<p>XEP-0083 Nested Roster Groups <a href="http://www.xmpp.org/extensions/xep-0083.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0083.html</a></p>
+<p>1、获取好友列表</p>
+<p>2、存储好友列表</p>
+<p>XEP-0049 Private XML Storage <a href="http://www.xmpp.org/extensions/xep-0049.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0049.html</a></p>
+<p>3、备注好友信息</p>
+<p>XEP-0145 Annotations <a href="http://www.xmpp.org/extensions/xep-0145.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0145.html</a></p>
+<p>4、存储书签</p>
+<p>XEP-0048 Bookmark Storage <a href="http://www.xmpp.org/extensions/xep-0048.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0048.html</a></p>
+<p>5、好友头像</p>
+<p>XEP-0008 IQ-Based Avatars <a href="http://www.xmpp.org/extensions/xep-0008.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0008.html</a></p>
+<p>XEP-0084 User Avatar <a href="http://www.xmpp.org/extensions/xep-0084.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0084.html</a></p>
+<p>XEP-0054 vcard-temp <a href="http://www.xmpp.org/extensions/xep-0054.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0054.html</a></p>
+<p>四、用户状态</p>
+<p>RFC-3921 Subscription States <a href="http://www.ietf.org/rfc/rfc3921.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc3921.txt</a></p>
+<p>五、文本消息</p>
+<p>1、在线消息</p>
+<p>2、离线消息</p>
+<p>XEP-0013 Flexible Offline Message Retrieval <a href="http://www.xmpp.org/extensions/xep-0013.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0013.html</a></p>
+<p>XEP-0160 Best Practices for Handling Offline Messages <a href="http://www.xmpp.org/extensions/xep-0160.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0160.html</a></p>
+<p>XEP-0203 Delayed Delivery <a href="http://www.xmpp.org/extensions/xep-0203.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0203.html</a></p>
+<p>3、聊天状态通知</p>
+<p>XEP-0085 Chat State Notifications <a href="http://www.xmpp.org/extensions/xep-0085.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0085.html</a></p>
+<p>六、群组聊天</p>
+<p>1、XEP-0045 Multi-User Chat <a href="http://www.xmpp.org/extensions/xep-0045.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0045.html</a></p>
+<p>七、文件传输</p>
+<p>1、XEP-0095 Stream Initiation <a href="http://www.xmpp.org/extensions/xep-0095.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0095.html</a></p>
+<p>2、XEP-0096 File Transfer <a href="http://www.xmpp.org/extensions/xep-0096.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0096.html</a></p>
+<p>3、XEP-0065 SOCKS5 Bytestreams <a href="http://www.xmpp.org/extensions/xep-0065.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0065.html</a></p>
+<p>4、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>5、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>八、音视频会议</p>
+<p>1、XEP-0166 Jingle <a href="http://www.xmpp.org/extensions/xep-0166.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0166.html#negotiation</a></p>
+<p>2、XEP-0167 Jingle Audio via RTP <a href="http://www.xmpp.org/extensions/xep-0167.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0167.html</a></p>
+<p>3、XEP-0176 Jingle ICE Transport <a href="http://www.xmpp.org/extensions/xep-0176.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0176.html</a></p>
+<p>4、XEP-0180 Jingle Video via RTP <a href="http://www.xmpp.org/extensions/xep-0180.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0180.html#negotiation</a></p>
+<p>5、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>6、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>九、用户查询</p>
+<p>XEP-0055 Jabber Search <a href="http://www.xmpp.org/extensions/xep-0055.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0055.html</a></p>
+<p>十、用户保活 (peakflys增加)</p>
+<p>XEP-0199 Ping <a href="http://xmpp.org/extensions/xep-0199.html" target="_blank" rel="noopener">http://xmpp.org/extensions/xep-0199.html</a></p>
+<p>整体：</p>
+<p>一、协议数据交互</p>
+<p>XEP-0004 Data Forms <a href="http://www.xmpp.org/extensions/xep-0004.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0004.html</a></p>
+<p>二、jabber-RPC</p>
+<p>XEP-0009 Jabber-RPC <a href="http://www.xmpp.org/extensions/xep-0009.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0009.html</a></p>
+<p>三、功能协商</p>
+<p>XEP-0020 Feature Negotiation <a href="http://www.xmpp.org/extensions/xep-0020.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0020.html</a></p>
+<p>四、服务发现</p>
+<p>XEP-0030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>五、会话建立</p>
+<p>XEP-0116 Encrypted Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0116.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0116.html</a></p>
+<p>XEP-0155 Stanza Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0155.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0155.html</a></p>
+<p>XEP-0201 Best Practices for Message Threads <a href="http://www.xmpp.org/extensions/xep-0201.html---" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0201.html---</a><br>title: ［转］XMPP协议及其扩展详解<br>categories:</p>
+<ul>
+<li>转载<br>tags:</li>
+<li>XMPP<br>comments: true</li>
+</ul>
+<hr>
+<!-- more -->
+<p><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
+<p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>4、XEP-0115 Entity Capabilities <a href="http://www.xmpp.org/extensions/xep-0115.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0115.html</a></p>
+<p>基本的jabber服务器必须实现以下标准协议(XEP-0212)</p>
+<p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
+<p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
+<p>3、XEP-030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>一、注册</p>
+<p>XEP-0077 In-Band Registration <a href="http://www.xmpp.org/extensions/xep-0077.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0077.html</a></p>
+<p>二、登录</p>
+<p>XEP-0020 Software Version <a href="http://www.xmpp.org/extensions/xep-0092.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0092.html</a></p>
+<p>三、好友列表</p>
+<p>XEP-0083 Nested Roster Groups <a href="http://www.xmpp.org/extensions/xep-0083.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0083.html</a></p>
+<p>1、获取好友列表</p>
+<p>2、存储好友列表</p>
+<p>XEP-0049 Private XML Storage <a href="http://www.xmpp.org/extensions/xep-0049.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0049.html</a></p>
+<p>3、备注好友信息</p>
+<p>XEP-0145 Annotations <a href="http://www.xmpp.org/extensions/xep-0145.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0145.html</a></p>
+<p>4、存储书签</p>
+<p>XEP-0048 Bookmark Storage <a href="http://www.xmpp.org/extensions/xep-0048.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0048.html</a></p>
+<p>5、好友头像</p>
+<p>XEP-0008 IQ-Based Avatars <a href="http://www.xmpp.org/extensions/xep-0008.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0008.html</a></p>
+<p>XEP-0084 User Avatar <a href="http://www.xmpp.org/extensions/xep-0084.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0084.html</a></p>
+<p>XEP-0054 vcard-temp <a href="http://www.xmpp.org/extensions/xep-0054.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0054.html</a></p>
+<p>四、用户状态</p>
+<p>RFC-3921 Subscription States <a href="http://www.ietf.org/rfc/rfc3921.txt" target="_blank" rel="noopener">http://www.ietf.org/rfc/rfc3921.txt</a></p>
+<p>五、文本消息</p>
+<p>1、在线消息</p>
+<p>2、离线消息</p>
+<p>XEP-0013 Flexible Offline Message Retrieval <a href="http://www.xmpp.org/extensions/xep-0013.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0013.html</a></p>
+<p>XEP-0160 Best Practices for Handling Offline Messages <a href="http://www.xmpp.org/extensions/xep-0160.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0160.html</a></p>
+<p>XEP-0203 Delayed Delivery <a href="http://www.xmpp.org/extensions/xep-0203.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0203.html</a></p>
+<p>3、聊天状态通知</p>
+<p>XEP-0085 Chat State Notifications <a href="http://www.xmpp.org/extensions/xep-0085.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0085.html</a></p>
+<p>六、群组聊天</p>
+<p>1、XEP-0045 Multi-User Chat <a href="http://www.xmpp.org/extensions/xep-0045.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0045.html</a></p>
+<p>七、文件传输</p>
+<p>1、XEP-0095 Stream Initiation <a href="http://www.xmpp.org/extensions/xep-0095.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0095.html</a></p>
+<p>2、XEP-0096 File Transfer <a href="http://www.xmpp.org/extensions/xep-0096.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0096.html</a></p>
+<p>3、XEP-0065 SOCKS5 Bytestreams <a href="http://www.xmpp.org/extensions/xep-0065.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0065.html</a></p>
+<p>4、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>5、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>八、音视频会议</p>
+<p>1、XEP-0166 Jingle <a href="http://www.xmpp.org/extensions/xep-0166.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0166.html#negotiation</a></p>
+<p>2、XEP-0167 Jingle Audio via RTP <a href="http://www.xmpp.org/extensions/xep-0167.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0167.html</a></p>
+<p>3、XEP-0176 Jingle ICE Transport <a href="http://www.xmpp.org/extensions/xep-0176.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0176.html</a></p>
+<p>4、XEP-0180 Jingle Video via RTP <a href="http://www.xmpp.org/extensions/xep-0180.html#negotiation" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0180.html#negotiation</a></p>
+<p>5、XEP-0215 STUN Server Discovery for Jingle <a href="http://www.xmpp.org/extensions/xep-0215.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0215.html</a></p>
+<p>6、RFC-3489 STUN <a href="http://tools.ietf.org/html/rfc3489" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3489</a></p>
+<p>九、用户查询</p>
+<p>XEP-0055 Jabber Search <a href="http://www.xmpp.org/extensions/xep-0055.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0055.html</a></p>
+<p>十、用户保活 (peakflys增加)</p>
+<p>XEP-0199 Ping <a href="http://xmpp.org/extensions/xep-0199.html" target="_blank" rel="noopener">http://xmpp.org/extensions/xep-0199.html</a></p>
+<p>整体：</p>
+<p>一、协议数据交互</p>
+<p>XEP-0004 Data Forms <a href="http://www.xmpp.org/extensions/xep-0004.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0004.html</a></p>
+<p>二、jabber-RPC</p>
+<p>XEP-0009 Jabber-RPC <a href="http://www.xmpp.org/extensions/xep-0009.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0009.html</a></p>
+<p>三、功能协商</p>
+<p>XEP-0020 Feature Negotiation <a href="http://www.xmpp.org/extensions/xep-0020.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0020.html</a></p>
+<p>四、服务发现</p>
+<p>XEP-0030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>五、会话建立</p>
+<p>XEP-0116 Encrypted Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0116.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0116.html</a></p>
+<p>XEP-0155 Stanza Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0155.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0155.html</a></p>
+<p>XEP-0201 Best Practices for Message Threads <a href="http://www.xmpp.org/extensions/xep-0201.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0201.html</a><br>三、功能协商</p>
+<p>XEP-0020 Feature Negotiation <a href="http://www.xmpp.org/extensions/xep-0020.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0020.html</a></p>
+<p>四、服务发现</p>
+<p>XEP-0030 Service Discovery <a href="http://www.xmpp.org/extensions/xep-0030.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0030.html</a></p>
+<p>五、会话建立</p>
+<p>XEP-0116 Encrypted Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0116.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0116.html</a></p>
+<p>XEP-0155 Stanza Session Negotiation <a href="http://www.xmpp.org/extensions/xep-0155.html" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0155.html</a></p>
+<p>XEP-0201 Best Practices for Message Threads <a href="http://www.xmpp.org/extensions/xep-0201.html--&gt;" target="_blank" rel="noopener">http://www.xmpp.org/extensions/xep-0201.html--&gt;</a><br><a href="http://www.cppblog.com/peakflys/articles/198338.html" target="_blank" rel="noopener">原文</a></p>
 <p>基本的jabber客户端必须实现以下标准协议（XEP-0211）</p>
 <p>1、RFC3920 Core <a href="http://tools.ietf.org/html/rfc3920" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3920</a></p>
 <p>2、RFC3921 Instant Messaging and Presence <a href="http://tools.ietf.org/html/rfc3921" target="_blank" rel="noopener">http://tools.ietf.org/html/rfc3921</a></p>
@@ -564,8 +1463,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -593,7 +1501,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -643,6 +1551,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XEP-0009-Jabber-RPC-http-www-xmpp-org-extensions-xep-0009-html"><span class="nav-number">1.</span> <span class="nav-text">XEP-0009 Jabber-RPC http://www.xmpp.org/extensions/xep-0009.html</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

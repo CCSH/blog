@@ -1,7 +1,7 @@
 ---
-title: XCode 代码格式化 .clang-format配置
+title: Xcode 代码格式化 .clang-format配置
 categories:
-  - XCode
+  - Xcode
 tags:
   - 配置
 comments: true

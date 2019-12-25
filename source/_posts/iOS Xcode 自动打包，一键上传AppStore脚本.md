@@ -10,7 +10,7 @@ comments: true
 
 <!-- more -->
 其中AdHocExportOptions、AppStoreExportOptions、DevelopmentExportOptions、EnterpriseExportOptions
-plist文件是xcode打包过后的
+plist文件是Xcode打包过后的
 ![4种打包类型](https://upload-images.jianshu.io/upload_images/1897259-bcda63dc64a54eab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
  ![plist文件](https://upload-images.jianshu.io/upload_images/1897259-0ef6eff64d945653.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -35,7 +35,7 @@ info_plist_name="Info"
 #返回上一级目录,进入项目工程目录
 cd ..
 #获取项目名称
-project_name=`find . -name *.xcodeproj | awk -F "[/.]" '{print $(NF-1)}'`
+project_name=`find . -name *.Xcodeproj | awk -F "[/.]" '{print $(NF-1)}'`
 #获取工程plist配置文件
 info_plist_path="$project_name/$info_plist_name.plist"
 
@@ -79,7 +79,7 @@ archiveRun () {
         echo "\033[32m****************\n您选择了是工作空间 将采用：xcworkspace\n****************\033[0m\n"
     elif [ "$is_workspace_parame" == "2" ]
     then
-        echo "\033[32m****************\n您选择了不是工作空间 将采用：xcodeproj\n****************\033[0m\n"
+        echo "\033[32m****************\n您选择了不是工作空间 将采用：Xcodeproj\n****************\033[0m\n"
     else
         echo "\n\033[31;1m**************** 您输入的参数,无效请重新输入!!! ****************\033[0m\n"
         archiveRun
@@ -190,7 +190,7 @@ else
 fi
 
 # 清理工程
-xcodebuild clean -configuration "$build_configuration" -alltargets
+Xcodebuild clean -configuration "$build_configuration" -alltargets
 
 echo "\033[32m****************\n开始编译项目 ${build_configuration}  ${exportOptionsPlistPath}\n****************\033[0m\n"
 
@@ -198,7 +198,7 @@ echo "\033[32m****************\n开始编译项目 ${build_configuration}  ${exp
 if [ "$is_workspace_parame" == "1" ]
 then
     #工作空间
-    xcodebuild archive \
+    Xcodebuild archive \
     -workspace ${project_name}.xcworkspace \
     -scheme ${target_name} \
     -configuration ${build_configuration} \
@@ -206,8 +206,8 @@ then
     -archivePath ${export_archive_path}
 else
     #不是工作空间
-    xcodebuild archive \
-    -project ${project_name}.xcodeproj \
+    Xcodebuild archive \
+    -project ${project_name}.Xcodeproj \
     -scheme ${target_name} \
     -configuration ${build_configuration} \
     -archivePath ${export_archive_path}
@@ -228,7 +228,7 @@ echo "\033[32m****************\n开始导出ipa文件\n****************\033[0m\n
 #2、归档文件地址
 #3、ipa输出地址
 #4、ipa打包设置文件地址
-xcodebuild -exportArchive \
+Xcodebuild -exportArchive \
 -archivePath ${export_archive_path} \
 -configuration ${build_configuration} \
 -exportPath ${export_ipa_path}  \
