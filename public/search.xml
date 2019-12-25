@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Flutter 自定义组件之列表头悬浮</title>
+    <url>/2019/12/25/Flutter%20%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6%E4%B9%8B%E5%88%97%E8%A1%A8%E5%A4%B4%E6%82%AC%E6%B5%AE/</url>
+    <content><![CDATA[<p>核心</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &apos;package:flutter/material.dart&apos;;</span><br><span class="line"></span><br><span class="line">class SHSectionHeadConfig &#123;</span><br><span class="line">  //悬浮组件key集合</span><br><span class="line">  List&lt;GlobalKey&gt; keyList = [];</span><br><span class="line">  //列表滚动方向</span><br><span class="line">  Axis scrollDirection = Axis.vertical;</span><br><span class="line">  //当前悬浮</span><br><span class="line">  int currentIndex = -1;</span><br><span class="line">  //偏移位置</span><br><span class="line">  double offset = 0;</span><br><span class="line">  //悬浮位置(相对于设备)</span><br><span class="line">  double position = 0;</span><br><span class="line"></span><br><span class="line">  //悬浮组件的大小</span><br><span class="line">  Size _size;</span><br><span class="line"></span><br><span class="line">  /// MARK:处理数据</span><br><span class="line">  //  @LastEditors: 陈胜辉</span><br><span class="line">  //  @Version: 版本号, YYYY-MM-DD</span><br><span class="line">  //  @param &#123;type&#125;</span><br><span class="line">  //  @return: 是否需要刷新</span><br><span class="line">  //  @Deprecated: 否</span><br><span class="line">  //  备注</span><br><span class="line">  bool handleData() &#123;</span><br><span class="line">    int _currentIndex = -1;</span><br><span class="line">    Offset _off = Offset(0.0, -position);</span><br><span class="line">    if (scrollDirection == Axis.horizontal) &#123;</span><br><span class="line">      _off = Offset(position, 0.0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for (var i = keyList.length - 1; i &gt;= 0; i--) &#123;</span><br><span class="line">      GlobalKey key = keyList[i];</span><br><span class="line">      if (key.currentContext != null) &#123;</span><br><span class="line">        RenderBox render = key.currentContext.findRenderObject();</span><br><span class="line">        Offset renderOffset = render.localToGlobal(_off);</span><br><span class="line">        //取出滚动方向对应的数据</span><br><span class="line">        double location = renderOffset.dy;</span><br><span class="line">        if (scrollDirection == Axis.horizontal) &#123;</span><br><span class="line">          location = renderOffset.dx;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (location &lt;= 0) &#123;</span><br><span class="line">          //找到最后一个悬浮的</span><br><span class="line">          _currentIndex = i;</span><br><span class="line">          _size = render.size;</span><br><span class="line">          break;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //加一层复用保护</span><br><span class="line">    if (_currentIndex &lt; 0 &amp;&amp; currentIndex &gt;= 0) &#123;</span><br><span class="line">      GlobalKey key = keyList[currentIndex];</span><br><span class="line">      if (key.currentContext == null) &#123;</span><br><span class="line">        _currentIndex = currentIndex;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        _currentIndex = currentIndex - 1;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    double _offset = 0;</span><br><span class="line">    //存在悬浮的</span><br><span class="line">    if (_currentIndex &gt;= 0) &#123;</span><br><span class="line">      //取出下一个位置</span><br><span class="line">      if ((_currentIndex + 1) &lt; keyList.length) &#123;</span><br><span class="line">        GlobalKey key = keyList[_currentIndex + 1];</span><br><span class="line">        if (key.currentContext != null) &#123;</span><br><span class="line">          RenderBox render = key.currentContext.findRenderObject();</span><br><span class="line">          Offset renderOffset = render.localToGlobal(_off);</span><br><span class="line">          //取出滚动方向对应的数据</span><br><span class="line">          double offsetAxis = renderOffset.dy;</span><br><span class="line">          double sizeAxis = _size.height;</span><br><span class="line"></span><br><span class="line">          if (scrollDirection == Axis.horizontal) &#123;</span><br><span class="line">            offsetAxis = renderOffset.dx;</span><br><span class="line">            sizeAxis = _size.width;</span><br><span class="line">          &#125;</span><br><span class="line">          //计算偏移位置</span><br><span class="line">          if (offsetAxis &lt; sizeAxis) &#123;</span><br><span class="line">            _offset = offsetAxis - sizeAxis;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (_currentIndex != currentIndex || _offset != offset) &#123;</span><br><span class="line">      currentIndex = _currentIndex;</span><br><span class="line">      offset = _offset;</span><br><span class="line">      return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &apos;package:flutter/material.dart&apos;;</span><br><span class="line">import &apos;package:flutter_app/tool/data_helper.dart&apos;;</span><br><span class="line">import &apos;package:flutter_app/tool/color_helper.dart&apos;;</span><br><span class="line">import &apos;package:flutter_app/tool/scction_head_helper.dart&apos;;</span><br><span class="line"></span><br><span class="line">class CSHColumnList extends StatefulWidget &#123;</span><br><span class="line">  @override</span><br><span class="line">  _CSHListState createState() =&gt; _CSHListState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class _CSHListState extends State&lt;CSHColumnList&gt; &#123;</span><br><span class="line">  ScrollController _listScrollC = ScrollController();</span><br><span class="line">  SHSectionHeadConfig config = SHSectionHeadConfig();</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  void initState() &#123;</span><br><span class="line">    super.initState();</span><br><span class="line"></span><br><span class="line">    //初始化model</span><br><span class="line">    for (var i = 0; i &lt; 4; i++) &#123;</span><br><span class="line">      config.keyList.add(GlobalKey());</span><br><span class="line">    &#125;</span><br><span class="line">    config.position = 100.0;</span><br><span class="line"></span><br><span class="line">    _listScrollC.addListener(() &#123;</span><br><span class="line">      if (config.handleData()) &#123;</span><br><span class="line">        setState(() &#123;&#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    // This method is rerun every time setState is called, for instance as done</span><br><span class="line">    // by the _incrementCounter method above.</span><br><span class="line">    //</span><br><span class="line">    // The Flutter framework has been optimized to make rerunning build methods</span><br><span class="line">    // fast, so that you can just rebuild anything that needs updating rather</span><br><span class="line">    // than having to individually change instances of widgets.</span><br><span class="line">    return Scaffold(</span><br><span class="line">        appBar: AppBar(</span><br><span class="line">          // Here we take the value from the MyHomePage object that was created by</span><br><span class="line">          // the App.build method, and use it to set our appbar title.</span><br><span class="line">          title: Text(&apos;列悬浮&apos;),</span><br><span class="line">        ),</span><br><span class="line">        body: Stack(</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            ListView.builder(</span><br><span class="line">              controller: _listScrollC,</span><br><span class="line">              itemBuilder: (BuildContext context, int index) &#123;</span><br><span class="line">                if (index == 1) &#123;</span><br><span class="line">                  return getHeadView(0, true);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (index == 9) &#123;</span><br><span class="line">                  return getHeadView(1, true);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (index == 20) &#123;</span><br><span class="line">                  return getHeadView(2, true);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (index == 30) &#123;</span><br><span class="line">                  return getHeadView(3, true);</span><br><span class="line">                &#125;</span><br><span class="line">                return Container(</span><br><span class="line">                  color: Colors.red,</span><br><span class="line">                  alignment: Alignment.center,</span><br><span class="line">                  child: Text(</span><br><span class="line">                    &apos;我是第 --- $index&apos;,</span><br><span class="line">                    style: TextStyle(</span><br><span class="line">                      fontSize: 40,</span><br><span class="line">                    ),</span><br><span class="line">                  ),</span><br><span class="line">                );</span><br><span class="line">              &#125;,</span><br><span class="line">              itemCount: 50,</span><br><span class="line">            ),</span><br><span class="line">            handleHead(),</span><br><span class="line">          ],</span><br><span class="line">        ));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /// MARK:处理悬浮头部</span><br><span class="line">  //  @LastEditors: 陈胜辉</span><br><span class="line">  //  @Version: 版本号, YYYY-MM-DD</span><br><span class="line">  //  @param &#123;type&#125;</span><br><span class="line">  //  @return:</span><br><span class="line">  //  @Deprecated: 否</span><br><span class="line">  //  备注</span><br><span class="line">  Widget handleHead() &#123;</span><br><span class="line">    Widget widget = Container();</span><br><span class="line">    //需要悬浮</span><br><span class="line">    if (config.currentIndex &gt;= 0) &#123;</span><br><span class="line">      widget = Positioned(</span><br><span class="line">        top: config.offset,</span><br><span class="line">        child: getHeadView(config.currentIndex, false),</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return widget;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /// MARK:获取头部组件</span><br><span class="line">  //  @LastEditors: 陈胜辉</span><br><span class="line">  //  @Version: 版本号, YYYY-MM-DD</span><br><span class="line">  //  @param &#123;type&#125;</span><br><span class="line">  //  @return:</span><br><span class="line">  //  @Deprecated: 否</span><br><span class="line">  //  备注</span><br><span class="line">  Widget getHeadView(int index, bool isKey) &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      key: isKey ? config.keyList[index] : null,</span><br><span class="line">      height: 90,</span><br><span class="line">      width: CommonData.screenW,</span><br><span class="line">      color: isKey ? randomColor() : Colors.cyan,</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      child: Text(</span><br><span class="line">        &apos;我是head === $index&apos;,</span><br><span class="line">        style: TextStyle(</span><br><span class="line">          fontSize: 20,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Flutter</category>
+      </categories>
+      <tags>
+        <tag>操作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flutter 自定义组件之导航栏</title>
+    <url>/2019/12/25/Flutter%20%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6%E4%B9%8B%E5%AF%BC%E8%88%AA%E6%A0%8F/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//  @Description: 自定义组件</span><br><span class="line">//  @Author: 陈胜辉</span><br><span class="line">//  @Date: 2019-12-05 08:37:35</span><br><span class="line">//  @Version: 版本号, YYYY-MM-DD</span><br><span class="line">//  @LastEditors: 陈胜辉</span><br><span class="line">//  @LastEditTime: 2019-12-05 08:38:46</span><br><span class="line">//  @Deprecated: 否</span><br><span class="line">//  备注</span><br><span class="line"></span><br><span class="line">import &apos;dart:math&apos;;</span><br><span class="line"></span><br><span class="line">import &apos;package:flutter/cupertino.dart&apos;;</span><br><span class="line">import &apos;package:flutter/material.dart&apos;;</span><br><span class="line">import &apos;package:flutter_app/tool/data_helper.dart&apos;;</span><br><span class="line">import &apos;package:flutter_app/util/routerUtil.dart&apos;;</span><br><span class="line"></span><br><span class="line">/// MARK:自定义导航栏</span><br><span class="line">//  @LastEditors: 陈胜辉</span><br><span class="line">//  @Version: 版本号, YYYY-MM-DD</span><br><span class="line">//  @param &#123;type&#125;</span><br><span class="line">//  @return:</span><br><span class="line">//  @Deprecated: 否</span><br><span class="line">//  备注</span><br><span class="line">class CustomNav extends StatelessWidget &#123;</span><br><span class="line">  CustomNav(&#123;</span><br><span class="line">    Key key,</span><br><span class="line">    this.height,</span><br><span class="line">    this.defaultLeft = true,</span><br><span class="line">    this.opacity = 1.0,</span><br><span class="line">    this.sapce = 5.0,</span><br><span class="line">    this.middleText = &apos;&apos;,</span><br><span class="line">    this.middle,</span><br><span class="line">    this.backgroundColor,</span><br><span class="line">    this.background,</span><br><span class="line">    this.actionsMaxW,</span><br><span class="line">    this.leftActions,</span><br><span class="line">    this.rightActions,</span><br><span class="line">  &#125;)  : assert(height == null || height &gt;= CommonData.navH,</span><br><span class="line">            &apos;导航栏高度最小为$&#123;CommonData.navH&#125;&apos;),</span><br><span class="line">        super(key: key);</span><br><span class="line"></span><br><span class="line">  //高度</span><br><span class="line">  final double height;</span><br><span class="line">  //默认左侧按钮</span><br><span class="line">  final bool defaultLeft;</span><br><span class="line">  //屏幕两边空隙</span><br><span class="line">  final double sapce;</span><br><span class="line">  //透明度</span><br><span class="line">  final double opacity;</span><br><span class="line">  //标题文字</span><br><span class="line">  final String middleText;</span><br><span class="line">  //中间视图</span><br><span class="line">  final Widget middle;</span><br><span class="line">  //背景颜色</span><br><span class="line">  final Color backgroundColor;</span><br><span class="line">  //背景视图</span><br><span class="line">  final Widget background;</span><br><span class="line">  //默认 _actionW * count 如果超过需要设置</span><br><span class="line">  final double actionsMaxW;</span><br><span class="line">  //按钮集合</span><br><span class="line">  final List&lt;Widget&gt; leftActions;</span><br><span class="line">  final List&lt;Widget&gt; rightActions;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    //配置视图</span><br><span class="line">    return _handleWidget(context);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /// MARK:处理组件</span><br><span class="line">  //  @LastEditors: 陈胜辉</span><br><span class="line">  //  @Version: 版本号, YYYY-MM-DD</span><br><span class="line">  //  @param &#123;type&#125;</span><br><span class="line">  //  @return:</span><br><span class="line">  //  @Deprecated: 否</span><br><span class="line">  //  备注</span><br><span class="line">  Widget _handleWidget(BuildContext context) &#123;</span><br><span class="line">    double _actionW = 48.0;</span><br><span class="line">    //数据处理</span><br><span class="line">    //背景颜色</span><br><span class="line">    Color _backgroundColor = (this.backgroundColor != null)</span><br><span class="line">        ? this.backgroundColor</span><br><span class="line">        : Color.fromRGBO(97, 148, 244, 1);</span><br><span class="line">    //透明度（0 ～ 1）</span><br><span class="line">    double _opacity = max(min(this.opacity, 1), 0);</span><br><span class="line">    //高度</span><br><span class="line">    double _height = (height == null) ? CommonData.navAndStatusH : height;</span><br><span class="line">    _height = max(CommonData.navH, _height);</span><br><span class="line">    //事件宽度</span><br><span class="line">    double _actionsMaxW = this.actionsMaxW;</span><br><span class="line">    //左侧组件集合</span><br><span class="line">    List&lt;Widget&gt; _leftActions = this.leftActions;</span><br><span class="line">    //默认左侧返回按钮</span><br><span class="line">    if (null == _leftActions &amp;&amp; defaultLeft) &#123;</span><br><span class="line">      _leftActions = [_getNavBack(context)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //取出有多少个按钮</span><br><span class="line">    int count = max((_leftActions != null) ? _leftActions.length : 0,</span><br><span class="line">        (this.rightActions != null) ? this.rightActions.length : 0);</span><br><span class="line"></span><br><span class="line">    if (null == _actionsMaxW) &#123;</span><br><span class="line">      //默认</span><br><span class="line">      _actionsMaxW = count * _actionW;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //中间组件</span><br><span class="line">    Widget _middle = this.middle;</span><br><span class="line">    if (null == _middle) &#123;</span><br><span class="line">      _middle = Container(</span><br><span class="line">        alignment: Alignment.center,</span><br><span class="line">        child: Text(</span><br><span class="line">          middleText,</span><br><span class="line">          style: TextStyle(</span><br><span class="line">            color: Colors.white,</span><br><span class="line">            fontSize: 18,</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 返回组件</span><br><span class="line">    return Opacity(</span><br><span class="line">      opacity: _opacity,</span><br><span class="line">      child: Stack(</span><br><span class="line">        children: &lt;Widget&gt;[</span><br><span class="line">          //底部视图</span><br><span class="line">          Container(</span><br><span class="line">            width: CommonData.screenW,</span><br><span class="line">            height: _height,</span><br><span class="line">            color: backgroundColor,</span><br><span class="line">            child: Stack(</span><br><span class="line">              children: &lt;Widget&gt;[</span><br><span class="line">                //底部背景</span><br><span class="line">                Container(</span><br><span class="line">                  width: CommonData.screenW,</span><br><span class="line">                  height: _height,</span><br><span class="line">                  color: _backgroundColor,</span><br><span class="line">                  child: background,</span><br><span class="line">                ),</span><br><span class="line">                //上方内容</span><br><span class="line">                Container(</span><br><span class="line">                  margin: EdgeInsets.only(top: _height - CommonData.navH),</span><br><span class="line">                  height: CommonData.navH,</span><br><span class="line">                  child: Row(</span><br><span class="line">                    mainAxisAlignment: MainAxisAlignment.spaceBetween,</span><br><span class="line">                    children: &lt;Widget&gt;[</span><br><span class="line">                      //左边</span><br><span class="line">                      Container(</span><br><span class="line">                        width: _actionsMaxW,</span><br><span class="line">                        margin: EdgeInsets.only(left: sapce),</span><br><span class="line">                        child: (null == _leftActions)</span><br><span class="line">                            ? null</span><br><span class="line">                            : Row(</span><br><span class="line">                                children: _leftActions,</span><br><span class="line">                              ),</span><br><span class="line">                      ),</span><br><span class="line"></span><br><span class="line">                      //中间视图</span><br><span class="line">                      Expanded(</span><br><span class="line">                        child: _middle,</span><br><span class="line">                      ),</span><br><span class="line"></span><br><span class="line">                      //右边</span><br><span class="line">                      Container(</span><br><span class="line">                        width: _actionsMaxW,</span><br><span class="line">                        margin: EdgeInsets.only(right: sapce),</span><br><span class="line">                        child: (null == rightActions)</span><br><span class="line">                            ? null</span><br><span class="line">                            : Row(</span><br><span class="line">                                children: rightActions,</span><br><span class="line">                              ),</span><br><span class="line">                      ),</span><br><span class="line">                    ],</span><br><span class="line">                  ),</span><br><span class="line">                ),</span><br><span class="line">              ],</span><br><span class="line">            ),</span><br><span class="line">          ),</span><br><span class="line">        ],</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /// MARK:导航栏按钮</span><br><span class="line">  //  @LastEditors: 陈胜辉</span><br><span class="line">  //  @Version: 版本号, YYYY-MM-DD</span><br><span class="line">  //  @param &#123;type&#125;</span><br><span class="line">  //  @return:</span><br><span class="line">  //  @Deprecated: 否</span><br><span class="line">  //  备注</span><br><span class="line">  Widget _getNavBack(BuildContext context) &#123;</span><br><span class="line">    return BackButton(</span><br><span class="line">      color: Colors.white,</span><br><span class="line">      onPressed: () &#123;</span><br><span class="line">        RouterUtil.pop(context);</span><br><span class="line">      &#125;,</span><br><span class="line">    );</span><br><span class="line">    // CupertinoButton(</span><br><span class="line">    //   padding: EdgeInsets.only(left: 0),</span><br><span class="line">    //   pressedOpacity: 0.8,</span><br><span class="line">    //   child: Icon(</span><br><span class="line">    //     Icons.arrow_back_ios,</span><br><span class="line">    //     size: 20,</span><br><span class="line">    //     color: Colors.white,</span><br><span class="line">    //   ),</span><br><span class="line">    //   onPressed: () &#123;</span><br><span class="line">    //     RouterUtil.pop(context);</span><br><span class="line">    //   &#125;,</span><br><span class="line">    // );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Flutter</category>
+      </categories>
+      <tags>
+        <tag>操作</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Flutter 序列化与反序列化</title>
     <url>/2019/12/09/Flutter%20%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
     <content><![CDATA[<p>Flutter 序列化与反序列化</p>
@@ -56,19 +86,6 @@
       </tags>
   </entry>
   <entry>
-    <title>清理Xcode编译项目产生的缓存垃圾</title>
-    <url>/2019/11/22/%E6%B8%85%E7%90%86Xcode%E7%BC%96%E8%AF%91%E9%A1%B9%E7%9B%AE%E4%BA%A7%E7%94%9F%E7%9A%84%E7%BC%93%E5%AD%98%E5%9E%83%E5%9C%BE/</url>
-    <content><![CDATA[<a id="more"></a>
-<p>rm ~/Library/Developer/Xcode/DerivedData</p>
-]]></content>
-      <categories>
-        <category>Xcode</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>安装ruby</title>
     <url>/2019/11/22/%E5%AE%89%E8%A3%85ruby/</url>
     <content><![CDATA[<p>curl -sSL <a href="https://get.rvm.io" target="_blank" rel="noopener">https://get.rvm.io</a> | bash -s stable</p>
@@ -83,6 +100,19 @@
       </categories>
       <tags>
         <tag>安装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>清理Xcode编译项目产生的缓存垃圾</title>
+    <url>/2019/11/22/%E6%B8%85%E7%90%86Xcode%E7%BC%96%E8%AF%91%E9%A1%B9%E7%9B%AE%E4%BA%A7%E7%94%9F%E7%9A%84%E7%BC%93%E5%AD%98%E5%9E%83%E5%9C%BE/</url>
+    <content><![CDATA[<a id="more"></a>
+<p>rm ~/Library/Developer/Xcode/DerivedData</p>
+]]></content>
+      <categories>
+        <category>Xcode</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -184,6 +214,20 @@
       </tags>
   </entry>
   <entry>
+    <title>使用CocoaPods找不到头文件解决方法</title>
+    <url>/2019/11/22/%E4%BD%BF%E7%94%A8CocoaPods%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<a id="more"></a>
+<p>使用CocoaPods后,发现总是找不到头文件</p>
+<p>在TARGETS -&gt; Search Paths -&gt; User Header Search Paths 中 写入 ${SRCROOT} 再将后面参数改为recursive</p>
+]]></content>
+      <categories>
+        <category>CocoaPods</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iOS 跑马灯，弹幕，滚动文字效果实现</title>
     <url>/2019/11/22/iOS%20%E8%B7%91%E9%A9%AC%E7%81%AF%EF%BC%8C%E5%BC%B9%E5%B9%95%EF%BC%8C%E6%BB%9A%E5%8A%A8%E6%96%87%E5%AD%97%E6%95%88%E6%9E%9C%E5%AE%9E%E7%8E%B0/</url>
     <content><![CDATA[<p>跑马灯，弹幕，滚动文字效果实现</p>
@@ -201,33 +245,6 @@
       </categories>
       <tags>
         <tag>方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用CocoaPods找不到头文件解决方法</title>
-    <url>/2019/11/22/%E4%BD%BF%E7%94%A8CocoaPods%E6%89%BE%E4%B8%8D%E5%88%B0%E5%A4%B4%E6%96%87%E4%BB%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<a id="more"></a>
-<p>使用CocoaPods后,发现总是找不到头文件</p>
-<p>在TARGETS -&gt; Search Paths -&gt; User Header Search Paths 中 写入 ${SRCROOT} 再将后面参数改为recursive</p>
-]]></content>
-      <categories>
-        <category>CocoaPods</category>
-      </categories>
-      <tags>
-        <tag>问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>删除Xcode中多余的证书provisioning profile</title>
-    <url>/2019/11/22/%E5%88%A0%E9%99%A4Xcode%E4%B8%AD%E5%A4%9A%E4%BD%99%E7%9A%84%E8%AF%81%E4%B9%A6provisioning%20profile/</url>
-    <content><![CDATA[<a id="more"></a>
-<p>rm ~/Library/MobileDevice/Provisioning Profiles</p>
-]]></content>
-      <categories>
-        <category>Xcode</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -249,6 +266,19 @@
       <categories>
         <category>iOS</category>
       </categories>
+  </entry>
+  <entry>
+    <title>删除Xcode中多余的证书provisioning profile</title>
+    <url>/2019/11/22/%E5%88%A0%E9%99%A4Xcode%E4%B8%AD%E5%A4%9A%E4%BD%99%E7%9A%84%E8%AF%81%E4%B9%A6provisioning%20profile/</url>
+    <content><![CDATA[<a id="more"></a>
+<p>rm ~/Library/MobileDevice/Provisioning Profiles</p>
+]]></content>
+      <categories>
+        <category>Xcode</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
   </entry>
   <entry>
     <title>如何获取ios系统信息</title>
@@ -401,6 +431,25 @@
       </tags>
   </entry>
   <entry>
+    <title>iOS 控件私有属性遍历</title>
+    <url>/2019/11/22/iOS%20%E6%8E%A7%E4%BB%B6%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7%E9%81%8D%E5%8E%86/</url>
+    <content><![CDATA[<a id="more"></a>
+<p>控件私有属性遍历主要利用OC的RunTime机制<br>首先加入头文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#import &lt;objc/runtime.h&gt;</span><br></pre></td></tr></table></figure>
+
+<p>写入代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">unsigned int outCount = 0;</span><br><span class="line">Ivar *ivars = class_copyIvarList([NSClassFromString(@&quot;UIView&quot;) class], &amp;outCount);</span><br><span class="line"></span><br><span class="line">for (NSInteger i = 0; i &lt; outCount; ++i) &#123;</span><br><span class="line">    // 遍历取出该类成员变量</span><br><span class="line">    Ivar ivar = *(ivars + i);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;\n name = %s  \n type = %s&quot;, ivar_getName(ivar),ivar_getTypeEncoding(ivar));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 根据内存管理原则释放指针</span><br><span class="line">free(ivars);</span><br></pre></td></tr></table></figure>
+
+<p>通过KVC进行修改</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    //拿到私有的属性forKey: 进行改变setValue:</span><br><span class="line">//    [self.view setValue:&lt;#(nullable id)#&gt; forKey:&lt;#(nonnull NSString *)#&gt;];</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iOS 数据转换（持续更新）</title>
     <url>/2019/11/22/iOS%20%E6%95%B0%E6%8D%AE%E8%BD%AC%E6%8D%A2%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</url>
     <content><![CDATA[<a id="more"></a>
@@ -445,25 +494,6 @@
       </categories>
       <tags>
         <tag>知识</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iOS 控件私有属性遍历</title>
-    <url>/2019/11/22/iOS%20%E6%8E%A7%E4%BB%B6%E7%A7%81%E6%9C%89%E5%B1%9E%E6%80%A7%E9%81%8D%E5%8E%86/</url>
-    <content><![CDATA[<a id="more"></a>
-<p>控件私有属性遍历主要利用OC的RunTime机制<br>首先加入头文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#import &lt;objc/runtime.h&gt;</span><br></pre></td></tr></table></figure>
-
-<p>写入代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">unsigned int outCount = 0;</span><br><span class="line">Ivar *ivars = class_copyIvarList([NSClassFromString(@&quot;UIView&quot;) class], &amp;outCount);</span><br><span class="line"></span><br><span class="line">for (NSInteger i = 0; i &lt; outCount; ++i) &#123;</span><br><span class="line">    // 遍历取出该类成员变量</span><br><span class="line">    Ivar ivar = *(ivars + i);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;\n name = %s  \n type = %s&quot;, ivar_getName(ivar),ivar_getTypeEncoding(ivar));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 根据内存管理原则释放指针</span><br><span class="line">free(ivars);</span><br></pre></td></tr></table></figure>
-
-<p>通过KVC进行修改</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    //拿到私有的属性forKey: 进行改变setValue:</span><br><span class="line">//    [self.view setValue:&lt;#(nullable id)#&gt; forKey:&lt;#(nonnull NSString *)#&gt;];</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>方法</tag>
       </tags>
   </entry>
   <entry>
@@ -544,22 +574,6 @@ switch (status) {
       </tags>
   </entry>
   <entry>
-    <title>iOS 网络判断(2G、3G、4G、WiFi、无网络)</title>
-    <url>/2019/11/22/iOS%20%E7%BD%91%E7%BB%9C%E5%88%A4%E6%96%AD(2G%E3%80%813G%E3%80%814G%E3%80%81WiFi%E3%80%81%E6%97%A0%E7%BD%91%E7%BB%9C)/</url>
-    <content><![CDATA[<p>网络判断(2G、3G、4G、WiFi、无网络)</p>
-<a id="more"></a>
-<ul>
-<li>网络判断</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (IBAction)btnClick:(UIButton *)sender &#123;</span><br><span class="line">    </span><br><span class="line">    int networkType = [self getNetworkStates];</span><br><span class="line">    </span><br><span class="line">    switch (networkType) &#123;</span><br><span class="line">        case 1:</span><br><span class="line">        &#123;</span><br><span class="line">            [sender setTitle:@&quot;2G&quot; forState:0];</span><br><span class="line">        &#125;</span><br><span class="line">            break;</span><br><span class="line">        case 2:</span><br><span class="line">        &#123;</span><br><span class="line">            [sender setTitle:@&quot;3G&quot; forState:0];</span><br><span class="line">        &#125;</span><br><span class="line">            break;</span><br><span class="line">        case 3:</span><br><span class="line">        &#123;</span><br><span class="line">            [sender setTitle:@&quot;4G&quot; forState:0];</span><br><span class="line">        &#125;</span><br><span class="line">            break;</span><br><span class="line">        case 5:</span><br><span class="line">        &#123;</span><br><span class="line">            [sender setTitle:@&quot;WiFi&quot; forState:0];</span><br><span class="line">        &#125;</span><br><span class="line">            break;</span><br><span class="line">        default:</span><br><span class="line">        &#123;</span><br><span class="line">            [sender setTitle:@&quot;无网络&quot; forState:0];</span><br><span class="line">        &#125;</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 判断网络类型</span><br><span class="line">- (int)getNetworkStates</span><br><span class="line">&#123;</span><br><span class="line">    NSArray *subviews = [[[[UIApplication sharedApplication] valueForKeyPath:@&quot;statusBar&quot;] valueForKeyPath:@&quot;foregroundView&quot;] subviews];</span><br><span class="line"></span><br><span class="line">    for (id child in subviews) &#123;</span><br><span class="line">        if ([child isKindOfClass:NSClassFromString(@&quot;UIStatusBarDataNetworkItemView&quot;)]) &#123;</span><br><span class="line">            return [[child valueForKeyPath:@&quot;dataNetworkType&quot;] intValue];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>iOS 自动生成单例类</title>
     <url>/2019/11/22/iOS%20%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%8D%95%E4%BE%8B%E7%B1%BB/</url>
     <content><![CDATA[<p>自动生成单例类</p>
@@ -574,6 +588,22 @@ switch (status) {
       </categories>
       <tags>
         <tag>方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iOS 网络判断(2G、3G、4G、WiFi、无网络)</title>
+    <url>/2019/11/22/iOS%20%E7%BD%91%E7%BB%9C%E5%88%A4%E6%96%AD(2G%E3%80%813G%E3%80%814G%E3%80%81WiFi%E3%80%81%E6%97%A0%E7%BD%91%E7%BB%9C)/</url>
+    <content><![CDATA[<p>网络判断(2G、3G、4G、WiFi、无网络)</p>
+<a id="more"></a>
+<ul>
+<li>网络判断</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (IBAction)btnClick:(UIButton *)sender &#123;</span><br><span class="line">    </span><br><span class="line">    int networkType = [self getNetworkStates];</span><br><span class="line">    </span><br><span class="line">    switch (networkType) &#123;</span><br><span class="line">        case 1:</span><br><span class="line">        &#123;</span><br><span class="line">            [sender setTitle:@&quot;2G&quot; forState:0];</span><br><span class="line">        &#125;</span><br><span class="line">            break;</span><br><span class="line">        case 2:</span><br><span class="line">        &#123;</span><br><span class="line">            [sender setTitle:@&quot;3G&quot; forState:0];</span><br><span class="line">        &#125;</span><br><span class="line">            break;</span><br><span class="line">        case 3:</span><br><span class="line">        &#123;</span><br><span class="line">            [sender setTitle:@&quot;4G&quot; forState:0];</span><br><span class="line">        &#125;</span><br><span class="line">            break;</span><br><span class="line">        case 5:</span><br><span class="line">        &#123;</span><br><span class="line">            [sender setTitle:@&quot;WiFi&quot; forState:0];</span><br><span class="line">        &#125;</span><br><span class="line">            break;</span><br><span class="line">        default:</span><br><span class="line">        &#123;</span><br><span class="line">            [sender setTitle:@&quot;无网络&quot; forState:0];</span><br><span class="line">        &#125;</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 判断网络类型</span><br><span class="line">- (int)getNetworkStates</span><br><span class="line">&#123;</span><br><span class="line">    NSArray *subviews = [[[[UIApplication sharedApplication] valueForKeyPath:@&quot;statusBar&quot;] valueForKeyPath:@&quot;foregroundView&quot;] subviews];</span><br><span class="line"></span><br><span class="line">    for (id child in subviews) &#123;</span><br><span class="line">        if ([child isKindOfClass:NSClassFromString(@&quot;UIStatusBarDataNetworkItemView&quot;)]) &#123;</span><br><span class="line">            return [[child valueForKeyPath:@&quot;dataNetworkType&quot;] intValue];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
@@ -604,6 +634,18 @@ switch (status) {
 <li>获取文件类型</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">path.pathExtension</span><br><span class="line">输出：txt</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iOS 常用控件之UICollectionView</title>
+    <url>/2019/11/22/iOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BUICollectionView/</url>
+    <content><![CDATA[<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#pragma mark - 懒加载</span><br><span class="line">- (UICollectionView *)collectionView &#123;</span><br><span class="line">    </span><br><span class="line">    if (!_collectionView) &#123;</span><br><span class="line">        //UICollectionView的自动布局</span><br><span class="line">        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];</span><br><span class="line">        //设置滑动方向</span><br><span class="line">        //UICollectionViewScrollDirectionHorizontal  水平滑动</span><br><span class="line">        //UICollectionViewScrollDirectionVertical    竖直滑动</span><br><span class="line">        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;</span><br><span class="line">        //下放两个属性可以在这里设置也可以在下方代理中设置（默认10）</span><br><span class="line">        //设置水平间距（内部）</span><br><span class="line">        layout.minimumInteritemSpacing = 5;</span><br><span class="line">        //设置竖直间距（内部）</span><br><span class="line">        layout.minimumLineSpacing = 5;</span><br><span class="line">        </span><br><span class="line">        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, SHWidth, SHHeight - 64) collectionViewLayout:layout];</span><br><span class="line">        _collectionView.backgroundColor = [UIColor clearColor];</span><br><span class="line">        _collectionView.delegate = self;</span><br><span class="line">        _collectionView.dataSource = self;</span><br><span class="line">        </span><br><span class="line">        [self.view addSubview:_collectionView];</span><br><span class="line">        </span><br><span class="line">        //注册cell类</span><br><span class="line">        [_collectionView registerNib:[UINib nibWithNibName:reuseIdentifier bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:reuseIdentifier];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return _collectionView;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - UICollectionViewDelegate</span><br><span class="line">- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView &#123;</span><br><span class="line">    </span><br><span class="line">    return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSInteger )collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section &#123;</span><br><span class="line">    </span><br><span class="line">    return self.dataSoure.count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark 实例化UICollectionView</span><br><span class="line">- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line">    </span><br><span class="line">    SHChatBGDetailCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];</span><br><span class="line">    //设置数据</span><br><span class="line">    [cell setCellDataSoure:self.dataSoure IndexPath:indexPath select:self.select];</span><br><span class="line">    </span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark 设置item的大小</span><br><span class="line">- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line">    //竖直滑动时：</span><br><span class="line">    //item排列：最左边的item根据collectionView的最左边的点去做长和高（向左向下），最右边的item根据collectionView的最右边的点去做长和高（向右向下）</span><br><span class="line">    //水平滑动时：</span><br><span class="line">    //item排列：最上边和左边的item根据collectionView的最上边和左边的点去做长和高（向左向下），最下边和最左边的item根据collectionView的最下边和最左边的点去做长和高（向右向上）</span><br><span class="line">    return CGSizeMake((SHWidth - 20)/3, (SHWidth - 20)/3);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark collectionView边间距(整体collectionView的上左下右)</span><br><span class="line">- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section &#123;</span><br><span class="line">    //上左下右</span><br><span class="line">    return UIEdgeInsetsMake(10, 5, 0, 5);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark 点击</span><br><span class="line">- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>iOS</category>
       </categories>
@@ -650,18 +692,6 @@ switch (status) {
       </tags>
   </entry>
   <entry>
-    <title>iOS 常用控件之UICollectionView</title>
-    <url>/2019/11/22/iOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BUICollectionView/</url>
-    <content><![CDATA[<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#pragma mark - 懒加载</span><br><span class="line">- (UICollectionView *)collectionView &#123;</span><br><span class="line">    </span><br><span class="line">    if (!_collectionView) &#123;</span><br><span class="line">        //UICollectionView的自动布局</span><br><span class="line">        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];</span><br><span class="line">        //设置滑动方向</span><br><span class="line">        //UICollectionViewScrollDirectionHorizontal  水平滑动</span><br><span class="line">        //UICollectionViewScrollDirectionVertical    竖直滑动</span><br><span class="line">        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;</span><br><span class="line">        //下放两个属性可以在这里设置也可以在下方代理中设置（默认10）</span><br><span class="line">        //设置水平间距（内部）</span><br><span class="line">        layout.minimumInteritemSpacing = 5;</span><br><span class="line">        //设置竖直间距（内部）</span><br><span class="line">        layout.minimumLineSpacing = 5;</span><br><span class="line">        </span><br><span class="line">        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, SHWidth, SHHeight - 64) collectionViewLayout:layout];</span><br><span class="line">        _collectionView.backgroundColor = [UIColor clearColor];</span><br><span class="line">        _collectionView.delegate = self;</span><br><span class="line">        _collectionView.dataSource = self;</span><br><span class="line">        </span><br><span class="line">        [self.view addSubview:_collectionView];</span><br><span class="line">        </span><br><span class="line">        //注册cell类</span><br><span class="line">        [_collectionView registerNib:[UINib nibWithNibName:reuseIdentifier bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:reuseIdentifier];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return _collectionView;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - UICollectionViewDelegate</span><br><span class="line">- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView &#123;</span><br><span class="line">    </span><br><span class="line">    return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSInteger )collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section &#123;</span><br><span class="line">    </span><br><span class="line">    return self.dataSoure.count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark 实例化UICollectionView</span><br><span class="line">- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line">    </span><br><span class="line">    SHChatBGDetailCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];</span><br><span class="line">    //设置数据</span><br><span class="line">    [cell setCellDataSoure:self.dataSoure IndexPath:indexPath select:self.select];</span><br><span class="line">    </span><br><span class="line">    return cell;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark 设置item的大小</span><br><span class="line">- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath &#123;</span><br><span class="line">    //竖直滑动时：</span><br><span class="line">    //item排列：最左边的item根据collectionView的最左边的点去做长和高（向左向下），最右边的item根据collectionView的最右边的点去做长和高（向右向下）</span><br><span class="line">    //水平滑动时：</span><br><span class="line">    //item排列：最上边和左边的item根据collectionView的最上边和左边的点去做长和高（向左向下），最下边和最左边的item根据collectionView的最下边和最左边的点去做长和高（向右向上）</span><br><span class="line">    return CGSizeMake((SHWidth - 20)/3, (SHWidth - 20)/3);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark collectionView边间距(整体collectionView的上左下右)</span><br><span class="line">- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section &#123;</span><br><span class="line">    //上左下右</span><br><span class="line">    return UIEdgeInsetsMake(10, 5, 0, 5);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark 点击</span><br><span class="line">- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>知识</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>iOS 常用控件之UIScrollView</title>
     <url>/2019/11/22/iOS%20%E5%B8%B8%E7%94%A8%E6%8E%A7%E4%BB%B6%E4%B9%8BUIScrollView/</url>
     <content><![CDATA[<p>常用控件之UIScrollView</p>
@@ -688,6 +718,55 @@ switch (status) {
       <categories>
         <category>iOS</category>
       </categories>
+  </entry>
+  <entry>
+    <title>iOS 常用方法(持续更新)</title>
+    <url>/2019/11/22/iOS%20%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/</url>
+    <content><![CDATA[<a id="more"></a>
+<p>//管理APP所有权限</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];</span><br></pre></td></tr></table></figure>
+
+<p>//tableview取消选中（点击方法中添加此方法）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[self performSelector:@selector(deselect) withObject:nil afterDelay:0.25f];</span><br></pre></td></tr></table></figure>
+
+<p>//取消选中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (void)deselect</span><br><span class="line">&#123;</span><br><span class="line">    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//使用系统的复制粘贴功能</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[UIPasteboard generalPasteboard].string = @&quot;你的字符串&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>//修改系统相册界面为中文</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">在 Info.plist 文件中添加 Localizations 键值 内容为item 值为Chinese (simplified)</span><br></pre></td></tr></table></figure>
+
+<p>//默认返回按钮去掉文字（此方法遇到特殊情况不好用，最好在界面跳转前重新定义backBarButtonItem）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];</span><br></pre></td></tr></table></figure>
+
+<p>//禁止tableview滑动</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">self.tableview.scrollEnabled = NO;</span><br></pre></td></tr></table></figure>
+
+<p>//隐藏导航栏</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[self.navigationController.navigationBar setBackgroundImage:[UIImage new]</span><br><span class="line">                           forBarPosition:UIBarPositionAny</span><br><span class="line">                               barMetrics:UIBarMetricsDefault];</span><br><span class="line">[self.navigationController.navigationBar setShadowImage:[UIImage new]];</span><br></pre></td></tr></table></figure>
+
+<p>//父视图透明子视图不透明</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">btn.backgroundColor = [[UIColor colorWithWhite:0.5 alpha:1] colorWithAlphaComponent:0.1];</span><br></pre></td></tr></table></figure>
+
+<p>//tableview改变头部视图背景颜色与字体颜色</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#pragma mark 改变头部视图</span><br><span class="line">-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section&#123;</span><br><span class="line">    view.tintColor = ViewBGC;</span><br><span class="line">    UITableViewHeaderFooterView *head = (UITableViewHeaderFooterView *)view;</span><br><span class="line">    head.textLabel.textColor = RGB(62, 99, 114, 1);</span><br><span class="line">&#125;</span><br><span class="line">#pragma mark 改变底部视图</span><br><span class="line">- (void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section&#123;</span><br><span class="line">    view.tintColor = [UIColor clearColor];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//开启照明</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</span><br><span class="line"></span><br><span class="line">    self.isOpen = !self.isOpen;</span><br><span class="line">    </span><br><span class="line">    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];</span><br><span class="line">    if ([device hasTorch]) &#123;</span><br><span class="line">        [device lockForConfiguration:nil];</span><br><span class="line">        if (self.isOpen) &#123;</span><br><span class="line">            [device setTorchMode:AVCaptureTorchModeOn];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            [device setTorchMode:AVCaptureTorchModeOff];</span><br><span class="line">        &#125;</span><br><span class="line">        [device unlockForConfiguration];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>//UITableView 的 headerView跟随 cell一起滚动</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (void)scrollViewDidScroll:(UIScrollView *)scrollView &#123;</span><br><span class="line">    if (scrollView == self.tableView)</span><br><span class="line">    &#123;</span><br><span class="line">        if (scrollView.contentOffset.y&lt;=SectionHeaderHeight &amp;&amp; scrollView.contentOffset.y&gt;=0) &#123;</span><br><span class="line">            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);</span><br><span class="line">        &#125; else if (scrollView.contentOffset.y &gt;= SectionHeaderHeight) &#123;</span><br><span class="line">            scrollView.contentInset = UIEdgeInsetsMake(-SectionHeaderHeight, 0, 0, 0);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获取APP的图标 icon</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];</span><br><span class="line"></span><br><span class="line">NSString *icon = [[infoPlist valueForKeyPath:@&quot;CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles&quot;] lastObject];</span><br><span class="line"></span><br><span class="line">UIImage* image = [UIImage imageNamed:icon];</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
   </entry>
   <entry>
     <title>iOS 常用控件之UIViewAutoresizing(自动适配)</title>
@@ -743,55 +822,6 @@ switch (status) {
       </tags>
   </entry>
   <entry>
-    <title>iOS 常用方法(持续更新)</title>
-    <url>/2019/11/22/iOS%20%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/</url>
-    <content><![CDATA[<a id="more"></a>
-<p>//管理APP所有权限</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];</span><br></pre></td></tr></table></figure>
-
-<p>//tableview取消选中（点击方法中添加此方法）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[self performSelector:@selector(deselect) withObject:nil afterDelay:0.25f];</span><br></pre></td></tr></table></figure>
-
-<p>//取消选中</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (void)deselect</span><br><span class="line">&#123;</span><br><span class="line">    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>//使用系统的复制粘贴功能</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[UIPasteboard generalPasteboard].string = @&quot;你的字符串&quot;;</span><br></pre></td></tr></table></figure>
-
-<p>//修改系统相册界面为中文</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">在 Info.plist 文件中添加 Localizations 键值 内容为item 值为Chinese (simplified)</span><br></pre></td></tr></table></figure>
-
-<p>//默认返回按钮去掉文字（此方法遇到特殊情况不好用，最好在界面跳转前重新定义backBarButtonItem）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];</span><br></pre></td></tr></table></figure>
-
-<p>//禁止tableview滑动</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">self.tableview.scrollEnabled = NO;</span><br></pre></td></tr></table></figure>
-
-<p>//隐藏导航栏</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[self.navigationController.navigationBar setBackgroundImage:[UIImage new]</span><br><span class="line">                           forBarPosition:UIBarPositionAny</span><br><span class="line">                               barMetrics:UIBarMetricsDefault];</span><br><span class="line">[self.navigationController.navigationBar setShadowImage:[UIImage new]];</span><br></pre></td></tr></table></figure>
-
-<p>//父视图透明子视图不透明</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">btn.backgroundColor = [[UIColor colorWithWhite:0.5 alpha:1] colorWithAlphaComponent:0.1];</span><br></pre></td></tr></table></figure>
-
-<p>//tableview改变头部视图背景颜色与字体颜色</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#pragma mark 改变头部视图</span><br><span class="line">-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section&#123;</span><br><span class="line">    view.tintColor = ViewBGC;</span><br><span class="line">    UITableViewHeaderFooterView *head = (UITableViewHeaderFooterView *)view;</span><br><span class="line">    head.textLabel.textColor = RGB(62, 99, 114, 1);</span><br><span class="line">&#125;</span><br><span class="line">#pragma mark 改变底部视图</span><br><span class="line">- (void)tableView:(UITableView *)tableView willDisplayFooterView:(UIView *)view forSection:(NSInteger)section&#123;</span><br><span class="line">    view.tintColor = [UIColor clearColor];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>//开启照明</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</span><br><span class="line"></span><br><span class="line">    self.isOpen = !self.isOpen;</span><br><span class="line">    </span><br><span class="line">    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];</span><br><span class="line">    if ([device hasTorch]) &#123;</span><br><span class="line">        [device lockForConfiguration:nil];</span><br><span class="line">        if (self.isOpen) &#123;</span><br><span class="line">            [device setTorchMode:AVCaptureTorchModeOn];</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            [device setTorchMode:AVCaptureTorchModeOff];</span><br><span class="line">        &#125;</span><br><span class="line">        [device unlockForConfiguration];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>//UITableView 的 headerView跟随 cell一起滚动</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (void)scrollViewDidScroll:(UIScrollView *)scrollView &#123;</span><br><span class="line">    if (scrollView == self.tableView)</span><br><span class="line">    &#123;</span><br><span class="line">        if (scrollView.contentOffset.y&lt;=SectionHeaderHeight &amp;&amp; scrollView.contentOffset.y&gt;=0) &#123;</span><br><span class="line">            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);</span><br><span class="line">        &#125; else if (scrollView.contentOffset.y &gt;= SectionHeaderHeight) &#123;</span><br><span class="line">            scrollView.contentInset = UIEdgeInsetsMake(-SectionHeaderHeight, 0, 0, 0);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>获取APP的图标 icon</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];</span><br><span class="line"></span><br><span class="line">NSString *icon = [[infoPlist valueForKeyPath:@&quot;CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles&quot;] lastObject];</span><br><span class="line"></span><br><span class="line">UIImage* image = [UIImage imageNamed:icon];</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>iOS 常见错误(持续更新)</title>
     <url>/2019/11/22/iOS%20%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF(%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0)/</url>
     <content><![CDATA[<a id="more"></a>
@@ -809,19 +839,6 @@ switch (status) {
       </tags>
   </entry>
   <entry>
-    <title>iOS 常用宏定义</title>
-    <url>/2019/11/22/iOS%20%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/</url>
-    <content><![CDATA[<p>iOS 常用宏定义</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#pragma mark - 方法定义</span><br><span class="line">#pragma mark 颜色</span><br><span class="line">#define kRGB(R,G,B,A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]</span><br><span class="line"></span><br><span class="line">#pragma mark 描边</span><br><span class="line">#define kSHViewBorderRadius(View, Radius, Width, Color)\</span><br><span class="line">\</span><br><span class="line">[View.layer setMasksToBounds:YES];\</span><br><span class="line">[View.layer setBorderWidth:(Width)];\</span><br><span class="line">[View.layer setCornerRadius:(Radius)];\</span><br><span class="line">[View.layer setBorderColor:[Color CGColor]]</span><br><span class="line"></span><br><span class="line">#pragma mark - 其他定义</span><br><span class="line">//设备物理宽高</span><br><span class="line">#define kSHHeight ([UIScreen mainScreen].bounds.size.height)</span><br><span class="line">#define kSHWidth ([UIScreen mainScreen].bounds.size.width)</span><br><span class="line"></span><br><span class="line">//界面宽高</span><br><span class="line">#define kSHViewWidth (self.view.frame.size.width)</span><br><span class="line">#define kSHViewHeight (self.view.frame.size.height)</span><br><span class="line"></span><br><span class="line">//状态栏高度</span><br><span class="line">#define kStatusBarH ([[UIApplication sharedApplication] statusBarFrame].size.height)</span><br><span class="line"></span><br><span class="line">//是否为V以上系统</span><br><span class="line">#define IOS(V) [[[UIDevice currentDevice] systemVersion] floatValue] &gt;= V</span><br><span class="line"></span><br><span class="line">// 系统delegate</span><br><span class="line">#define kSHAppDelegate (AppDelegate *)[UIApplication sharedApplication].delegate</span><br><span class="line"></span><br><span class="line">//计算耗时</span><br><span class="line">#define TICK        CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();</span><br><span class="line">#define TOCKFor(A)  SHLog(@&quot;耗时计算-%@: %f&quot;,(A),CFAbsoluteTimeGetCurrent() - start);</span><br><span class="line">#define TOCK        SHLog(@&quot;耗时计算: %f&quot;,CFAbsoluteTimeGetCurrent() - start);</span><br><span class="line"></span><br><span class="line">#pragma mark - 文件路径</span><br><span class="line">//Document目录</span><br><span class="line">#define DocumentPatch [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]</span><br><span class="line"></span><br><span class="line">//Caches目录</span><br><span class="line">#define CachesPatch NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0]</span><br><span class="line"></span><br><span class="line">//Temp目录</span><br><span class="line">#define TempPatch NSTemporaryDirectory()</span><br><span class="line"></span><br><span class="line">#pragma mark - NSUserDefaults使用的键值</span><br><span class="line"></span><br><span class="line">#define kSHUserDefaults [NSUserDefaults standardUserDefaults]</span><br><span class="line"></span><br><span class="line">//清除模型中的所有数据</span><br><span class="line">#define kSHClearModelData(Model) \</span><br><span class="line">\</span><br><span class="line">Model *_model##Model = [[Model alloc] init];\</span><br><span class="line">u_int count##Model;\</span><br><span class="line">objc_property_t *properties##Model = class_copyPropertyList([Model class], &amp;count##Model);\</span><br><span class="line">for (int i = 0; i&lt; count##Model; i++)&#123;\</span><br><span class="line">    [_model##Model setValue:nil forKey:[NSString stringWithFormat:@&quot;%s&quot;,property_getName(properties##Model[i])]];\</span><br><span class="line">&#125;\</span><br><span class="line">free(properties##Model);\</span><br><span class="line"></span><br><span class="line">#pragma mark 适配(pt)</span><br><span class="line">//4S:320*480</span><br><span class="line">//5:320*568</span><br><span class="line">//6:375*667</span><br><span class="line">//6P:414*736</span><br><span class="line">//X:375*812</span><br><span class="line">#define kSHGetW(W) ((W)*([UIScreen mainScreen].bounds.size.width)/375)</span><br><span class="line">#define kSHGetH(H) ((H)*([UIScreen mainScreen].bounds.size.height)/667)</span><br><span class="line"></span><br><span class="line">// weak &amp; strong</span><br><span class="line">#define kSHWeak(VAR) \</span><br><span class="line">@try &#123;&#125; @finally &#123;&#125; \</span><br><span class="line">__weak __typeof__(VAR) weak_##VAR = (VAR);</span><br><span class="line"></span><br><span class="line">#define kSHStrong(VAR) \</span><br><span class="line">@try &#123;&#125; @finally &#123;&#125; \</span><br><span class="line">__strong __typeof__(VAR) VAR = weak_##VAR</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>宏</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>iOS 布局之淘宝、京东、微博、半糖、闲鱼等首页界面</title>
     <url>/2019/11/22/iOS%20%E5%B8%83%E5%B1%80%E4%B9%8B%E6%B7%98%E5%AE%9D%E3%80%81%E4%BA%AC%E4%B8%9C%E3%80%81%E5%BE%AE%E5%8D%9A%E3%80%81%E5%8D%8A%E7%B3%96%E3%80%81%E9%97%B2%E9%B1%BC%E7%AD%89%E9%A6%96%E9%A1%B5%E7%95%8C%E9%9D%A2/</url>
     <content><![CDATA[<a id="more"></a>
@@ -833,6 +850,19 @@ switch (status) {
       </categories>
       <tags>
         <tag>封装</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iOS 常用宏定义</title>
+    <url>/2019/11/22/iOS%20%E5%B8%B8%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89/</url>
+    <content><![CDATA[<p>iOS 常用宏定义</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#pragma mark - 方法定义</span><br><span class="line">#pragma mark 颜色</span><br><span class="line">#define kRGB(R,G,B,A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]</span><br><span class="line"></span><br><span class="line">#pragma mark 描边</span><br><span class="line">#define kSHViewBorderRadius(View, Radius, Width, Color)\</span><br><span class="line">\</span><br><span class="line">[View.layer setMasksToBounds:YES];\</span><br><span class="line">[View.layer setBorderWidth:(Width)];\</span><br><span class="line">[View.layer setCornerRadius:(Radius)];\</span><br><span class="line">[View.layer setBorderColor:[Color CGColor]]</span><br><span class="line"></span><br><span class="line">#pragma mark - 其他定义</span><br><span class="line">//设备物理宽高</span><br><span class="line">#define kSHHeight ([UIScreen mainScreen].bounds.size.height)</span><br><span class="line">#define kSHWidth ([UIScreen mainScreen].bounds.size.width)</span><br><span class="line"></span><br><span class="line">//界面宽高</span><br><span class="line">#define kSHViewWidth (self.view.frame.size.width)</span><br><span class="line">#define kSHViewHeight (self.view.frame.size.height)</span><br><span class="line"></span><br><span class="line">//状态栏高度</span><br><span class="line">#define kStatusBarH ([[UIApplication sharedApplication] statusBarFrame].size.height)</span><br><span class="line"></span><br><span class="line">//是否为V以上系统</span><br><span class="line">#define IOS(V) [[[UIDevice currentDevice] systemVersion] floatValue] &gt;= V</span><br><span class="line"></span><br><span class="line">// 系统delegate</span><br><span class="line">#define kSHAppDelegate (AppDelegate *)[UIApplication sharedApplication].delegate</span><br><span class="line"></span><br><span class="line">//计算耗时</span><br><span class="line">#define TICK        CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();</span><br><span class="line">#define TOCKFor(A)  SHLog(@&quot;耗时计算-%@: %f&quot;,(A),CFAbsoluteTimeGetCurrent() - start);</span><br><span class="line">#define TOCK        SHLog(@&quot;耗时计算: %f&quot;,CFAbsoluteTimeGetCurrent() - start);</span><br><span class="line"></span><br><span class="line">#pragma mark - 文件路径</span><br><span class="line">//Document目录</span><br><span class="line">#define DocumentPatch [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]</span><br><span class="line"></span><br><span class="line">//Caches目录</span><br><span class="line">#define CachesPatch NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0]</span><br><span class="line"></span><br><span class="line">//Temp目录</span><br><span class="line">#define TempPatch NSTemporaryDirectory()</span><br><span class="line"></span><br><span class="line">#pragma mark - NSUserDefaults使用的键值</span><br><span class="line"></span><br><span class="line">#define kSHUserDefaults [NSUserDefaults standardUserDefaults]</span><br><span class="line"></span><br><span class="line">//清除模型中的所有数据</span><br><span class="line">#define kSHClearModelData(Model) \</span><br><span class="line">\</span><br><span class="line">Model *_model##Model = [[Model alloc] init];\</span><br><span class="line">u_int count##Model;\</span><br><span class="line">objc_property_t *properties##Model = class_copyPropertyList([Model class], &amp;count##Model);\</span><br><span class="line">for (int i = 0; i&lt; count##Model; i++)&#123;\</span><br><span class="line">    [_model##Model setValue:nil forKey:[NSString stringWithFormat:@&quot;%s&quot;,property_getName(properties##Model[i])]];\</span><br><span class="line">&#125;\</span><br><span class="line">free(properties##Model);\</span><br><span class="line"></span><br><span class="line">#pragma mark 适配(pt)</span><br><span class="line">//4S:320*480</span><br><span class="line">//5:320*568</span><br><span class="line">//6:375*667</span><br><span class="line">//6P:414*736</span><br><span class="line">//X:375*812</span><br><span class="line">#define kSHGetW(W) ((W)*([UIScreen mainScreen].bounds.size.width)/375)</span><br><span class="line">#define kSHGetH(H) ((H)*([UIScreen mainScreen].bounds.size.height)/667)</span><br><span class="line"></span><br><span class="line">// weak &amp; strong</span><br><span class="line">#define kSHWeak(VAR) \</span><br><span class="line">@try &#123;&#125; @finally &#123;&#125; \</span><br><span class="line">__weak __typeof__(VAR) weak_##VAR = (VAR);</span><br><span class="line"></span><br><span class="line">#define kSHStrong(VAR) \</span><br><span class="line">@try &#123;&#125; @finally &#123;&#125; \</span><br><span class="line">__strong __typeof__(VAR) VAR = weak_##VAR</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>宏</tag>
       </tags>
   </entry>
   <entry>
@@ -1083,6 +1113,20 @@ default:
       </categories>
   </entry>
   <entry>
+    <title>iOS 仿写项目之微信聊天界面、QQ聊天界面</title>
+    <url>/2019/11/22/iOS%20%E4%BB%BF%E5%86%99%E9%A1%B9%E7%9B%AE%E4%B9%8B%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E7%95%8C%E9%9D%A2%E3%80%81QQ%E8%81%8A%E5%A4%A9%E7%95%8C%E9%9D%A2/</url>
+    <content><![CDATA[<a id="more"></a>
+<p><img src="https://upload-images.jianshu.io/upload_images/1897259-e4c047b16de11c93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果"></p>
+<p><a href="https://github.com/CCSH/SHChatMessageUI" target="_blank" rel="noopener">代码地址</a></p>
+]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>封装</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iOS 仿写项目之朋友圈</title>
     <url>/2019/11/22/iOS%20%E4%BB%BF%E5%86%99%E9%A1%B9%E7%9B%AE%E4%B9%8B%E6%9C%8B%E5%8F%8B%E5%9C%88/</url>
     <content><![CDATA[<a id="more"></a>
@@ -1107,20 +1151,6 @@ default:
       </categories>
       <tags>
         <tag>方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iOS 仿写项目之微信聊天界面、QQ聊天界面</title>
-    <url>/2019/11/22/iOS%20%E4%BB%BF%E5%86%99%E9%A1%B9%E7%9B%AE%E4%B9%8B%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E7%95%8C%E9%9D%A2%E3%80%81QQ%E8%81%8A%E5%A4%A9%E7%95%8C%E9%9D%A2/</url>
-    <content><![CDATA[<a id="more"></a>
-<p><img src="https://upload-images.jianshu.io/upload_images/1897259-e4c047b16de11c93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果"></p>
-<p><a href="https://github.com/CCSH/SHChatMessageUI" target="_blank" rel="noopener">代码地址</a></p>
-]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>封装</tag>
       </tags>
   </entry>
   <entry>
@@ -1228,6 +1258,19 @@ default:
       </tags>
   </entry>
   <entry>
+    <title>iOS APP各种状态（进入后台，前台等整理）</title>
+    <url>/2019/11/22/iOS%20APP%E5%90%84%E7%A7%8D%E7%8A%B6%E6%80%81%EF%BC%88%E8%BF%9B%E5%85%A5%E5%90%8E%E5%8F%B0%EF%BC%8C%E5%89%8D%E5%8F%B0%E7%AD%89%E6%95%B4%E7%90%86%EF%BC%89/</url>
+    <content><![CDATA[<p>APP各种状态（进入后台，前台等整理）</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#pragma mark - 程序将要进入后台</span><br><span class="line">- (void)applicationWillResignActive:(UIApplication *)application &#123;</span><br><span class="line">    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.</span><br><span class="line">    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.</span><br><span class="line">    DLog(@&quot;程序将要进入后台&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - 程序进入后台</span><br><span class="line">- (void)applicationDidEnterBackground:(UIApplication *)application &#123;</span><br><span class="line">    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.</span><br><span class="line">    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.</span><br><span class="line">    DLog(@&quot;程序进入后台&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - 程序将要进入前台</span><br><span class="line">- (void)applicationWillEnterForeground:(UIApplication *)application &#123;</span><br><span class="line">    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.</span><br><span class="line">    DLog(@&quot;程序将要进入前台&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - 程序进入前台</span><br><span class="line">- (void)applicationDidBecomeActive:(UIApplication *)application &#123;</span><br><span class="line">    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.</span><br><span class="line">    DLog(@&quot;程序进入前台&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>tableview</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>iOS APP日志写入文件（日志收集）</title>
     <url>/2019/11/22/iOS%20APP%E6%97%A5%E5%BF%97%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6%EF%BC%88%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86%EF%BC%89/</url>
     <content><![CDATA[<p>APP日志写入文件（日志收集）</p>
@@ -1263,31 +1306,6 @@ default:
       </tags>
   </entry>
   <entry>
-    <title>iOS APP各种状态（进入后台，前台等整理）</title>
-    <url>/2019/11/22/iOS%20APP%E5%90%84%E7%A7%8D%E7%8A%B6%E6%80%81%EF%BC%88%E8%BF%9B%E5%85%A5%E5%90%8E%E5%8F%B0%EF%BC%8C%E5%89%8D%E5%8F%B0%E7%AD%89%E6%95%B4%E7%90%86%EF%BC%89/</url>
-    <content><![CDATA[<p>APP各种状态（进入后台，前台等整理）</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#pragma mark - 程序将要进入后台</span><br><span class="line">- (void)applicationWillResignActive:(UIApplication *)application &#123;</span><br><span class="line">    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.</span><br><span class="line">    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.</span><br><span class="line">    DLog(@&quot;程序将要进入后台&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - 程序进入后台</span><br><span class="line">- (void)applicationDidEnterBackground:(UIApplication *)application &#123;</span><br><span class="line">    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.</span><br><span class="line">    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.</span><br><span class="line">    DLog(@&quot;程序进入后台&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - 程序将要进入前台</span><br><span class="line">- (void)applicationWillEnterForeground:(UIApplication *)application &#123;</span><br><span class="line">    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.</span><br><span class="line">    DLog(@&quot;程序将要进入前台&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#pragma mark - 程序进入前台</span><br><span class="line">- (void)applicationDidBecomeActive:(UIApplication *)application &#123;</span><br><span class="line">    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.</span><br><span class="line">    DLog(@&quot;程序进入前台&quot;);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>tableview</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>iOS Pod 问题</title>
-    <url>/2019/11/22/iOS%20Pod%20%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="突然出现-bash-pod-command-not-found-的解决方法"><a href="#突然出现-bash-pod-command-not-found-的解决方法" class="headerlink" title="突然出现 -bash: pod: command not found 的解决方法"></a>突然出现 -bash: pod: command not found 的解决方法</h1><a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ mkdir -p $HOME/Software/ruby</span><br><span class="line">$ export GEM_HOME=$HOME/Software/ruby</span><br><span class="line">$ gem install cocoapods</span><br><span class="line">$ export PATH=$PATH:$HOME/Software/ruby/bin</span><br><span class="line">$ pod --version</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>iOS</category>
-      </categories>
-      <tags>
-        <tag>问题</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>iOS Block定义</title>
     <url>/2019/11/22/iOS%20Block%E5%AE%9A%E4%B9%89/</url>
     <content><![CDATA[<p>Block定义</p>
@@ -1302,6 +1320,18 @@ default:
       </categories>
       <tags>
         <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>iOS Pod 问题</title>
+    <url>/2019/11/22/iOS%20Pod%20%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="突然出现-bash-pod-command-not-found-的解决方法"><a href="#突然出现-bash-pod-command-not-found-的解决方法" class="headerlink" title="突然出现 -bash: pod: command not found 的解决方法"></a>突然出现 -bash: pod: command not found 的解决方法</h1><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ mkdir -p $HOME/Software/ruby</span><br><span class="line">$ export GEM_HOME=$HOME/Software/ruby</span><br><span class="line">$ gem install cocoapods</span><br><span class="line">$ export PATH=$PATH:$HOME/Software/ruby/bin</span><br><span class="line">$ pod --version</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>iOS</category>
+      </categories>
+      <tags>
+        <tag>问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1414,6 +1444,21 @@ default:
       </tags>
   </entry>
   <entry>
+    <title>XCode 代码格式化 .clang-format配置</title>
+    <url>/2019/11/22/XCode%20%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96%20.clang-format%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p>.clang-format配置</p>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 工具 https://github.com/mapbox/XcodeClangFormat</span><br><span class="line"># 函数名详细地址 英文 http://clang.llvm.org/docs/ClangFormatStyleOptions.html</span><br><span class="line"># 函数名详细地址 中文 https://www.cnblogs.com/PaulpauL/p/5929753.html</span><br><span class="line"></span><br><span class="line"># 基于样式</span><br><span class="line">BasedOnStyle: LLVM</span><br><span class="line"></span><br><span class="line"># 对齐注释</span><br><span class="line">AlignTrailingComments: true</span><br><span class="line"></span><br><span class="line"># 指针和引用的对齐方式</span><br><span class="line">PointerAlignment: Right</span><br><span class="line"></span><br><span class="line"># 用于缩进的列数</span><br><span class="line">IndentWidth: 4</span><br><span class="line"></span><br><span class="line"># switch的case缩进</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line"></span><br><span class="line"># OC里面，在@property后加空格</span><br><span class="line">ObjCSpaceAfterProperty: true</span><br><span class="line"></span><br><span class="line"># OC里面，在Protocol前后加空格</span><br><span class="line">ObjCSpaceBeforeProtocolList: true</span><br><span class="line"></span><br><span class="line"># 单行注释前的空格数</span><br><span class="line">SpacesBeforeTrailingComments: 1</span><br><span class="line"></span><br><span class="line"># 连续的空行保留几行</span><br><span class="line">MaxEmptyLinesToKeep: 1</span><br><span class="line"></span><br><span class="line"># 保留block里面的空行</span><br><span class="line">KeepEmptyLinesAtTheStartOfBlocks: false</span><br><span class="line"></span><br><span class="line"># 每行字符的限制，0表示没有限制</span><br><span class="line">ColumnLimit: 0</span><br><span class="line"></span><br><span class="line"># []中添加空格</span><br><span class="line">SpacesInSquareBrackets: false</span><br><span class="line"></span><br><span class="line"># ()中添加空格</span><br><span class="line">SpacesInParentheses : false</span><br><span class="line"></span><br><span class="line"># 容器类前添加空格</span><br><span class="line">SpacesInContainerLiterals: true</span><br><span class="line"></span><br><span class="line"># 赋值运算符前加空格</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line"></span><br><span class="line"># 在空括号中加空格</span><br><span class="line">SpaceInEmptyParentheses: false</span><br><span class="line"></span><br><span class="line"># 在&lt;&gt;中间插入空格</span><br><span class="line">SpacesInAngles: false</span><br><span class="line"></span><br><span class="line"># 换行的时候对齐操作符</span><br><span class="line">AlignOperands: true</span><br><span class="line"></span><br><span class="line"># 括号中的(),&#123;&#125;,[]代码对齐方式</span><br><span class="line">#AlignAfterOpenBracket: Align</span><br><span class="line"></span><br><span class="line">#ContinuationIndentWidth: 0</span><br><span class="line"></span><br><span class="line"># 赋值=对齐</span><br><span class="line">AlignConsecutiveAssignments: false</span><br><span class="line"></span><br><span class="line"># 声明参数对齐</span><br><span class="line">AlignConsecutiveDeclarations: false</span><br><span class="line"></span><br><span class="line"># 运算符位置</span><br><span class="line">BreakBeforeBinaryOperators: None</span><br><span class="line"></span><br><span class="line"># 允许短的函数放在同一行</span><br><span class="line">#AllowShortFunctionsOnASingleLine: None</span><br><span class="line"></span><br><span class="line"># 允许case在同一行</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line"></span><br><span class="line"># 允许if在同一行</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line"></span><br><span class="line"># 允许while在同一行</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line"></span><br><span class="line"># 允许将简单的语句块放到同一行</span><br><span class="line">AllowShortBlocksOnASingleLine: false</span><br><span class="line"></span><br><span class="line">#缩进函数名</span><br><span class="line">IndentWrappedFunctionNames: false</span><br><span class="line"></span><br><span class="line"># 形参 如果为false要么都在同一行，要么各有一行</span><br><span class="line">BinPackParameters: false</span><br><span class="line"></span><br><span class="line"># 实参 如果为false要么都在同一行，要么各有一行</span><br><span class="line">BinPackArguments: false</span><br><span class="line"></span><br><span class="line"># 大括号换行</span><br><span class="line">BreakBeforeBraces: Custom</span><br><span class="line">BraceWrapping:</span><br><span class="line">  # class定义后面</span><br><span class="line">  AfterClass: true</span><br><span class="line">  # 控制语句后面</span><br><span class="line">  AfterControlStatement: false</span><br><span class="line">  # enum定义后面</span><br><span class="line">  AfterEnum: false</span><br><span class="line">  # 函数定义后面</span><br><span class="line">  AfterFunction: false</span><br><span class="line">  # 命名空间定义后面</span><br><span class="line">  AfterNamespace: false</span><br><span class="line">  # struct定义后面</span><br><span class="line">  AfterStruct: false</span><br><span class="line">  # union定义后面</span><br><span class="line">  AfterUnion: false</span><br><span class="line">  # catch之前</span><br><span class="line">  BeforeCatch: false</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>XCode</category>
+      </categories>
+      <tags>
+        <tag>配置</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VSCode 配置</title>
     <url>/2019/11/22/VSCode%20%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<p>VSCode 配置</p>
@@ -1434,18 +1479,18 @@ default:
       </tags>
   </entry>
   <entry>
-    <title>XCode 代码格式化 .clang-format配置</title>
-    <url>/2019/11/22/XCode%20%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96%20.clang-format%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<p>.clang-format配置</p>
-<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 工具 https://github.com/mapbox/XcodeClangFormat</span><br><span class="line"># 函数名详细地址 英文 http://clang.llvm.org/docs/ClangFormatStyleOptions.html</span><br><span class="line"># 函数名详细地址 中文 https://www.cnblogs.com/PaulpauL/p/5929753.html</span><br><span class="line"></span><br><span class="line"># 基于样式</span><br><span class="line">BasedOnStyle: LLVM</span><br><span class="line"></span><br><span class="line"># 对齐注释</span><br><span class="line">AlignTrailingComments: true</span><br><span class="line"></span><br><span class="line"># 指针和引用的对齐方式</span><br><span class="line">PointerAlignment: Right</span><br><span class="line"></span><br><span class="line"># 用于缩进的列数</span><br><span class="line">IndentWidth: 4</span><br><span class="line"></span><br><span class="line"># switch的case缩进</span><br><span class="line">IndentCaseLabels: true</span><br><span class="line"></span><br><span class="line"># OC里面，在@property后加空格</span><br><span class="line">ObjCSpaceAfterProperty: true</span><br><span class="line"></span><br><span class="line"># OC里面，在Protocol前后加空格</span><br><span class="line">ObjCSpaceBeforeProtocolList: true</span><br><span class="line"></span><br><span class="line"># 单行注释前的空格数</span><br><span class="line">SpacesBeforeTrailingComments: 1</span><br><span class="line"></span><br><span class="line"># 连续的空行保留几行</span><br><span class="line">MaxEmptyLinesToKeep: 1</span><br><span class="line"></span><br><span class="line"># 保留block里面的空行</span><br><span class="line">KeepEmptyLinesAtTheStartOfBlocks: false</span><br><span class="line"></span><br><span class="line"># 每行字符的限制，0表示没有限制</span><br><span class="line">ColumnLimit: 0</span><br><span class="line"></span><br><span class="line"># []中添加空格</span><br><span class="line">SpacesInSquareBrackets: false</span><br><span class="line"></span><br><span class="line"># ()中添加空格</span><br><span class="line">SpacesInParentheses : false</span><br><span class="line"></span><br><span class="line"># 容器类前添加空格</span><br><span class="line">SpacesInContainerLiterals: true</span><br><span class="line"></span><br><span class="line"># 赋值运算符前加空格</span><br><span class="line">SpaceBeforeAssignmentOperators: true</span><br><span class="line"></span><br><span class="line"># 在空括号中加空格</span><br><span class="line">SpaceInEmptyParentheses: false</span><br><span class="line"></span><br><span class="line"># 在&lt;&gt;中间插入空格</span><br><span class="line">SpacesInAngles: false</span><br><span class="line"></span><br><span class="line"># 换行的时候对齐操作符</span><br><span class="line">AlignOperands: true</span><br><span class="line"></span><br><span class="line"># 括号中的(),&#123;&#125;,[]代码对齐方式</span><br><span class="line">#AlignAfterOpenBracket: Align</span><br><span class="line"></span><br><span class="line">#ContinuationIndentWidth: 0</span><br><span class="line"></span><br><span class="line"># 赋值=对齐</span><br><span class="line">AlignConsecutiveAssignments: false</span><br><span class="line"></span><br><span class="line"># 声明参数对齐</span><br><span class="line">AlignConsecutiveDeclarations: false</span><br><span class="line"></span><br><span class="line"># 运算符位置</span><br><span class="line">BreakBeforeBinaryOperators: None</span><br><span class="line"></span><br><span class="line"># 允许短的函数放在同一行</span><br><span class="line">#AllowShortFunctionsOnASingleLine: None</span><br><span class="line"></span><br><span class="line"># 允许case在同一行</span><br><span class="line">AllowShortCaseLabelsOnASingleLine: false</span><br><span class="line"></span><br><span class="line"># 允许if在同一行</span><br><span class="line">AllowShortIfStatementsOnASingleLine: false</span><br><span class="line"></span><br><span class="line"># 允许while在同一行</span><br><span class="line">AllowShortLoopsOnASingleLine: false</span><br><span class="line"></span><br><span class="line"># 允许将简单的语句块放到同一行</span><br><span class="line">AllowShortBlocksOnASingleLine: false</span><br><span class="line"></span><br><span class="line">#缩进函数名</span><br><span class="line">IndentWrappedFunctionNames: false</span><br><span class="line"></span><br><span class="line"># 形参 如果为false要么都在同一行，要么各有一行</span><br><span class="line">BinPackParameters: false</span><br><span class="line"></span><br><span class="line"># 实参 如果为false要么都在同一行，要么各有一行</span><br><span class="line">BinPackArguments: false</span><br><span class="line"></span><br><span class="line"># 大括号换行</span><br><span class="line">BreakBeforeBraces: Custom</span><br><span class="line">BraceWrapping:</span><br><span class="line">  # class定义后面</span><br><span class="line">  AfterClass: true</span><br><span class="line">  # 控制语句后面</span><br><span class="line">  AfterControlStatement: false</span><br><span class="line">  # enum定义后面</span><br><span class="line">  AfterEnum: false</span><br><span class="line">  # 函数定义后面</span><br><span class="line">  AfterFunction: false</span><br><span class="line">  # 命名空间定义后面</span><br><span class="line">  AfterNamespace: false</span><br><span class="line">  # struct定义后面</span><br><span class="line">  AfterStruct: false</span><br><span class="line">  # union定义后面</span><br><span class="line">  AfterUnion: false</span><br><span class="line">  # catch之前</span><br><span class="line">  BeforeCatch: false</span><br></pre></td></tr></table></figure>
-
+    <title>Xcode -[XMPPSRVResolver processRecord:length:]</title>
+    <url>/2019/11/22/Xcode%20-%5BXMPPSRVResolver%20processRecord:length:%5D/</url>
+    <content><![CDATA[<a id="more"></a>
+<p>“_dns_free_resource_record”, referenced from: -[XMPPSRVResolver processRecord:length:] in libEaseMobClientSDKLite.a(XMPPSRVResolver.o)</p>
+<p>这样的错误，是由于缺少库：</p>
+<p>添加libresolv.dylib库，就可以了<br><img src="https://upload-images.jianshu.io/upload_images/1897259-8f7cb547a8e05cce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果"></p>
 ]]></content>
       <categories>
-        <category>XCode</category>
+        <category>Xcode</category>
       </categories>
       <tags>
-        <tag>配置</tag>
+        <tag>问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1476,21 +1521,6 @@ default:
 </li>
 </ul>
 <p><img src="http://upload-images.jianshu.io/upload_images/1897259-0ed6b579b9a5fc6b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="去掉"></p>
-]]></content>
-      <categories>
-        <category>Xcode</category>
-      </categories>
-      <tags>
-        <tag>问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Xcode -[XMPPSRVResolver processRecord:length:]</title>
-    <url>/2019/11/22/Xcode%20-%5BXMPPSRVResolver%20processRecord:length:%5D/</url>
-    <content><![CDATA[<a id="more"></a>
-<p>“_dns_free_resource_record”, referenced from: -[XMPPSRVResolver processRecord:length:] in libEaseMobClientSDKLite.a(XMPPSRVResolver.o)</p>
-<p>这样的错误，是由于缺少库：</p>
-<p>添加libresolv.dylib库，就可以了<br><img src="https://upload-images.jianshu.io/upload_images/1897259-8f7cb547a8e05cce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果"></p>
 ]]></content>
       <categories>
         <category>Xcode</category>
